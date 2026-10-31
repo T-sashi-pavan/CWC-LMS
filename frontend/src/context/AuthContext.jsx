@@ -50,6 +50,10 @@ export function AuthProvider({ children }) {
       options: { data: { full_name: fullName }, captchaToken, emailRedirectTo: window.location.origin },
     })
     if (error) throw error
+    // Supabase hides "email already registered" by returning a user with no identities and sending no email.
+    if (data.user && data.user.identities?.length === 0) {
+      throw new Error('An account with this email already exists. Log in instead, or use Continue with Google.')
+    }
     return { needsConfirmation: !data.session }
   }
 
