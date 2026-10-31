@@ -1,4 +1,4 @@
-"""Django settings for Career with Chaitanya (CWC)."""
+"""Django settings for Career with Chaitanya (CWC). """
 import os
 from pathlib import Path
 
