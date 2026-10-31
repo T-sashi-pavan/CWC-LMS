@@ -17,7 +17,9 @@ def env_list(name, default=""):
 SECRET_KEY = os.environ.get("DJANGO_SECRET_KEY", "dev-only-insecure-key")
 ON_VERCEL = bool(os.environ.get("VERCEL"))
 # Safe default: debug is ON locally, always OFF on Vercel unless explicitly forced.
-DEBUG = os.environ.get("DJANGO_DEBUG", "False" if ON_VERCEL else "True").lower() == "true"
+DEBUG = os.environ.get("DJANGO_DEBUG", "True").lower() == "true"
+if ON_VERCEL:
+    DEBUG = False  # never show Django's debug pages (settings, env, stack traces) on a public deployment
 ALLOWED_HOSTS = env_list("DJANGO_ALLOWED_HOSTS", "localhost,127.0.0.1")
 if ON_VERCEL:
     ALLOWED_HOSTS += [".vercel.app"]
