@@ -1,0 +1,83 @@
+# ---------- Secrets / confidential (NEVER commit) ----------
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.p12
+*.pfx
+secrets/
+service-account*.json
+credentials*.json
+
+# ---------- Databases (we use Supabase only) ----------
+*.sqlite3
+*.sqlite3-journal
+*.db
+*.sql
+*.dump
+*.bak
+*.backup
+
+# ---------- Python / Django ----------
+.venv/
+venv/
+env/
+__pycache__/
+*.py[cod]
+staticfiles/
+backend/media/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+htmlcov/
+.coverage
+
+# ---------- Node / Vite ----------
+node_modules/
+dist/
+.vite/
+.eslintcache
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# ---------- Vercel ----------
+.vercel/
+
+# ---------- Large media / archives (store in Supabase Storage or Cloudflare R2, not git) ----------
+media/
+uploads/
+*.mp4
+*.mov
+*.mkv
+*.avi
+*.webm
+*.mp3
+*.wav
+*.zip
+*.rar
+*.7z
+*.tar
+*.tar.gz
+*.iso
+*.psd
+*.ai
+*.fig
+
+# ---------- Design reference files (not part of the app) ----------
+Career with Chaitanya_*.html
+
+# ---------- Editor / OS ----------
+.vscode/
+.idea/
+.claude/
+.DS_Store
+Thumbs.db
+*.log
+*.tmp
+
+# ---------- Google OAuth client secret downloads ----------
+client_secret*.json
+client_secrets*.json
