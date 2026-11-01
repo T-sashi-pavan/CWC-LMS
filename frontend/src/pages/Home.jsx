@@ -29,7 +29,7 @@ export default function Home() {
             <Link className="btn btn--cream" to="/interviews">Practise an interview</Link>
           </div>
         </div>
-        <div className="hero__art"><Logo size={170} mono /></div>
+        <div className="hero__art"><Logo size={110} mono /></div>
       </section>
 
       <section className="section">

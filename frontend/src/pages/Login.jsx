@@ -1,5 +1,5 @@
 import { useCallback, useState } from 'react'
-import { Navigate, useLocation, useNavigate } from 'react-router-dom'
+import { Link, Navigate, useLocation, useNavigate, useSearchParams } from 'react-router-dom'
 import Logo, { Wordmark } from '../components/Logo.jsx'
 import { useToast } from '../context/ToastContext.jsx'
 import ThemeToggle from '../components/ThemeToggle.jsx'
@@ -14,7 +14,8 @@ export default function Login() {
   const location = useLocation()
   const dest = location.state?.from?.pathname || '/'
 
-  const [mode, setMode] = useState('login') // login | signup
+  const [params] = useSearchParams()
+  const [mode, setMode] = useState(params.get('mode') === 'signup' ? 'signup' : 'login') // login | signup
   const [form, setForm] = useState({ name: '', email: '', password: '' })
   const [showPw, setShowPw] = useState(false)
   const [captcha, setCaptcha] = useState(null)
@@ -58,7 +59,7 @@ export default function Login() {
       {/* LEFT: story panel, logo assembles on load */}
       <aside className="auth__story">
         <div className="auth__logo">
-          <Logo size={220} animate />
+          <Logo size={140} animate />
         </div>
         <div className="auth__wordmark"><Wordmark /></div>
         <h2 className="auth__headline">Your next role starts here</h2>
@@ -76,7 +77,7 @@ export default function Login() {
       {/* RIGHT: login form */}
       <main className="auth__form">
         <form className="auth__card" onSubmit={submit} noValidate>
-          <div className="auth__mobilelogo"><Logo size={72} /></div>
+          <Link to="/" className="auth__back"><Icon name="arrow" size={14} className="flip" /> Back to home</Link>
           <h1>{isLogin ? 'Welcome back' : 'Create your free account'}</h1>
           <p className="muted">
             {isLogin ? 'Log in to continue your journey.' : 'Start free. Upgrade to Pro any time.'}

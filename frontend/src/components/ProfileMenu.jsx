@@ -61,7 +61,7 @@ export default function ProfileMenu() {
             onClick={async () => {
               setOpen(false)
               await signOut()
-              navigate('/login')
+              navigate('/')
             }}
           >
             <Icon name="logout" size={17} /> Log out

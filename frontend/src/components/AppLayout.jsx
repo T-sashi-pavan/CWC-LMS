@@ -14,7 +14,7 @@ const TABS = [
   { to: '/pro', label: 'Pro', pro: true },
 ]
 
-export default function AppLayout() {
+export default function AppLayout({ children }) {
   const { demo } = useAuth()
 
   return (
@@ -25,7 +25,7 @@ export default function AppLayout() {
       <header className="topbar">
         <div className="topbar__in">
           <NavLink to="/" className="brand" aria-label="Career with Chaitanya home">
-            <Logo size={40} />
+            <Logo size={34} />
             <Wordmark />
           </NavLink>
 
@@ -51,7 +51,7 @@ export default function AppLayout() {
       </header>
 
       <main className="main">
-        <Outlet />
+        {children ?? <Outlet />}
       </main>
 
       <footer className="footer">© {new Date().getFullYear()} Career with Chaitanya</footer>
