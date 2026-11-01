@@ -59,7 +59,7 @@ export default function Login() {
       {/* LEFT: story panel, logo assembles on load */}
       <aside className="auth__story">
         <div className="auth__logo">
-          <Logo size={140} animate />
+          <Logo size={200} animate tone="orange" />
         </div>
         <div className="auth__wordmark"><Wordmark /></div>
         <h2 className="auth__headline">Your next role starts here</h2>

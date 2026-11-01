@@ -13,8 +13,6 @@
 }
 .auth__story > * { position: relative; }
 .auth__logo { display: flex; justify-content: center; }
-.auth__story .logo { --ink: #1B1815; --cream: #F4EDE1; }
-.auth__story .logo-arrow { fill: #F4EDE1; }
 .auth__wordmark { opacity: 0; animation: rise .6s 2.3s both; }
 .auth__wordmark .wordmark { align-items: center; }
 .auth__wordmark .wordmark strong { font-size: 32px; font-weight: 700; color: #FFF7EC; }
@@ -76,7 +74,7 @@
 @media (max-width: 800px) {
   .auth { grid-template-columns: 1fr; }
   .auth__story { padding: 28px 20px 32px; min-height: 0; }
-  .auth__logo svg { width: 190px; height: auto; }
+  .auth__logo svg { width: 74px; height: 110px; }
   .auth__wordmark .wordmark strong { font-size: 24px; }
   .auth__pills, .auth__sub { display: none; }
   .auth__headline { font-size: 20px; margin-top: 6px; }

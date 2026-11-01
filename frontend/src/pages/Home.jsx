@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom'
 import { useAuth } from '../context/AuthContext.jsx'
 import { useApi } from '../lib/useApi.js'
 import { Async, Lock } from '../components/ui.jsx'
-import Logo from '../components/Logo.jsx'
+import { HeroMark } from '../components/Logo.jsx'
 import Icon from '../components/Icon.jsx'
 
 const FREE = [
@@ -29,7 +29,7 @@ export default function Home() {
             <Link className="btn btn--cream" to="/interviews">Practise an interview</Link>
           </div>
         </div>
-        <div className="hero__art"><Logo size={110} mono /></div>
+        <div className="hero__art"><HeroMark /></div>
       </section>
 
       <section className="section">

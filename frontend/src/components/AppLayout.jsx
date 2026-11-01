@@ -25,7 +25,7 @@ export default function AppLayout({ children }) {
       <header className="topbar">
         <div className="topbar__in">
           <NavLink to="/" className="brand" aria-label="Career with Chaitanya home">
-            <Logo size={34} />
+            <Logo size={46} />
             <Wordmark />
           </NavLink>
 

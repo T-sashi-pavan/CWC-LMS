@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'
-import Logo, { Wordmark } from '../components/Logo.jsx'
+import Logo, { HeroMark, Wordmark } from '../components/Logo.jsx'
 import Icon from '../components/Icon.jsx'
 import ThemeToggle from '../components/ThemeToggle.jsx'
 import { useApi } from '../lib/useApi.js'
@@ -36,7 +36,7 @@ export default function Landing() {
       <header className="topbar">
         <div className="topbar__in">
           <Link to="/" className="brand" aria-label="Career with Chaitanya home">
-            <Logo size={34} />
+            <Logo size={46} />
             <Wordmark />
           </Link>
           <nav className="tabs land__nav" aria-label="Sections">
@@ -67,7 +67,7 @@ export default function Landing() {
               <Link className="btn btn--cream" to="/login">I already have an account</Link>
             </div>
           </div>
-          <div className="hero__art"><Logo size={110} mono /></div>
+          <div className="hero__art"><HeroMark /></div>
         </section>
 
         <section className="section" id="free">
