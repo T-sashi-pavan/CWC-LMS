@@ -38,3 +38,16 @@ export function Lock({ children = 'Pro' }) {
 export function UpgradeLink({ children = 'Unlock with Pro · ₹499' }) {
   return <Link to="/pro" className="btn btn--sm">{children}</Link>
 }
+
+export function SectionHead({ eyebrow, title, sub, children }) {
+  return (
+    <div className="sh">
+      <div>
+        {eyebrow && <span className="eyebrow">{eyebrow}</span>}
+        <h2>{title}</h2>
+        {sub && <p className="muted">{sub}</p>}
+      </div>
+      {children}
+    </div>
+  )
+}

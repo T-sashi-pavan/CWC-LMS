@@ -1,0 +1,28 @@
+import { Link } from 'react-router-dom'
+import Logo, { Wordmark } from './Logo.jsx'
+
+export default function Footer() {
+  return (
+    <footer className="footer footer--full">
+      <div className="footer__in">
+        <div className="footer__brand">
+          <Link to="/" className="brand" aria-label="Career with Chaitanya home"><Logo size={40} /><Wordmark /></Link>
+          <p className="muted">Roadmaps, mock interviews and guidance to help you land your first offer letter.</p>
+        </div>
+        <nav className="footer__col" aria-label="Explore">
+          <strong>Explore</strong>
+          <Link to="/open-mic">CWC Open Mic</Link>
+          <Link to="/interview-simulator">Interview Simulator</Link>
+          <Link to="/roadmaps">Roadmaps</Link>
+        </nav>
+        <nav className="footer__col" aria-label="Company">
+          <strong>Company</strong>
+          <Link to="/about">About us</Link>
+          <Link to="/login">Log in</Link>
+          <Link to="/login?mode=signup">Sign up free</Link>
+        </nav>
+      </div>
+      <div className="footer__copy">© {new Date().getFullYear()} Career with Chaitanya. All rights reserved.</div>
+    </footer>
+  )
+}

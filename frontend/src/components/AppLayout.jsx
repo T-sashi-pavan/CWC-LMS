@@ -3,6 +3,8 @@ import Logo, { Wordmark } from './Logo.jsx'
 import Icon from './Icon.jsx'
 import ThemeToggle from './ThemeToggle.jsx'
 import ProfileMenu from './ProfileMenu.jsx'
+import Footer from './Footer.jsx'
+import useReveal from './useReveal.js'
 import { useAuth } from '../context/AuthContext.jsx'
 
 const TABS = [
@@ -11,11 +13,13 @@ const TABS = [
   { to: '/interviews', label: 'Interviews' },
   { to: '/jobs', label: 'Jobs' },
   { to: '/testimonials', label: 'Testimonials' },
+  { to: '/about', label: 'About us' },
   { to: '/pro', label: 'Pro', pro: true },
 ]
 
 export default function AppLayout({ children }) {
   const { demo } = useAuth()
+  useReveal()
 
   return (
     <div className="shell">
@@ -50,11 +54,11 @@ export default function AppLayout({ children }) {
         </div>
       </header>
 
-      <main className="main">
+      <main className={`main`}>
         {children ?? <Outlet />}
       </main>
 
-      <footer className="footer">© {new Date().getFullYear()} Career with Chaitanya</footer>
+      <Footer />
     </div>
   )
 }

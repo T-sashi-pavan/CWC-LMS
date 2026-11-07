@@ -114,3 +114,6 @@ export function HeroMark({ size = 180 }) {
     </div>
   )
 }
+
+// shared with the 3D hero mark
+export const PATHS = { LEFT, RIGHT, W, WIRES, BARS }

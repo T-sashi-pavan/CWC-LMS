@@ -1,149 +1,89 @@
 import { Link } from 'react-router-dom'
-import Logo, { HeroMark, Wordmark } from '../components/Logo.jsx'
 import Icon from '../components/Icon.jsx'
-import ThemeToggle from '../components/ThemeToggle.jsx'
-import { useApi } from '../lib/useApi.js'
+import { PublicLayout } from '../components/PublicLayout.jsx'
+import VideoCarousel from '../components/VideoCarousel.jsx'
+import Journey from '../components/Journey.jsx'
+import Logo3D from '../components/Logo3D.jsx'
+import TypeRoles from '../components/TypeRoles.jsx'
+import { SectionHead } from '../components/ui.jsx'
+import { CourseTeaser, FeatureCards, StudentVideos } from '../components/HomeSections.jsx'
+import { COURSES, ROUNDS } from '../data/homeContent.js'
 
 const SIGNUP = '/login?mode=signup'
 
-const FREE = [
-  { icon: 'route', title: 'Guidance & roadmaps', text: 'Clear, step-by-step paths to the role you want.' },
-  { icon: 'mic', title: 'Free mock interviews', text: 'Practise with a real rubric and honest feedback.' },
-  { icon: 'bot', title: 'AI interview', text: 'Basic AI practice, any time you like.' },
-  { icon: 'briefcase', title: 'Job openings', text: 'Fresh openings, picked by Chaitanya.' },
-  { icon: 'star', title: 'Student stories', text: 'Hear from people who made it.' },
-]
-
 const STEPS = [
-  { n: '01', title: 'Create a free account', text: 'It takes a minute. No card needed.' },
-  { n: '02', title: 'Follow your roadmap', text: 'Know exactly what to learn and in what order.' },
-  { n: '03', title: 'Practise and apply', text: 'Mock interviews, AI practice and live openings in one place.' },
-]
-
-const PRO = [
-  'Video simulation interviews',
-  'Next-level AI interview',
-  'Bigger job openings',
-  'Mock interviews with more features',
+  { n: '01', icon: 'sparkle', title: 'Create a free account', text: 'It takes a minute. No card needed.' },
+  { n: '02', icon: 'route', title: 'Follow your roadmap', text: 'Know exactly what to learn and in what order.' },
+  { n: '03', icon: 'mic', title: 'Practise and get hired', text: 'Mock interviews, open mics and live openings in one place.' },
 ]
 
 export default function Landing() {
-  const stories = useApi('/testimonials/')
-  const list = (stories.data || []).slice(0, 3)
-
   return (
-    <div className="shell land">
-      <header className="topbar">
-        <div className="topbar__in">
-          <Link to="/" className="brand" aria-label="Career with Chaitanya home">
-            <Logo size={46} />
-            <Wordmark />
-          </Link>
-          <nav className="tabs land__nav" aria-label="Sections">
-            <a className="tab" href="#free">What you get</a>
-            <a className="tab" href="#how">How it works</a>
-            <a className="tab" href="#pro">Pro</a>
-            <a className="tab" href="#stories">Stories</a>
-          </nav>
-          <div className="user">
-            <ThemeToggle />
-            <Link to="/login" className="btn btn--ghost btn--sm">Log in</Link>
-            <Link to={SIGNUP} className="btn btn--sm land__signup">Sign up free</Link>
+    <PublicLayout>
+      <section className="hero3">
+        <h1 className="hero3__title">
+          <span className="hero3__a">Learn.</span>
+          <span className="hero3__b">Practise.</span>
+          <span className="hero3__c grad">Get hired.</span>
+        </h1>
+
+        <div className="hero3__stage">
+          <Logo3D />
+          <span className="chipav chipav--1">A</span>
+          <span className="chipav chipav--2">R</span>
+          <span className="chipav chipav--3">S</span>
+          <span className="chipbadge"><Icon name="sparkle" size={15} /> 5 day streak</span>
+        </div>
+
+        <div className="hero3__copy">
+          <TypeRoles />
+          <p>
+            Video courses, role roadmaps, mock interviews and a friendly open mic, guided by Chaitanya.
+            Everything you need for your first offer letter, in one place.
+          </p>
+          <div className="hero__cta">
+            <Link className="btn btn--lg" to={SIGNUP}>Get started free <Icon name="arrow" size={18} /></Link>
+            <Link className="btn btn--outline btn--lg" to="/login">I have an account</Link>
           </div>
         </div>
-      </header>
+      </section>
 
-      <main className="land__main">
-        <section className="hero land__hero">
-          <div className="hero__text">
-            <span className="eyebrow eyebrow--light">Career with Chaitanya</span>
-            <h1>Your road to the offer letter, mapped out.</h1>
-            <p>
-              Roadmaps, mock interviews, AI practice and job openings, guided by Chaitanya. Start free today and
-              upgrade only when you want to go further.
-            </p>
-            <div className="hero__cta">
-              <Link className="btn" to={SIGNUP}>Get started free</Link>
-              <Link className="btn btn--cream" to="/login">I already have an account</Link>
-            </div>
-          </div>
-          <div className="hero__art"><HeroMark /></div>
-        </section>
+      <section className="strip" aria-label="At a glance">
+        <div><strong>{COURSES.length}</strong><span>video tracks</span></div>
+        <div><strong>{ROUNDS.length}</strong><span>interview rounds</span></div>
+        <div><strong>Weekly</strong><span>open mic meets</span></div>
+        <div><strong>₹0</strong><span>to get started</span></div>
+      </section>
 
-        <section className="section" id="free">
-          <div className="section__head">
-            <h2>Free, from day one</h2>
-            <span className="badge">FREE</span>
-          </div>
-          <div className="grid grid--5">
-            {FREE.map((f) => (
-              <Link key={f.title} to={SIGNUP} className="card card--link tile">
-                <span className="tile__icon"><Icon name={f.icon} size={22} /></span>
-                <h3>{f.title}</h3>
-                <p className="muted">{f.text}</p>
-              </Link>
-            ))}
-          </div>
-        </section>
+      <VideoCarousel />
+      <Journey />
+      <FeatureCards />
+      <CourseTeaser />
 
-        <section className="section" id="how">
-          <div className="section__head"><h2>How it works</h2></div>
-          <ol className="how">
-            {STEPS.map((s) => (
-              <li key={s.n} className="card how__item">
-                <span className="how__n">{s.n}</span>
-                <h3>{s.title}</h3>
-                <p className="muted">{s.text}</p>
-              </li>
-            ))}
-          </ol>
-        </section>
+      <section className="section" id="how">
+        <SectionHead eyebrow="How it works" title="Three steps to your first offer" />
+        <ol className="steps3">
+          {STEPS.map((s) => (
+            <li key={s.n}>
+              <span className="steps3__n">{s.n}</span>
+              <span className="tile__icon"><Icon name={s.icon} size={22} /></span>
+              <h3>{s.title}</h3>
+              <p>{s.text}</p>
+            </li>
+          ))}
+        </ol>
+      </section>
 
-        <section className="promo land__pro" id="pro">
-          <div>
-            <span className="eyebrow eyebrow--orange">Pro · ₹499</span>
-            <h2>Ready for the next level?</h2>
-            <ul className="land__ticks">
-              {PRO.map((p) => (
-                <li key={p}><Icon name="sparkle" size={15} /> {p}</li>
-              ))}
-            </ul>
-          </div>
-          <Link className="btn" to={SIGNUP}>Start free, upgrade later</Link>
-        </section>
+      <StudentVideos limit={3} />
 
-        {list.length > 0 && (
-          <section className="section" id="stories">
-            <div className="section__head"><h2>What students say</h2></div>
-            <div className="quotes">
-              {list.map((t) => (
-                <figure key={t.id} className="card quote">
-                  <Icon name="quote" size={26} className="quote__mark" />
-                  <div className="quote__stars" role="img" aria-label="5 out of 5">
-                    {[0, 1, 2, 3, 4].map((i) => <Icon key={i} name="star" size={14} />)}
-                  </div>
-                  <blockquote>{t.quote}</blockquote>
-                  <figcaption>
-                    <span className="avatar" aria-hidden="true">{t.name[0]}</span>
-                    <span><strong>{t.name}</strong><span className="muted">{t.role}</span></span>
-                  </figcaption>
-                </figure>
-              ))}
-            </div>
-          </section>
-        )}
-
-        <section className="land__cta">
-          <h2>Your next role starts here</h2>
-          <p className="muted">Create your free account and see the full roadmaps, interviews and openings.</p>
-          <div className="hero__cta">
-            <Link className="btn" to={SIGNUP}>Sign up free</Link>
-            <Link className="btn btn--outline" to="/login">Log in</Link>
-          </div>
-        </section>
-      </main>
-
-      <footer className="footer">© {new Date().getFullYear()} Career with Chaitanya</footer>
-    </div>
+      <section className="bigcta">
+        <h2>Your next role starts here.</h2>
+        <p>Create your free account and unlock every course, roadmap and mock interview.</p>
+        <div className="hero__cta">
+          <Link className="btn btn--lg" to={SIGNUP}>Sign up free</Link>
+          <Link className="btn btn--cream btn--lg" to="/login">Log in</Link>
+        </div>
+      </section>
+    </PublicLayout>
   )
 }
