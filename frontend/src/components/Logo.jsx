@@ -115,5 +115,15 @@ export function HeroMark({ size = 180 }) {
   )
 }
 
+// Name plate that sits under the bulb in the heroes (ink on light surfaces).
+export function MarkName() {
+  return (
+    <div className="markname">
+      <strong>Career</strong>
+      <span>WITH CHAITANYA</span>
+    </div>
+  )
+}
+
 // shared with the 3D hero mark
 export const PATHS = { LEFT, RIGHT, W, WIRES, BARS }

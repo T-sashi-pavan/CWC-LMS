@@ -7,7 +7,7 @@ import VideoCarousel from '../components/VideoCarousel.jsx'
 import CourseVideos from '../components/CourseVideos.jsx'
 import { FeatureCards, LinkedInVideos, StudentVideos } from '../components/HomeSections.jsx'
 import { ActivityChart, Badges, Resume, StatTiles } from '../components/dash.jsx'
-import Logo3D from '../components/Logo3D.jsx'
+import Logo, { MarkName } from '../components/Logo.jsx'
 import Journey from '../components/Journey.jsx'
 import BadgeCelebration from '../components/Confetti.jsx'
 
@@ -27,12 +27,15 @@ export default function Home() {
             <Resume p={p} />
             <p className="welcome__streak">{s.streak > 0 ? `${s.streak} day streak. Keep it going.` : 'Watch a lesson today to start your streak.'}</p>
           </div>
-          <div className="welcome__art"><Logo3D className="l3d--sm" /></div>
+          <div className="welcome__art">
+            <Logo size={210} animate once />
+            <MarkName />
+          </div>
         </section>
 
         <StatTiles s={s} />
         <Journey personal done={s.journey} />
-        <FeatureCards compact />
+        <FeatureCards eyebrow="Jump in" title="Practise, speak and plan" sub="Your three shortcuts to getting job-ready." />
         <CourseVideos track />
 
         <section className="section">

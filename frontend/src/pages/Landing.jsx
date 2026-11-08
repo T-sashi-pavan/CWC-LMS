@@ -3,7 +3,7 @@ import Icon from '../components/Icon.jsx'
 import { PublicLayout } from '../components/PublicLayout.jsx'
 import VideoCarousel from '../components/VideoCarousel.jsx'
 import Journey from '../components/Journey.jsx'
-import Logo3D from '../components/Logo3D.jsx'
+import Logo, { MarkName } from '../components/Logo.jsx'
 import TypeRoles from '../components/TypeRoles.jsx'
 import { SectionHead } from '../components/ui.jsx'
 import { CourseTeaser, FeatureCards, StudentVideos } from '../components/HomeSections.jsx'
@@ -28,11 +28,10 @@ export default function Landing() {
         </h1>
 
         <div className="hero3__stage">
-          <Logo3D />
-          <span className="chipav chipav--1">A</span>
-          <span className="chipav chipav--2">R</span>
-          <span className="chipav chipav--3">S</span>
-          <span className="chipbadge"><Icon name="sparkle" size={15} /> 5 day streak</span>
+          <div className="hero3__bulb">
+            <Logo size={420} animate once />
+          </div>
+          <MarkName />
         </div>
 
         <div className="hero3__copy">

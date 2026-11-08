@@ -39,10 +39,15 @@ const ART = [
 ]
 
 // Three big product cards. `compact` is the slimmer logged-in version.
-export function FeatureCards({ compact = false }) {
+export function FeatureCards({
+  compact = false,
+  eyebrow = 'What you get',
+  title = 'Three ways to get job-ready',
+  sub = 'Practise speaking, rehearse interviews and follow a plan.',
+}) {
   return (
     <section className="section">
-      {!compact && <SectionHead eyebrow="What you get" title="Three ways to get job-ready" sub="Practise speaking, rehearse interviews and follow a plan." />}
+      {!compact && <SectionHead eyebrow={eyebrow} title={title} sub={sub} />}
       <div className={`fcards ${compact ? 'fcards--compact' : ''}`}>
         {CARDS.map((c, i) => {
           const Art = ART[i]
@@ -69,9 +74,9 @@ export function StudentVideos({ limit = STUDENT_VIDEOS.length, title = 'Hear it 
       <div className="vgrid">
         {STUDENT_VIDEOS.slice(0, limit).map((s, k) => (
           <button key={k} className="vcard" onClick={() => setOpen(s)} aria-label={`Play feedback from ${s.name}`}>
-            <span className="vcard__img ratio">
-              <Thumb yt={s.yt} loading="lazy" />
-              <PlayIcon size={48} />
+            <span className="vcard__img">
+              <AutoPreview v={{ ...s, start: 30 + k * 90 }} />
+              <span className="vcard__expand"><PlayIcon size={34} /></span>
             </span>
             <span className="vcard__meta"><strong>{s.name}</strong><span className="muted">{s.role}</span></span>
           </button>

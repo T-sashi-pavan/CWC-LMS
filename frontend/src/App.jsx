@@ -13,6 +13,7 @@ import About from './pages/About.jsx'
 import OpenMic from './pages/OpenMic.jsx'
 import InterviewSimulator from './pages/InterviewSimulator.jsx'
 import SiteLayout from './components/PublicLayout.jsx'
+import GreetingPopup from './components/GreetingPopup.jsx'
 import { useAuth } from './context/AuthContext.jsx'
 
 // "/" is the public storefront for visitors and the full dashboard once logged in.
@@ -24,6 +25,8 @@ function HomeGate() {
 
 export default function App() {
   return (
+    <>
+    <GreetingPopup />
     <Routes>
       <Route path="/login" element={<Login />} />
       <Route path="/" element={<HomeGate />} />
@@ -41,5 +44,6 @@ export default function App() {
       </Route>
       <Route path="*" element={<Navigate to="/" replace />} />
     </Routes>
+    </>
   )
 }

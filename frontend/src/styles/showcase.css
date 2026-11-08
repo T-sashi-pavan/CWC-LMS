@@ -25,27 +25,7 @@
 .hero3__copy .hero__cta { margin-top: 24px; }
 .hero3__copy .typer { margin: 0 0 12px; }
 
-.l3d { position: relative; width: 100%; height: 100%; display: grid; place-items: center; perspective: 1200px; }
-.l3d__glow { position: absolute; width: 70%; aspect-ratio: 1; border-radius: 50%; background: radial-gradient(circle, rgba(232, 160, 58, .5), rgba(217, 114, 42, .16) 55%, transparent 70%); filter: blur(10px); animation: glow 4s ease-in-out infinite; }
-@keyframes glow { 50% { transform: scale(1.12); opacity: .75; } }
-.l3d__tilt { position: relative; height: min(88%, 620px); aspect-ratio: 2 / 3; transform-style: preserve-3d; transform: rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg)); transition: transform .25s ease-out; }
-.l3d__obj { position: absolute; inset: 0; transform-style: preserve-3d; transform: rotateY(-18deg) rotateX(4deg); animation: swing 9s ease-in-out infinite alternate; }
-.l3d__slice { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; backface-visibility: visible; }
-@keyframes swing { from { transform: rotateY(-38deg) rotateX(5deg) translateY(0); } to { transform: rotateY(38deg) rotateX(-3deg) translateY(-12px); } }
-.l3d__ring { position: absolute; left: 50%; top: 50%; width: 150%; aspect-ratio: 1; border-radius: 50%; pointer-events: none; transform-style: preserve-3d; }
-.l3d__ring::after { content: ""; position: absolute; left: 50%; top: -8px; width: 16px; height: 16px; margin-left: -8px; border-radius: 50%; background: var(--orange); box-shadow: 0 0 18px 4px rgba(217, 114, 42, .7); }
-.l3d__ring--a { border: 3px dashed var(--orange-bright); animation: orbitA 16s linear infinite; }
-.l3d__ring--b { width: 122%; border: 2px solid var(--ink); opacity: .5; animation: orbitB 22s linear infinite; }
-.l3d__ring--b::after { background: var(--ink); box-shadow: none; }
-@keyframes orbitA { from { transform: translate(-50%, -50%) rotateX(74deg) rotateZ(0); } to { transform: translate(-50%, -50%) rotateX(74deg) rotateZ(360deg); } }
-@keyframes orbitB { from { transform: translate(-50%, -50%) rotateX(74deg) rotateY(-36deg) rotateZ(360deg); } to { transform: translate(-50%, -50%) rotateX(74deg) rotateY(-36deg) rotateZ(0); } }
 
-.chipav { position: absolute; z-index: 4; width: 52px; height: 52px; border-radius: 50%; display: grid; place-items: center; font-weight: 700; font-size: 18px; color: #FFF7EC; border: 4px solid var(--cream); box-shadow: var(--shadow-lg); animation: floaty 6s ease-in-out infinite; }
-.chipav--1 { background: var(--bar1); left: 6%; top: 12%; }
-.chipav--2 { background: var(--orange-bright); right: 2%; top: 38%; animation-delay: -2s; }
-.chipav--3 { background: #6A6157; left: 10%; bottom: 14%; animation-delay: -4s; }
-:root[data-theme="dark"] .chipav--1 { background: #F1E9DC; color: #1B1815; }
-.chipbadge { position: absolute; z-index: 4; right: 6%; bottom: 10%; display: inline-flex; align-items: center; gap: 8px; padding: 10px 16px; border-radius: 999px; background: var(--orange); color: #FFF7EC; font-size: 14px; font-weight: 500; box-shadow: var(--shadow-lg); animation: floaty 7s ease-in-out infinite -1s; }
 
 /* ---------- illustrated tile cards (image-2 style: art on top, dark bar below) ---------- */
 .fcard { padding: 0; min-height: 0; gap: 0; border: 1px solid var(--line); border-radius: 24px; background: var(--tile); color: var(--ink); isolation: auto; box-shadow: var(--shadow); }
@@ -139,7 +119,6 @@
   .hero3__title { order: 1; }
   .hero3__stage { order: 2; position: relative; right: auto; top: auto; width: 100%; height: 340px; margin: 6px 0 0; }
   .hero3__copy { order: 3; max-width: none; margin-top: 4px; }
-  .l3d__tilt { height: 86%; }
   .welcome--sun { grid-template-columns: 1fr; }
   .welcome__art { order: -1; height: 210px; }
 }
@@ -147,8 +126,6 @@
   .hero3__a { font-size: clamp(40px, 13vw, 64px); }
   .hero3__b, .hero3__c { font-size: clamp(48px, 15.4vw, 76px); }
   .hero3__stage { height: 300px; }
-  .chipav { width: 42px; height: 42px; font-size: 15px; border-width: 3px; }
-  .chipbadge { font-size: 12.5px; padding: 8px 12px; right: 2%; }
   .art { min-height: 200px; }
   .fcards--compact { grid-template-columns: 1fr 1fr; gap: 12px; }
   .fcards--compact .fcard:last-child { grid-column: 1 / -1; }
@@ -244,3 +221,49 @@
 
 /* orbiting hero ring can swing a few px past the viewport: clip, don't scroll (clip keeps sticky header working) */
 .shell { overflow-x: clip; }
+
+/* dashboard banner uses the flat bulb from the login page */
+.welcome__art { display: grid; place-items: center; }
+.welcome__art .logo { filter: drop-shadow(0 12px 22px rgba(185, 80, 15, .25)); }
+@media (max-width: 860px) { .welcome__art .logo { width: 110px; height: 165px; } }
+
+/* name plate under the bulb (both heroes) */
+.markname { display: flex; flex-direction: column; align-items: center; line-height: 1; text-align: center; }
+.markname strong { font-size: clamp(22px, 2.4vw, 30px); font-weight: 700; letter-spacing: -.01em; color: var(--ink); }
+.markname span { font-size: 10.5px; letter-spacing: .28em; font-weight: 600; color: var(--orange-text); margin-top: 8px; white-space: nowrap; }
+.welcome__art { flex-direction: column; gap: 14px; align-content: center; }
+.welcome__art .markname { margin-top: 2px; }
+.hero3__stage { display: flex; flex-direction: column; align-items: center; }
+.hero3__stage .markname { position: relative; z-index: 3; flex: none; margin-bottom: 4%; }
+@media (max-width: 860px) {
+  .welcome__art { height: auto; padding-top: 4px; }
+  .welcome__art .logo { width: 96px; height: 144px; }
+  .hero3__stage .markname { margin-bottom: 0; }
+}
+@media (max-width: 860px) { .hero3__stage .markname { margin-bottom: 18px; } }
+
+/* ---------- 3D logo: C W C letters assemble into the bulb ---------- */
+
+/* student video cards: muted preview that starts when scrolled into view */
+.vcard__img { position: relative; display: block; border-radius: 8px; overflow: hidden; }
+.vcard__img .lipv { border-radius: 8px; }
+.vcard__expand { position: absolute; right: 8px; bottom: 8px; z-index: 3; }
+.vcard__expand .play { box-shadow: 0 4px 12px rgba(0, 0, 0, .4); }
+
+/* the flat login-page bulb, as a floating brand card beside the 3D one */
+
+/* ---------- hero bulb: the flat login-page mark with its draw-in transition ---------- */
+.hero3__bulb { position: relative; flex: 1; min-height: 0; width: 100%; display: grid; place-items: center; }
+.hero3__bulb::before { content: ""; position: absolute; width: 74%; aspect-ratio: 1; border-radius: 50%; background: radial-gradient(circle, rgba(232, 160, 58, .5), rgba(217, 114, 42, .16) 55%, transparent 70%); filter: blur(10px); animation: bulbglow 4s ease-in-out infinite; }
+.hero3__bulb .logo { position: relative; height: min(90%, 540px); width: auto; filter: drop-shadow(0 18px 30px rgba(185, 80, 15, .22)); animation: floaty 6s ease-in-out infinite; }
+@keyframes bulbglow { 50% { transform: scale(1.1); opacity: .75; } }
+
+/* ---------- greeting pop-up ---------- */
+.greet { position: fixed; inset: 0; z-index: 200; display: grid; place-items: center; padding: 16px; background: rgba(27, 24, 21, .72); backdrop-filter: blur(4px); animation: greetfade .35s ease both; }
+.greet__box { position: relative; width: min(560px, 100%); max-height: 100%; animation: greetpop .55s cubic-bezier(.2, .9, .25, 1.15) both; }
+.greet__img { display: block; width: 100%; height: auto; max-height: calc(100vh - 56px); object-fit: contain; border-radius: 20px; box-shadow: 0 30px 80px rgba(0, 0, 0, .5); background: #FCF5EC; }
+.greet__close { position: absolute; right: -8px; top: -8px; z-index: 2; width: 38px; height: 38px; border-radius: 50%; border: 0; background: #F4EDE1; color: #1B1815; font-size: 24px; line-height: 1; cursor: pointer; box-shadow: 0 6px 16px rgba(0, 0, 0, .35); transition: transform .15s, background .15s; }
+.greet__close:hover { background: #fff; transform: scale(1.08) rotate(90deg); }
+@keyframes greetfade { from { opacity: 0; } to { opacity: 1; } }
+@keyframes greetpop { from { opacity: 0; transform: translateY(24px) scale(.92); } to { opacity: 1; transform: none; } }
+@media (max-width: 520px) { .greet { padding: 12px; } .greet__close { right: 6px; top: 6px; } }
