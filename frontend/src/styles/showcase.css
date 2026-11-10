@@ -267,3 +267,35 @@
 @keyframes greetfade { from { opacity: 0; } to { opacity: 1; } }
 @keyframes greetpop { from { opacity: 0; transform: translateY(24px) scale(.92); } to { opacity: 1; transform: none; } }
 @media (max-width: 520px) { .greet { padding: 12px; } .greet__close { right: 6px; top: 6px; } }
+
+/* ---------- logged-out hero: two clean columns (text left, bulb right), like the dashboard banner ---------- */
+.hero3 { display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, .8fr); grid-template-areas: "title stage" "copy stage"; column-gap: clamp(16px, 3vw, 40px); align-items: center; padding: clamp(10px, 2.5vw, 28px) 0 0; }
+.hero3__title { grid-area: title; align-self: end; }
+.hero3__a { font-size: clamp(40px, 6.6vw, 96px); }
+.hero3__b, .hero3__c { font-size: clamp(48px, 8.8vw, 128px); }
+.hero3__stage { grid-area: stage; position: relative; right: auto; top: auto; width: 100%; height: auto; min-height: clamp(400px, 42vw, 580px); align-self: stretch; z-index: auto; }
+.hero3__copy { grid-area: copy; align-self: start; max-width: 480px; margin-top: clamp(18px, 2.4vw, 30px); }
+.hero3__bulb .logo { height: min(86%, 470px); }
+
+@media (max-width: 1000px) {
+  .hero3__b, .hero3__c { font-size: clamp(44px, 8.6vw, 92px); }
+  .hero3__stage { min-height: 380px; }
+}
+@media (max-width: 860px) {
+  .hero3 { grid-template-columns: 1fr; grid-template-areas: "title" "stage" "copy"; row-gap: 0; }
+  .hero3__title { align-self: auto; }
+  .hero3__a { font-size: clamp(40px, 13vw, 64px); }
+  .hero3__b, .hero3__c { font-size: clamp(48px, 15.4vw, 80px); }
+  .hero3__stage { min-height: 0; height: 300px; margin: 6px 0 0; }
+  .hero3__bulb .logo { height: min(84%, 240px); }
+  .hero3__copy { max-width: none; margin-top: 4px; }
+}
+/* keep each headline word-group on one line and sized to the left column */
+.hero3__a, .hero3__b, .hero3__c { white-space: nowrap; }
+.hero3__a { font-size: clamp(38px, 6vw, 86px); }
+.hero3__b, .hero3__c { font-size: clamp(44px, 7.8vw, 112px); }
+@media (max-width: 1000px) { .hero3__b, .hero3__c { font-size: clamp(42px, 7.8vw, 92px); } }
+@media (max-width: 860px) {
+  .hero3__a { font-size: clamp(40px, 13vw, 64px); }
+  .hero3__b, .hero3__c { font-size: clamp(48px, 15.4vw, 80px); }
+}
