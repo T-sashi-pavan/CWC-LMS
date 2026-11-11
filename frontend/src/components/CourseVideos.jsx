@@ -4,18 +4,21 @@ import { SectionHead } from './ui.jsx'
 import Icon from './Icon.jsx'
 import { Embed, PlayIcon, Thumb } from './VideoModal.jsx'
 import { progress, useProgress } from '../lib/progress.js'
-import { FREE_PER_COURSE, PLAYLISTS, TOTAL_HOURS, TOTAL_VIDEOS, findPlaylist, fmt, ytThumb } from '../data/courses.js'
+import { FREE_PER_COURSE, PLAYLISTS, PUBLIC_COURSES, TOTAL_HOURS, TOTAL_VIDEOS, fmt, ytThumb } from '../data/courses.js'
 
 // YouTube-style course player: the video on the left, the whole playlist on the right.
 //   track  = logged-in dashboard: remembers progress and the last lesson
 //   gated  = visitor: the first FREE_PER_COURSE lessons play, the rest ask for a (free) login
 export default function CourseVideos({ track = false, gated = false }) {
   const p = useProgress()
-  const [local, setLocal] = useState({ course: PLAYLISTS[0].id, idx: 0 })
+  // visitors only see a few courses; members see them all
+  const list = gated ? PLAYLISTS.filter((c) => PUBLIC_COURSES.includes(c.label)) : PLAYLISTS
+  const hidden = PLAYLISTS.length - list.length
+  const [local, setLocal] = useState({ course: list[0].id, idx: 0 })
   const [playing, setPlaying] = useState(false)
 
   const pos = track ? p.last : local
-  const course = findPlaylist(pos.course)
+  const course = list.find((c) => c.id === pos.course) || list[0]
   const idx = Math.min(Math.max(pos.idx || 0, 0), course.videos.length - 1)
   const cur = course.videos[idx]
   const watched = new Set(track ? p.watched[course.id] || [] : [])
@@ -36,13 +39,15 @@ export default function CourseVideos({ track = false, gated = false }) {
       <SectionHead
         eyebrow="Video courses"
         title="Learn with our free video courses"
-        sub={`${TOTAL_VIDEOS} lessons · ${TOTAL_HOURS}+ hours across ${PLAYLISTS.length} playlists, in Telugu and English.`}
+        sub={gated
+          ? `Try the first lessons of these courses now. Log in (it's free) to unlock ${hidden} more courses and every lesson.`
+          : `${TOTAL_VIDEOS} lessons · ${TOTAL_HOURS}+ hours across ${PLAYLISTS.length} playlists, in Telugu and English.`}
       >
         <span className="badge">FREE</span>
       </SectionHead>
 
       <div className="ctabs" role="tablist" aria-label="Courses">
-        {PLAYLISTS.map((c) => (
+        {list.map((c) => (
           <button
             key={c.id}
             role="tab"
@@ -54,6 +59,11 @@ export default function CourseVideos({ track = false, gated = false }) {
             <span className="ctab__n">{track ? `${(p.watched[c.id] || []).length}/${c.videos.length}` : c.videos.length}</span>
           </button>
         ))}
+        {hidden > 0 && (
+          <Link to="/login?mode=signup" className="ctab ctab--more">
+            <Icon name="lock" size={14} /> +{hidden} more courses · Log in
+          </Link>
+        )}
       </div>
 
       <div className="cv cv2">

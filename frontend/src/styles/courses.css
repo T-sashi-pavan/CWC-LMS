@@ -28,3 +28,8 @@
 @media (max-width: 1000px) { .cv2 { grid-template-columns: minmax(0, 1fr) 320px; } .cvl__thumb { width: 92px; } }
 @media (max-width: 860px) { .cv2 { grid-template-columns: 1fr; } .cvl__list { max-height: 420px; } }
 @media (max-width: 520px) { .cv__meta2 .cv__next { margin-left: 0; width: 100%; } .cvl__thumb { width: 100px; } }
+
+/* "log in for the other courses" pill at the end of the tabs */
+.ctab--more { border-style: dashed; color: var(--orange-text); font-weight: 600; text-decoration: none; }
+.ctab--more:hover { background: var(--orange); border-color: var(--orange); color: #FFF7EC; }
+.ctab--more .icon { margin-right: 6px; }

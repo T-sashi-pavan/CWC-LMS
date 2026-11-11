@@ -4,6 +4,8 @@ import data from './courses.json'
 export const PLAYLISTS = data.playlists
 export const CHANNEL = data.channel
 export const FREE_PER_COURSE = 3 // lessons per course a visitor can watch before logging in
+// The only courses a visitor sees on the home page (by tab label); the rest unlock after a free login.
+export const PUBLIC_COURSES = ['Python', 'LangChain', 'LLMs']
 
 export const TOTAL_VIDEOS = PLAYLISTS.reduce((n, p) => n + p.videos.length, 0)
 export const TOTAL_HOURS = Math.round(PLAYLISTS.reduce((n, p) => n + p.hours, 0))
