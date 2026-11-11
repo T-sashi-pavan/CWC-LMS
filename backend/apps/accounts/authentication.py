@@ -38,6 +38,7 @@ class SupabaseUser:
     def __init__(self, claims: dict):
         self.claims = claims
         self.id = claims["sub"]
+        self.pk = self.id  # DRF's throttles key on user.pk
         self.email = claims.get("email", "")
         self.full_name = (claims.get("user_metadata") or {}).get("full_name", "")
 

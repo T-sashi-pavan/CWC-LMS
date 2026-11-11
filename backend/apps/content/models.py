@@ -13,7 +13,18 @@ class Tiered(models.Model):
 
 
 class Roadmap(Tiered):
+    class Category(models.TextChoices):
+        AI = "ai", "AI & Data Science"
+        FULLSTACK = "fullstack", "Full Stack"
+        DATA = "data", "Data & Analytics"
+        CLOUD = "cloud", "Cloud, DevOps & Automation"
+
     slug = models.SlugField(unique=True)
+    category = models.CharField(max_length=12, choices=Category.choices, default=Category.AI)
+    tagline = models.CharField(max_length=200, blank=True)
+    featured = models.BooleanField(default=False, help_text="Shown to visitors who are not logged in (keep to a few)")
+    # Full structured roadmap (phases, modules, labs, tech stack ...). Built by `manage.py import_roadmaps`.
+    content = models.JSONField(default=dict, blank=True)
     title = models.CharField(max_length=120)
     summary = models.CharField(max_length=300)
     duration = models.CharField(max_length=40, blank=True, help_text="e.g. 8 weeks")

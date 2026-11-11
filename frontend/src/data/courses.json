@@ -1,0 +1,990 @@
+{
+ "channel": {
+  "handle": "careerwithchaitanya",
+  "subscribers": 982,
+  "videos": 140
+ },
+ "playlists": [
+  {
+   "id": "PLteFojtUYuJMf8QXXQ_02ozA8y-Yp7gIs",
+   "title": "Complete AI Agents Course in Telugu | Beginner to Advanced | FREE",
+   "label": "AI Agents",
+   "lang": "Telugu",
+   "blurb": "Zero to hero: build AI agents from Python basics to production.",
+   "order": 0,
+   "hours": 32.3,
+   "videos": [
+    {
+     "id": "VkCUfp7agtc",
+     "title": "What Are Programming Languages & How Do They Work?",
+     "seconds": 3561
+    },
+    {
+     "id": "B8cZSAdfcVU",
+     "title": "Python Basics: Introduction to Python & Variables",
+     "seconds": 3000
+    },
+    {
+     "id": "YBEilhiA0E4",
+     "title": "Python Data Types Explained | Complete Beginner Guide",
+     "seconds": 3339
+    },
+    {
+     "id": "uIiAMaeUPXU",
+     "title": "Python Operators Explained | Complete Beginner Guide",
+     "seconds": 2452
+    },
+    {
+     "id": "4x6o-mlr0eU",
+     "title": "Conditional Statements in Python | Complete Beginner Guide",
+     "seconds": 3322
+    },
+    {
+     "id": "-woXVjI2yJM",
+     "title": "Loops in Python | For Loop & While Loop Explained for Beginners",
+     "seconds": 2655
+    },
+    {
+     "id": "j5d-fh_KBBI",
+     "title": "While Loop in Python | Complete Beginner Tutorial",
+     "seconds": 1655
+    },
+    {
+     "id": "4NGrF7RSSLg",
+     "title": "Functions in Python | User Defined Functions Explained for Beginners part -1",
+     "seconds": 2652
+    },
+    {
+     "id": "wk7myiLcOAk",
+     "title": "Functions part 2 in Python | User Defined Functions Explained for Beginners",
+     "seconds": 3268
+    },
+    {
+     "id": "U25tz2Eem_U",
+     "title": "Variable Scope in Python | Local, Global & Nonlocal Variables Explained",
+     "seconds": 2117
+    },
+    {
+     "id": "lCdXUEjOhWw",
+     "title": "Strings in Python | Complete String Tutorial for Beginners",
+     "seconds": 3808
+    },
+    {
+     "id": "hATMxKBA6nQ",
+     "title": "Strings  PART 2  in Python | Complete String Tutorial for Beginners",
+     "seconds": 2071
+    },
+    {
+     "id": "0G1gFXocDhQ",
+     "title": "Lists in Python | Complete List Tutorial for Beginners",
+     "seconds": 925
+    },
+    {
+     "id": "fYr79qzORro",
+     "title": "Lists part 2 in Python | Complete List Tutorial for Beginners",
+     "seconds": 1980
+    },
+    {
+     "id": "WT8aJI1NXf4",
+     "title": "Tuples in Python | Complete Tuple Tutorial for Beginners",
+     "seconds": 432
+    },
+    {
+     "id": "Rgzm_h60pL4",
+     "title": "Sets in Python | Complete Set Tutorial for Beginners",
+     "seconds": 1453
+    },
+    {
+     "id": "bpsMcKkWkok",
+     "title": "Dictionaries in Python | Complete Dictionary Tutorial for Beginners",
+     "seconds": 1311
+    },
+    {
+     "id": "YECVwx8yjgk",
+     "title": "Type Conversion in Python | Implicit & Explicit Type Casting Explained",
+     "seconds": 410
+    },
+    {
+     "id": "9aJhJvL0F8A",
+     "title": "Break & Continue Statements in Python | Complete Beginner Tutorial",
+     "seconds": 503
+    },
+    {
+     "id": "u5WZ6qn2EOQ",
+     "title": "Nested Loops in Python | Complete Beginner Tutorial",
+     "seconds": 557
+    },
+    {
+     "id": "Q_Z3HXKcIcY",
+     "title": "Ternary Operator in Python | Conditional Expressions Explained",
+     "seconds": 942
+    },
+    {
+     "id": "RPSBKGHXy_k",
+     "title": "Packing & Unpacking in Python | Complete Beginner Tutorial",
+     "seconds": 475
+    },
+    {
+     "id": "ZpZrx2t7bDo",
+     "title": "Lambda Functions in Python | Anonymous Functions Explained",
+     "seconds": 379
+    },
+    {
+     "id": "nKf-pwCHFm8",
+     "title": "Is ChatGPT an LLM? | Are ChatGPT & Gemini Really LLMs? Explained Simply",
+     "seconds": 4380
+    },
+    {
+     "id": "wFuRU-8YMqM",
+     "title": "LLM evolution Explained | How to Measure AI Models Like ChatGPT & Gemini",
+     "seconds": 4299
+    },
+    {
+     "id": "MOLEw28mKGY",
+     "title": "How LLMs Actually Work | ChatGPT & Gemini Explained from Scratch",
+     "seconds": 3974
+    },
+    {
+     "id": "kv5b0d_x1As",
+     "title": "Everything About LLM Tokens, Prompting & Knowledge Cutoff in One Video",
+     "seconds": 2709
+    },
+    {
+     "id": "d40NVi35ND4",
+     "title": "Prompt Engineering Tutorial for Beginners | Part 1 | Write Better AI Prompts",
+     "seconds": 2008
+    },
+    {
+     "id": "Is83tX-AK04",
+     "title": "Python Modules Explained | Types of Modules in Python (Part 1) | Built-in, User-Defined",
+     "seconds": 1470
+    },
+    {
+     "id": "JCT3f3ckdP4",
+     "title": "Master Python: Nested Loops, Lambda Functions, Unpacking & List Comprehension",
+     "seconds": 2899
+    },
+    {
+     "id": "r6Hh2wOegws",
+     "title": "Module Part 2 | Third-Party Modules & API Anatomy Explained",
+     "seconds": 4537
+    },
+    {
+     "id": "dBsJWfQlPZs",
+     "title": "HTTP Request & Response Explained | API Anatomy Part 2",
+     "seconds": 1958
+    },
+    {
+     "id": "UQDvwIiU5z8",
+     "title": "LLMs – How They Call APIs Using the Python Requests Module | Complete Beginner Guide",
+     "seconds": 3105
+    },
+    {
+     "id": "gZbzpSC634c",
+     "title": "Mini Project 1: Build an LLM Weather Suggestion App in Python | OpenAI + Weather API",
+     "seconds": 1849
+    },
+    {
+     "id": "K5BrXIbLgY8",
+     "title": "Run LLMs Offline on Your Laptop",
+     "seconds": 1915
+    },
+    {
+     "id": "bVeW56rg7A0",
+     "title": "Run LLMs Offline (Part 2) - api way",
+     "seconds": 3347
+    },
+    {
+     "id": "0Ptw7juGd40",
+     "title": "Prompt Engineering Part 2 | Temperature, Top-P & Top-K Explained Simply",
+     "seconds": 2666
+    },
+    {
+     "id": "qyXaaUAKV-8",
+     "title": "LangChain Class 1: LLM Abstraction Explained | One Interface for Every LLM",
+     "seconds": 2479
+    },
+    {
+     "id": "optDSqm1svg",
+     "title": "LangChain Class 2: Messages Explained | System, Human, AI & Tool Messages",
+     "seconds": 2302
+    },
+    {
+     "id": "uxhyEWYlu18",
+     "title": "LangChain Class 3: Prompt Templates Explained | Dynamic Prompts with ChatPromptTemplate",
+     "seconds": 3009
+    },
+    {
+     "id": "R8518NDSFjY",
+     "title": "LangChain RAG Part 1 | Retrieval-Augmented Generation Explained from Scratch",
+     "seconds": 3463
+    },
+    {
+     "id": "W4MwuJZj-Ok",
+     "title": "LangChain RAG Part 2 | Build Smarter AI with Retrieval-Augmented Generation",
+     "seconds": 3181
+    },
+    {
+     "id": "iDzvocEb3N0",
+     "title": "LangChain RAG Part 3 | Build Production-Ready Agentic RAG Applications",
+     "seconds": 2468
+    },
+    {
+     "id": "IiRXGu0d7nU",
+     "title": "LangChain AI Agents Part 1 | Build Your First AI Agent from Scratch",
+     "seconds": 2227
+    },
+    {
+     "id": "5ae2be3cgqQ",
+     "title": "LangChain AI Agent – Tools & Custom Tools Explained | Part 2",
+     "seconds": 4855
+    },
+    {
+     "id": "QCfhMews9BQ",
+     "title": "LangChain Agent  | .env Files Explained | Secure API Keys in Python & LangChain",
+     "seconds": 2464
+    },
+    {
+     "id": "VEuekiPTaic",
+     "title": "Build an AI Shopping Assistant Agent | E-Commerce AI Agent Development with LangChain & LLMs",
+     "seconds": 1597
+    },
+    {
+     "id": "TQk5WILXTP0",
+     "title": "Memory in LangChain Explained | Build Context-Aware AI Agents with Python",
+     "seconds": 1425
+    },
+    {
+     "id": "b96o4XwueHE",
+     "title": "45 Days Later... What We Built | AI Bootcamp Final Session (Telugu)",
+     "seconds": 2056
+    },
+    {
+     "id": "xMbpBPTNoBI",
+     "title": "Chroma vs FAISS Explained | AI Interview Questions | Vector Databases",
+     "seconds": 530
+    }
+   ]
+  },
+  {
+   "id": "PLPRn_scq0yyg",
+   "title": "agentic ai (english)",
+   "label": "Agentic AI",
+   "lang": "English",
+   "blurb": "AI agents, agentic AI, AGI and ASI, taught class by class.",
+   "order": 1,
+   "hours": 32.5,
+   "videos": [
+    {
+     "id": "zcahunrn9Bg",
+     "title": "AI Agents, Agentic AI, AGI & ASI | Introduction to AI Agents",
+     "seconds": 2563
+    },
+    {
+     "id": "E_OMtpppz7U",
+     "title": "Class 2 – Programming Language",
+     "seconds": 2818
+    },
+    {
+     "id": "Hhi8Mtd17zs",
+     "title": "Class 3 | Phase 1 – Variables in Python",
+     "seconds": 2394
+    },
+    {
+     "id": "KuYaPaWd0XM",
+     "title": "Class 4 – Python Datatypes | Phase 1",
+     "seconds": 2679
+    },
+    {
+     "id": "5yxo7-YXkHg",
+     "title": "Python Tutorial for Beginners | Class 5 – Operators in Python | Career with Chaitanya",
+     "seconds": 2629
+    },
+    {
+     "id": "Ow927W2ixNI",
+     "title": "Python Control Structures Explained | if, if-else & if-elif-else | Python Class 6",
+     "seconds": 4182
+    },
+    {
+     "id": "6bvK06ReO3o",
+     "title": "Python Control Structures Part 2 | for Loop, while Loop, break & continue | Class 7",
+     "seconds": 2185
+    },
+    {
+     "id": "6hDvPHDoYPA",
+     "title": "Python Functions | Learn Functions in Python",
+     "seconds": 3447
+    },
+    {
+     "id": "pV89a_HEUL4",
+     "title": "Python Scope & Strings | Learn Python Basics",
+     "seconds": 2815
+    },
+    {
+     "id": "HToR0iOw_T8",
+     "title": "Python Lists, Sets & Tuples | Complete Beginner Guide",
+     "seconds": 3676
+    },
+    {
+     "id": "KIxoiyHr8-c",
+     "title": "Python Modules | Predefined, Third-Party & Custom Modules Explained",
+     "seconds": 4338
+    },
+    {
+     "id": "4Exrz7Z3RZ0",
+     "title": "System Design Basics | How a Web Application Works",
+     "seconds": 3802
+    },
+    {
+     "id": "jzgELdHxW2A",
+     "title": "System Design #2 | API Anatomy | Request & Response Explained",
+     "seconds": 3234
+    },
+    {
+     "id": "h4VTV_EItO0",
+     "title": "Python Requests Module & API Calling | GET & POST Requests Explained",
+     "seconds": 3717
+    },
+    {
+     "id": "nL3TMMSt6aI",
+     "title": "Projects & Software Principles | Build a Weather App with Python",
+     "seconds": 3423
+    },
+    {
+     "id": "NkV7jN7bgmU",
+     "title": "What is AI? | Evolution & Evaluation of Artificial Intelligence",
+     "seconds": 3123
+    },
+    {
+     "id": "cPJgEootg7I",
+     "title": "LLM Evaluation | How to Evaluate Large Language Models",
+     "seconds": 3471
+    },
+    {
+     "id": "XioXwiPBsTY",
+     "title": "Prompting Part 1 | Learn Prompt Engineering from Scratch",
+     "seconds": 2803
+    },
+    {
+     "id": "V0Q_HF-gH0g",
+     "title": "Prompting Part 2 | Advanced Prompt Engineering Techniques",
+     "seconds": 3079
+    },
+    {
+     "id": "xfn95b5SvnY",
+     "title": "Streamlit Part 1 | Build Interactive Web Apps with Python",
+     "seconds": 2353
+    },
+    {
+     "id": "ez9M5CbqR4I",
+     "title": "Streamlit Part 2 | Build Interactive Web Apps with Python",
+     "seconds": 2601
+    },
+    {
+     "id": "Mbqcsiu--0s",
+     "title": "Streamlit Part 3 | Build Interactive Web Apps with Python",
+     "seconds": 3668
+    },
+    {
+     "id": "ypvHqWKbxCI",
+     "title": "Streamlit Part 4 | Build Interactive Web Apps with Pytho",
+     "seconds": 2546
+    },
+    {
+     "id": "ssryjZXapgg",
+     "title": "SDLC Explained | Software Development Life Cycle from Start to Finish",
+     "seconds": 3028
+    },
+    {
+     "id": "k_mUARd9rZs",
+     "title": "Git Part 1 | Git & GitHub Basics for Beginners",
+     "seconds": 3430
+    },
+    {
+     "id": "L6SY3JHl-_c",
+     "title": "Git Part 2 | Branching, Merging & GitHub Collaboration",
+     "seconds": 3641
+    },
+    {
+     "id": "vOnTstOEo4o",
+     "title": "LangChain Introduction in Telugu | What is LangChain? |agentic AI Tutorial",
+     "seconds": 4109
+    },
+    {
+     "id": "JC8-oi8z2j0",
+     "title": "LangChain Messages & Prompt Templates Explained | agentic AI with Python",
+     "seconds": 2472
+    },
+    {
+     "id": "yxUUjghd69I",
+     "title": "LangChain Prompt Templates & Output Parsers | Part 3 | agentic AI with Python",
+     "seconds": 2472
+    },
+    {
+     "id": "Le3ASuLbVxM",
+     "title": "LangChain Chains Explained | LLMChain & Chain Workflow | agentic AI with Python",
+     "seconds": 3240
+    },
+    {
+     "id": "lEiQqHQE4Cg",
+     "title": "LangChain Parallel Chains Explained | RunnableParallel in Python | agentic AI",
+     "seconds": 1584
+    },
+    {
+     "id": "M8bjmyzkq0s",
+     "title": "LangChain RAG Explained | Retrieval-Augmented Generation with Python | agentic AI",
+     "seconds": 2895
+    },
+    {
+     "id": "DOTV2uO5bYM",
+     "title": "LangChain Document Loaders & Text Splitters Explained | RAG with Python",
+     "seconds": 3273
+    },
+    {
+     "id": "79pHXUGxKdQ",
+     "title": "LangChain Embeddings & Vectors Explained | Vector Databases & RAG with Python",
+     "seconds": 3251
+    },
+    {
+     "id": "WWqbdBQ2CTQ",
+     "title": "LangChain RAG Final Project | Build a Complete RAG Application with Python",
+     "seconds": 2577
+    },
+    {
+     "id": "2_AysoLCMaQ",
+     "title": "LangChain ReAct Agent Explained | Reason + Act | AI Agents Tutorial",
+     "seconds": 2544
+    },
+    {
+     "id": "xvgUbS4HBmw",
+     "title": "LangChain Custom Tools Explained | Build Your Own AI Agent Tools with Python",
+     "seconds": 1647
+    },
+    {
+     "id": "N6YAvZOY2lU",
+     "title": "OOPs & Pydantic Output Parser in LangChain | Structured Outputs with Python",
+     "seconds": 3278
+    },
+    {
+     "id": "Vwa1Uiv1_8o",
+     "title": "LangChain Pydantic Output Parser Explained | Structured LLM Outputs with Python",
+     "seconds": 1858
+    }
+   ]
+  },
+  {
+   "id": "PLG0oS1Nq0IG0",
+   "title": "DSA with Python 🚀 | From Problem Solving to Programming",
+   "label": "DSA with Python",
+   "lang": "English",
+   "blurb": "Problem solving to programming: data structures and algorithms in Python.",
+   "order": 2,
+   "hours": 28.5,
+   "videos": [
+    {
+     "id": "Ym9tcCz7m3I",
+     "title": "DSA Bootcamp 🚀 | Intro Class | Start Your DSA Journey with Career With Chaitanya",
+     "seconds": 2040
+    },
+    {
+     "id": "A6fWb-3eKww",
+     "title": "DSA Class 1 🔥 | From Problem to Programmer | Programming Languages",
+     "seconds": 2939
+    },
+    {
+     "id": "LXCrlxY1cgE",
+     "title": "DSA Class 2: Variables & Data Types in Python | Learn Python for DSA",
+     "seconds": 4028
+    },
+    {
+     "id": "HNTkFNpsVhs",
+     "title": "DSA Class 3 | Operators in Python | Learn Operators + Solve DSA Problems",
+     "seconds": 3498
+    },
+    {
+     "id": "S3YQcc5--7g",
+     "title": "DSA Class 4 | Conditional Statements in Python | If, Elif & Else",
+     "seconds": 3182
+    },
+    {
+     "id": "gIGr1CAaiSo",
+     "title": "DSA Class 5 | Conditional Statements – Problem Solving in Python",
+     "seconds": 2148
+    },
+    {
+     "id": "3IZ3vR9VXzU",
+     "title": "DSA Class 6 – Loops in Python",
+     "seconds": 3433
+    },
+    {
+     "id": "cdUsg2t38GQ",
+     "title": "DSA Class 6 | While Loops in Python | Learn, Practice & Solve 🔥",
+     "seconds": 2078
+    },
+    {
+     "id": "NFToc5-kI5E",
+     "title": "DSA Class 7 | Nested Loops & Nested Conditional Statements | Problem Solving",
+     "seconds": 2074
+    },
+    {
+     "id": "0Qa1Ub7g3Tk",
+     "title": "DSA Class 7: Break & Continue in Python | Control Flow in Loops",
+     "seconds": 932
+    },
+    {
+     "id": "3NQMxRyXm-k",
+     "title": "DSA Class 8 — Functions in Python",
+     "seconds": 3203
+    },
+    {
+     "id": "6sgxV5STsLs",
+     "title": "DSA Functions in Python - 2 | Return, Default & Multiple Arguments | Learn DSA from Scratch",
+     "seconds": 1863
+    },
+    {
+     "id": "BpR8KBn-RGE",
+     "title": "DSA Class 10 | Scopes & LEGB Rule in Python",
+     "seconds": 2407
+    },
+    {
+     "id": "WMIZeFMJfbI",
+     "title": "DSA Class 11 | Problem Solving Basics | Understanding Problems, Pseudocode & Step-by-Step Thinking",
+     "seconds": 2367
+    },
+    {
+     "id": "WwcV1g_IFUU",
+     "title": "DSA Class 12 | Problem Solving Basics – Part 2 | Learn Problem Solving Step by Step",
+     "seconds": 2190
+    },
+    {
+     "id": "V9c2l6iKyz8",
+     "title": "DSA Class 13 | Problem Solving Basics in DSA  part 3  | Think → Plan → Solve",
+     "seconds": 2780
+    },
+    {
+     "id": "_dY9IYK-huE",
+     "title": "Problem Solving Basics in DSA | Part 4 | Class 14 | Python DSA",
+     "seconds": 2945
+    },
+    {
+     "id": "1qxeqghCWPE",
+     "title": "DSA Class 15 | Numbers: Reverse, Sum & Product of Digits | Python DSA",
+     "seconds": 2475
+    },
+    {
+     "id": "e5HNhoOcsc8",
+     "title": "DSA Class 15 | Strings Part 1 | Python DSA for Beginners | Career with Chaitanya",
+     "seconds": 2472
+    },
+    {
+     "id": "gHGsWQG8qGA",
+     "title": "DSA Strings Part 2 | Python String Problem Solving | DSA for Beginners | Career with Chaitanya",
+     "seconds": 2258
+    },
+    {
+     "id": "F9zhd4o9azo",
+     "title": "Python Strings | Part 3 | DSA & Python",
+     "seconds": 2750
+    },
+    {
+     "id": "gz0x9apEre0",
+     "title": "DSA Class – Strings Part 4 | Python Strings",
+     "seconds": 2559
+    },
+    {
+     "id": "-gx4cembAJU",
+     "title": "Python Strings Complete + Introduction to Lists | Strings Part 4 | Python for Beginners",
+     "seconds": 3178
+    },
+    {
+     "id": "LgfDoZei1LY",
+     "title": "Python Lists Part 2 | List Indexing, Slicing & List Methods | Python for Beginners",
+     "seconds": 2639
+    },
+    {
+     "id": "oB3xoHLDlhE",
+     "title": "second largest number in list --Python Lists Part 3 | Advanced List Concepts & Problem Solving",
+     "seconds": 2322
+    },
+    {
+     "id": "5aZhfNoZFVs",
+     "title": "Linear Search & Binary Search — Introduction",
+     "seconds": 2454
+    },
+    {
+     "id": "FLGSxobiJ5w",
+     "title": "Python Lists | Nested Lists & List of Strings Problems",
+     "seconds": 2138
+    },
+    {
+     "id": "h3A-tdCY2nA",
+     "title": "Learn Python Sets and Dictionaries from scratch!",
+     "seconds": 3219
+    },
+    {
+     "id": "hKGi2JtJmGk",
+     "title": "Learn how to use Python dictionaries for memoization!",
+     "seconds": 1846
+    },
+    {
+     "id": "vYy68BofkDI",
+     "title": "Python Dictionary in Python | Part 3 | Python Full Stack",
+     "seconds": 2647
+    },
+    {
+     "id": "j7cw_2Uojho",
+     "title": "Python Dictionary Tutorial Part 4 | Python Problem Solving",
+     "seconds": 1212
+    },
+    {
+     "id": "GGjqXdaUA70",
+     "title": "Python Problem Solving | Prime Number Program in Python | Number Series",
+     "seconds": 1953
+    },
+    {
+     "id": "mUuxIfnr5WA",
+     "title": "Python Problem Solving: Armstrong Number & Factorial of a Number | Python for Beginners",
+     "seconds": 1096
+    },
+    {
+     "id": "TN0o0_CFlmo",
+     "title": "What Is DSA? | Introduction to Data Structures and Algorithms | DSA in Python",
+     "seconds": 1216
+    },
+    {
+     "id": "HR-u5sqEe4Q",
+     "title": "Python Pattern Programming in Python | Class 1 | DSA Problem Solving | Career with Chaitanya",
+     "seconds": 3192
+    },
+    {
+     "id": "_VMGbADsIVg",
+     "title": "Python Pattern Programming | Class 2 | Number & Star Patterns | DSA Using Python",
+     "seconds": 3262
+    },
+    {
+     "id": "XfI57NfMgQQ",
+     "title": "Python Patterns – Class 3 | Number Patterns & Star Patterns in Python | Career with Chaitanya",
+     "seconds": 3283
+    },
+    {
+     "id": "ZyPD6yIRdrs",
+     "title": "Patterns in Python | Class 4 🔥 Number & Star Patterns | Career with Chaitanya",
+     "seconds": 3850
+    },
+    {
+     "id": "557TPd4J8_Y",
+     "title": "Time & Space Complexity in DSA | Big O Notation Explained | Python",
+     "seconds": 3303
+    },
+    {
+     "id": "twuC-VHRiCg",
+     "title": "Linear Search vs Binary Search in Python | DSA for Beginners | Time Complexity",
+     "seconds": 1677
+    },
+    {
+     "id": "kGaktN6ePIY",
+     "title": "Bubble Sort vs Selection Sort | Python DSA | Sorting Algorithms Explained",
+     "seconds": 1435
+    },
+    {
+     "id": "_21e4e1y4iQ",
+     "title": "Bubble Sort vs Selection Sort | Python DSA | Sorting Algorithms Explained part 2",
+     "seconds": 91
+    }
+   ]
+  },
+  {
+   "id": "PLVP1V0TA24xc",
+   "title": "python in telugu",
+   "label": "Python",
+   "lang": "Telugu",
+   "blurb": "Python, APIs and modules explained step by step in Telugu.",
+   "order": 3,
+   "hours": 15.4,
+   "videos": [
+    {
+     "id": "gZbzpSC634c",
+     "title": "Mini Project 1: Build an LLM Weather Suggestion App in Python | OpenAI + Weather API",
+     "seconds": 1849
+    },
+    {
+     "id": "UQDvwIiU5z8",
+     "title": "LLMs – How They Call APIs Using the Python Requests Module | Complete Beginner Guide",
+     "seconds": 3105
+    },
+    {
+     "id": "dBsJWfQlPZs",
+     "title": "HTTP Request & Response Explained | API Anatomy Part 2",
+     "seconds": 1958
+    },
+    {
+     "id": "r6Hh2wOegws",
+     "title": "Module Part 2 | Third-Party Modules & API Anatomy Explained",
+     "seconds": 4537
+    },
+    {
+     "id": "JCT3f3ckdP4",
+     "title": "Master Python: Nested Loops, Lambda Functions, Unpacking & List Comprehension",
+     "seconds": 2899
+    },
+    {
+     "id": "Is83tX-AK04",
+     "title": "Python Modules Explained | Types of Modules in Python (Part 1) | Built-in, User-Defined",
+     "seconds": 1470
+    },
+    {
+     "id": "ZpZrx2t7bDo",
+     "title": "Lambda Functions in Python | Anonymous Functions Explained",
+     "seconds": 379
+    },
+    {
+     "id": "RPSBKGHXy_k",
+     "title": "Packing & Unpacking in Python | Complete Beginner Tutorial",
+     "seconds": 475
+    },
+    {
+     "id": "Q_Z3HXKcIcY",
+     "title": "Ternary Operator in Python | Conditional Expressions Explained",
+     "seconds": 942
+    },
+    {
+     "id": "u5WZ6qn2EOQ",
+     "title": "Nested Loops in Python | Complete Beginner Tutorial",
+     "seconds": 557
+    },
+    {
+     "id": "9aJhJvL0F8A",
+     "title": "Break & Continue Statements in Python | Complete Beginner Tutorial",
+     "seconds": 503
+    },
+    {
+     "id": "YECVwx8yjgk",
+     "title": "Type Conversion in Python | Implicit & Explicit Type Casting Explained",
+     "seconds": 410
+    },
+    {
+     "id": "bpsMcKkWkok",
+     "title": "Dictionaries in Python | Complete Dictionary Tutorial for Beginners",
+     "seconds": 1311
+    },
+    {
+     "id": "Rgzm_h60pL4",
+     "title": "Sets in Python | Complete Set Tutorial for Beginners",
+     "seconds": 1453
+    },
+    {
+     "id": "WT8aJI1NXf4",
+     "title": "Tuples in Python | Complete Tuple Tutorial for Beginners",
+     "seconds": 432
+    },
+    {
+     "id": "fYr79qzORro",
+     "title": "Lists part 2 in Python | Complete List Tutorial for Beginners",
+     "seconds": 1980
+    },
+    {
+     "id": "0G1gFXocDhQ",
+     "title": "Lists in Python | Complete List Tutorial for Beginners",
+     "seconds": 925
+    },
+    {
+     "id": "hATMxKBA6nQ",
+     "title": "Strings  PART 2  in Python | Complete String Tutorial for Beginners",
+     "seconds": 2071
+    },
+    {
+     "id": "lCdXUEjOhWw",
+     "title": "Strings in Python | Complete String Tutorial for Beginners",
+     "seconds": 3808
+    },
+    {
+     "id": "U25tz2Eem_U",
+     "title": "Variable Scope in Python | Local, Global & Nonlocal Variables Explained",
+     "seconds": 2117
+    },
+    {
+     "id": "wk7myiLcOAk",
+     "title": "Functions part 2 in Python | User Defined Functions Explained for Beginners",
+     "seconds": 3268
+    },
+    {
+     "id": "4NGrF7RSSLg",
+     "title": "Functions in Python | User Defined Functions Explained for Beginners part -1",
+     "seconds": 2652
+    },
+    {
+     "id": "j5d-fh_KBBI",
+     "title": "While Loop in Python | Complete Beginner Tutorial",
+     "seconds": 1655
+    },
+    {
+     "id": "-woXVjI2yJM",
+     "title": "Loops in Python | For Loop & While Loop Explained for Beginners",
+     "seconds": 2655
+    },
+    {
+     "id": "4x6o-mlr0eU",
+     "title": "Conditional Statements in Python | Complete Beginner Guide",
+     "seconds": 3322
+    },
+    {
+     "id": "uIiAMaeUPXU",
+     "title": "Python Operators Explained | Complete Beginner Guide",
+     "seconds": 2452
+    },
+    {
+     "id": "YBEilhiA0E4",
+     "title": "Python Data Types Explained | Complete Beginner Guide",
+     "seconds": 3339
+    },
+    {
+     "id": "B8cZSAdfcVU",
+     "title": "Python Basics: Introduction to Python & Variables",
+     "seconds": 3000
+    }
+   ]
+  },
+  {
+   "id": "PLa1HOuOW_ALI",
+   "title": "langchain in english",
+   "label": "LangChain",
+   "lang": "English",
+   "blurb": "Structured output, tools and ReAct agents with LangChain.",
+   "order": 4,
+   "hours": 9.8,
+   "videos": [
+    {
+     "id": "Vwa1Uiv1_8o",
+     "title": "LangChain Pydantic Output Parser Explained | Structured LLM Outputs with Python",
+     "seconds": 1858
+    },
+    {
+     "id": "N6YAvZOY2lU",
+     "title": "OOPs & Pydantic Output Parser in LangChain | Structured Outputs with Python",
+     "seconds": 3278
+    },
+    {
+     "id": "xvgUbS4HBmw",
+     "title": "LangChain Custom Tools Explained | Build Your Own AI Agent Tools with Python",
+     "seconds": 1647
+    },
+    {
+     "id": "2_AysoLCMaQ",
+     "title": "LangChain ReAct Agent Explained | Reason + Act | AI Agents Tutorial",
+     "seconds": 2544
+    },
+    {
+     "id": "WWqbdBQ2CTQ",
+     "title": "LangChain RAG Final Project | Build a Complete RAG Application with Python",
+     "seconds": 2577
+    },
+    {
+     "id": "79pHXUGxKdQ",
+     "title": "LangChain Embeddings & Vectors Explained | Vector Databases & RAG with Python",
+     "seconds": 3251
+    },
+    {
+     "id": "DOTV2uO5bYM",
+     "title": "LangChain Document Loaders & Text Splitters Explained | RAG with Python",
+     "seconds": 3273
+    },
+    {
+     "id": "M8bjmyzkq0s",
+     "title": "LangChain RAG Explained | Retrieval-Augmented Generation with Python | agentic AI",
+     "seconds": 2895
+    },
+    {
+     "id": "lEiQqHQE4Cg",
+     "title": "LangChain Parallel Chains Explained | RunnableParallel in Python | agentic AI",
+     "seconds": 1584
+    },
+    {
+     "id": "Le3ASuLbVxM",
+     "title": "LangChain Chains Explained | LLMChain & Chain Workflow | agentic AI with Python",
+     "seconds": 3240
+    },
+    {
+     "id": "yxUUjghd69I",
+     "title": "LangChain Prompt Templates & Output Parsers | Part 3 | agentic AI with Python",
+     "seconds": 2472
+    },
+    {
+     "id": "JC8-oi8z2j0",
+     "title": "LangChain Messages & Prompt Templates Explained | agentic AI with Python",
+     "seconds": 2472
+    },
+    {
+     "id": "vOnTstOEo4o",
+     "title": "LangChain Introduction in Telugu | What is LangChain? |agentic AI Tutorial",
+     "seconds": 4109
+    }
+   ]
+  },
+  {
+   "id": "PLZQ6-CRhplAk",
+   "title": "llms  everything in telugu",
+   "label": "LLMs",
+   "lang": "Telugu",
+   "blurb": "Run LLMs offline, call them with APIs and build mini projects.",
+   "order": 5,
+   "hours": 8.6,
+   "videos": [
+    {
+     "id": "bVeW56rg7A0",
+     "title": "Run LLMs Offline (Part 2) - api way",
+     "seconds": 3347
+    },
+    {
+     "id": "K5BrXIbLgY8",
+     "title": "Run LLMs Offline on Your Laptop",
+     "seconds": 1915
+    },
+    {
+     "id": "gZbzpSC634c",
+     "title": "Mini Project 1: Build an LLM Weather Suggestion App in Python | OpenAI + Weather API",
+     "seconds": 1849
+    },
+    {
+     "id": "UQDvwIiU5z8",
+     "title": "LLMs – How They Call APIs Using the Python Requests Module | Complete Beginner Guide",
+     "seconds": 3105
+    },
+    {
+     "id": "dBsJWfQlPZs",
+     "title": "HTTP Request & Response Explained | API Anatomy Part 2",
+     "seconds": 1958
+    },
+    {
+     "id": "Is83tX-AK04",
+     "title": "Python Modules Explained | Types of Modules in Python (Part 1) | Built-in, User-Defined",
+     "seconds": 1470
+    },
+    {
+     "id": "d40NVi35ND4",
+     "title": "Prompt Engineering Tutorial for Beginners | Part 1 | Write Better AI Prompts",
+     "seconds": 2008
+    },
+    {
+     "id": "kv5b0d_x1As",
+     "title": "Everything About LLM Tokens, Prompting & Knowledge Cutoff in One Video",
+     "seconds": 2709
+    },
+    {
+     "id": "MOLEw28mKGY",
+     "title": "How LLMs Actually Work | ChatGPT & Gemini Explained from Scratch",
+     "seconds": 3974
+    },
+    {
+     "id": "wFuRU-8YMqM",
+     "title": "LLM evolution Explained | How to Measure AI Models Like ChatGPT & Gemini",
+     "seconds": 4299
+    },
+    {
+     "id": "nKf-pwCHFm8",
+     "title": "Is ChatGPT an LLM? | Are ChatGPT & Gemini Really LLMs? Explained Simply",
+     "seconds": 4380
+    }
+   ]
+  }
+ ]
+}

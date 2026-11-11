@@ -1,13 +1,16 @@
 import { Link } from 'react-router-dom'
 import Icon from '../components/Icon.jsx'
 import { PublicLayout } from '../components/PublicLayout.jsx'
-import VideoCarousel from '../components/VideoCarousel.jsx'
+import RoadmapShowcase from '../components/RoadmapShowcase.jsx'
 import Journey from '../components/Journey.jsx'
 import Logo, { MarkName } from '../components/Logo.jsx'
 import TypeRoles from '../components/TypeRoles.jsx'
 import { SectionHead } from '../components/ui.jsx'
-import { CourseTeaser, FeatureCards, StudentVideos } from '../components/HomeSections.jsx'
-import { COURSES, ROUNDS } from '../data/homeContent.js'
+import CourseVideos from '../components/CourseVideos.jsx'
+import { StudentStories } from '../components/StudentStories.jsx'
+import { FeatureCards } from '../components/HomeSections.jsx'
+import { ROUNDS } from '../data/homeContent.js'
+import { TOTAL_HOURS, TOTAL_VIDEOS } from '../data/courses.js'
 
 const SIGNUP = '/login?mode=signup'
 
@@ -48,16 +51,16 @@ export default function Landing() {
       </section>
 
       <section className="strip" aria-label="At a glance">
-        <div><strong>{COURSES.length}</strong><span>video tracks</span></div>
+        <div><strong>{TOTAL_VIDEOS}</strong><span>free video lessons</span></div>
+        <div><strong>{TOTAL_HOURS}+</strong><span>hours of learning</span></div>
         <div><strong>{ROUNDS.length}</strong><span>interview rounds</span></div>
-        <div><strong>Weekly</strong><span>open mic meets</span></div>
         <div><strong>₹0</strong><span>to get started</span></div>
       </section>
 
-      <VideoCarousel />
       <Journey />
       <FeatureCards />
-      <CourseTeaser />
+      <RoadmapShowcase />
+      <CourseVideos gated />
 
       <section className="section" id="how">
         <SectionHead eyebrow="How it works" title="Three steps to your first offer" />
@@ -73,7 +76,7 @@ export default function Landing() {
         </ol>
       </section>
 
-      <StudentVideos limit={3} />
+      <StudentStories limit={5} cta />
 
       <section className="bigcta">
         <h2>Your next role starts here.</h2>

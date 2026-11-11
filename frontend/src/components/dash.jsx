@@ -1,9 +1,9 @@
 import Icon from './Icon.jsx'
-import { COURSES } from '../data/homeContent.js'
+import { findPlaylist } from '../data/courses.js'
 import { progress } from '../lib/progress.js'
 
 export function Resume({ p }) {
-  const course = COURSES.find((c) => c.id === p.last.course) || COURSES[0]
+  const course = findPlaylist(p.last.course)
   const idx = Math.min(p.last.idx, course.videos.length - 1)
   const done = (p.watched[course.id] || []).length
   const pct = Math.round((done / course.videos.length) * 100)

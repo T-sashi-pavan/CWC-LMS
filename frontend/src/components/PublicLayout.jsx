@@ -11,6 +11,7 @@ const NAV = [
   { to: '/open-mic', label: 'Open Mic' },
   { to: '/interview-simulator', label: 'Interview Simulator' },
   { to: '/roadmaps', label: 'Roadmaps' },
+  { to: '/testimonials', label: 'Testimonials' },
   { to: '/about', label: 'About us' },
 ]
 

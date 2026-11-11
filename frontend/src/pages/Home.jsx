@@ -3,11 +3,12 @@ import { useAuth } from '../context/AuthContext.jsx'
 import { useApi } from '../lib/useApi.js'
 import { stats, useProgress } from '../lib/progress.js'
 import { Async, Lock, SectionHead } from '../components/ui.jsx'
-import VideoCarousel from '../components/VideoCarousel.jsx'
 import CourseVideos from '../components/CourseVideos.jsx'
-import { FeatureCards, LinkedInVideos, StudentVideos } from '../components/HomeSections.jsx'
+import { FeatureCards, LinkedInVideos } from '../components/HomeSections.jsx'
+import { StudentStories, StudentWall } from '../components/StudentStories.jsx'
 import { ActivityChart, Badges, Resume, StatTiles } from '../components/dash.jsx'
 import Logo, { MarkName } from '../components/Logo.jsx'
+import RoadmapShowcase from '../components/RoadmapShowcase.jsx'
 import Journey from '../components/Journey.jsx'
 import BadgeCelebration from '../components/Confetti.jsx'
 
@@ -36,6 +37,7 @@ export default function Home() {
         <StatTiles s={s} />
         <Journey personal done={s.journey} />
         <FeatureCards eyebrow="Jump in" title="Practise, speak and plan" sub="Your three shortcuts to getting job-ready." />
+        <RoadmapShowcase />
         <CourseVideos track />
 
         <section className="section">
@@ -46,8 +48,8 @@ export default function Home() {
           </div>
         </section>
 
-        <VideoCarousel />
-        <StudentVideos />
+        <StudentStories />
+        <StudentWall />
         <LinkedInVideos />
 
         {!isPro && (

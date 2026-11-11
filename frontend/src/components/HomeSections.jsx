@@ -2,8 +2,8 @@ import { useEffect, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
 import Icon from './Icon.jsx'
 import { SectionHead } from './ui.jsx'
-import VideoModal, { PlayIcon, Thumb } from './VideoModal.jsx'
-import { CARDS, COURSES, LINKEDIN_VIDEOS, STUDENT_VIDEOS } from '../data/homeContent.js'
+import { PlayIcon, Thumb } from './VideoModal.jsx'
+import { CARDS, LINKEDIN_VIDEOS } from '../data/homeContent.js'
 
 const SIGNUP = '/login?mode=signup'
 
@@ -66,27 +66,6 @@ export function FeatureCards({
   )
 }
 
-export function StudentVideos({ limit = STUDENT_VIDEOS.length, title = 'Hear it from our students', sub = 'Real feedback from people who followed the plan.' }) {
-  const [open, setOpen] = useState(null)
-  return (
-    <section className="section" id="testimonials">
-      <SectionHead eyebrow="Testimonials" title={title} sub={sub} />
-      <div className="vgrid">
-        {STUDENT_VIDEOS.slice(0, limit).map((s, k) => (
-          <button key={k} className="vcard" onClick={() => setOpen(s)} aria-label={`Play feedback from ${s.name}`}>
-            <span className="vcard__img">
-              <AutoPreview v={{ ...s, start: 30 + k * 90 }} />
-              <span className="vcard__expand"><PlayIcon size={34} /></span>
-            </span>
-            <span className="vcard__meta"><strong>{s.name}</strong><span className="muted">{s.role}</span></span>
-          </button>
-        ))}
-      </div>
-      <VideoModal video={open} onClose={() => setOpen(null)} />
-    </section>
-  )
-}
-
 // Muted, looping preview that only plays while the card is on screen.
 function AutoPreview({ v }) {
   const ref = useRef(null)
@@ -140,31 +119,6 @@ export function LinkedInVideos() {
               <PlayIcon size={26} /> Watch on LinkedIn <Icon name="arrow" size={15} />
             </a>
           </article>
-        ))}
-      </div>
-    </section>
-  )
-}
-
-// Logged-out course catalogue: browse the tracks, sign up to watch.
-export function CourseTeaser() {
-  return (
-    <section className="section">
-      <SectionHead eyebrow="Free video courses" title="Pick a track, start learning" sub="Every lesson is free once you create an account.">
-        <Link className="btn btn--sm" to={SIGNUP}>Unlock all courses</Link>
-      </SectionHead>
-      <div className="tracks">
-        {COURSES.map((c) => (
-          <Link key={c.id} to={SIGNUP} className="track">
-            <span className="track__img ratio">
-              <Thumb yt={c.videos[0].yt} loading="lazy" />
-              <span className="track__lock"><Icon name="lock" size={16} /> Free with account</span>
-            </span>
-            <span className="track__bar">
-              <span className="track__txt"><strong>{c.label}</strong><small>{c.videos.length} lessons</small></span>
-              <span className="fcard__arrow"><Icon name="arrow" size={18} /></span>
-            </span>
-          </Link>
         ))}
       </div>
     </section>

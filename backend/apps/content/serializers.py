@@ -21,11 +21,41 @@ class TieredSerializer(serializers.ModelSerializer):
 
 
 class RoadmapSerializer(TieredSerializer):
+    """List card for a roadmap. Never contains the full content: that is the detail endpoint's job."""
+
     protected_fields = ("steps",)
+    gated = serializers.SerializerMethodField()
+    phase_count = serializers.SerializerMethodField()
+    lab_count = serializers.SerializerMethodField()
+    highlights = serializers.SerializerMethodField()
+
+    def get_gated(self, obj):
+        """Visitor is not logged in and this roadmap is not one of the few shown publicly."""
+        return not self.context.get("authed", False) and not obj.featured
+
+    def get_phase_count(self, obj):
+        return (obj.content or {}).get("phase_count", 0)
+
+    def get_lab_count(self, obj):
+        return (obj.content or {}).get("lab_count", 0)
+
+    def get_highlights(self, obj):
+        """A few tools for the card chips (public teaser, not the full stack)."""
+        items = [i for row in (obj.content or {}).get("tech_stack", []) for i in row["items"]]
+        return items[:6]
+
+    def to_representation(self, instance):
+        data = super().to_representation(instance)
+        if data["gated"]:
+            data["steps"] = []
+        return data
 
     class Meta:
         model = Roadmap
-        fields = ("id", "slug", "title", "summary", "duration", "steps", "is_pro", "locked")
+        fields = (
+            "id", "slug", "title", "tagline", "summary", "duration", "category", "featured",
+            "phase_count", "lab_count", "highlights", "steps", "is_pro", "locked", "gated",
+        )
 
 
 class InterviewSerializer(TieredSerializer):

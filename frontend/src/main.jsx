@@ -9,6 +9,10 @@ import './styles/login.css'
 import './styles/home.css'
 import './styles/creative.css'
 import './styles/showcase.css'
+import './styles/roadmaps.css'
+import './styles/courses.css'
+import './styles/media.css'
+import './styles/viewer.css'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>

@@ -5,8 +5,9 @@ from .models import Interview, Job, Roadmap, Testimonial
 
 @admin.register(Roadmap)
 class RoadmapAdmin(admin.ModelAdmin):
-    list_display = ("title", "duration", "is_pro", "order")
-    list_filter = ("is_pro",)
+    list_display = ("title", "category", "featured", "is_pro", "order")
+    list_filter = ("category", "featured", "is_pro")
+    list_editable = ("featured",)
     prepopulated_fields = {"slug": ("title",)}
 
 
