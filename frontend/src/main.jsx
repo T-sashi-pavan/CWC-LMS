@@ -13,6 +13,8 @@ import './styles/roadmaps.css'
 import './styles/courses.css'
 import './styles/media.css'
 import './styles/viewer.css'
+import './styles/social.css'
+import './styles/courses-nav.css'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>

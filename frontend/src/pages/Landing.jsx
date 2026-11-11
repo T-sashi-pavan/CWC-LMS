@@ -8,6 +8,8 @@ import TypeRoles from '../components/TypeRoles.jsx'
 import { SectionHead } from '../components/ui.jsx'
 import CourseVideos from '../components/CourseVideos.jsx'
 import { StudentStories } from '../components/StudentStories.jsx'
+import HiredStudents from '../components/HiredStudents.jsx'
+import LinkedInPosts from '../components/LinkedInPosts.jsx'
 import { FeatureCards } from '../components/HomeSections.jsx'
 import { ROUNDS } from '../data/homeContent.js'
 import { TOTAL_HOURS, TOTAL_VIDEOS } from '../data/courses.js'
@@ -61,6 +63,7 @@ export default function Landing() {
       <FeatureCards />
       <RoadmapShowcase />
       <CourseVideos gated />
+      <HiredStudents />
 
       <section className="section" id="how">
         <SectionHead eyebrow="How it works" title="Three steps to your first offer" />
@@ -77,6 +80,8 @@ export default function Landing() {
       </section>
 
       <StudentStories limit={5} cta />
+
+      <LinkedInPosts seeAll />
 
       <section className="bigcta">
         <h2>Your next role starts here.</h2>

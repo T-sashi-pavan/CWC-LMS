@@ -1,13 +1,17 @@
 import { Link } from 'react-router-dom'
 import Logo, { Wordmark } from './Logo.jsx'
+import SocialLinks from './SocialLinks.jsx'
+import { useAuth } from '../context/AuthContext.jsx'
 
 export default function Footer() {
+  const { user } = useAuth()
   return (
     <footer className="footer footer--full">
       <div className="footer__in">
         <div className="footer__brand">
           <Link to="/" className="brand" aria-label="Career with Chaitanya home"><Logo size={40} /><Wordmark /></Link>
           <p className="muted">Roadmaps, mock interviews and guidance to help you land your first offer letter.</p>
+          <SocialLinks />
         </div>
         <nav className="footer__col" aria-label="Explore">
           <strong>Explore</strong>
@@ -19,8 +23,14 @@ export default function Footer() {
         <nav className="footer__col" aria-label="Company">
           <strong>Company</strong>
           <Link to="/about">About us</Link>
-          <Link to="/login">Log in</Link>
-          <Link to="/login?mode=signup">Sign up free</Link>
+          {user ? (
+            <Link to="/">My dashboard</Link>
+          ) : (
+            <>
+              <Link to="/login">Log in</Link>
+              <Link to="/login?mode=signup">Sign up free</Link>
+            </>
+          )}
         </nav>
       </div>
       <div className="footer__copy">© {new Date().getFullYear()} Career with Chaitanya. All rights reserved.</div>

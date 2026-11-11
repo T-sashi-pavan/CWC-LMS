@@ -75,6 +75,23 @@ if not DATABASE_URL:
         "(or to the Vercel project's environment variables)."
     )
 
+def _serverless_pooler_url(url: str) -> str:
+    """(Used on Vercel and locally.) On Vercel every request can start a fresh function that opens its own connection. Supabase's SESSION pooler
+    (port 5432) keeps a connection for as long as the client holds it and caps clients, so it runs out
+    ("EMAXCONNSESSION: max clients reached in session mode") and every database query returns a 500.
+    The TRANSACTION pooler (port 6543) on the same host shares connections between requests and is the right
+    one for serverless. Switch automatically, so a connection string copied with port 5432 still works."""
+    from urllib.parse import urlparse, urlunparse
+
+    parts = urlparse(url)
+    if parts.hostname and parts.hostname.endswith(".pooler.supabase.com") and parts.port == 5432:
+        return urlunparse(parts._replace(netloc=parts.netloc.rsplit(":", 1)[0] + ":6543"))
+    return url
+
+
+# Applied locally as well: a dev server holds its session-pooler connections open and exhausts the same shared cap.
+DATABASE_URL = _serverless_pooler_url(DATABASE_URL)
+
 DATABASES = {
     "default": dj_database_url.parse(
         DATABASE_URL,

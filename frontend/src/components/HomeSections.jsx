@@ -1,11 +1,7 @@
-import { useEffect, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
 import Icon from './Icon.jsx'
 import { SectionHead } from './ui.jsx'
-import { PlayIcon, Thumb } from './VideoModal.jsx'
-import { CARDS, LINKEDIN_VIDEOS } from '../data/homeContent.js'
-
-const SIGNUP = '/login?mode=signup'
+import { CARDS } from '../data/homeContent.js'
 
 const spot = (e) => {
   const r = e.currentTarget.getBoundingClientRect()
@@ -61,65 +57,6 @@ export function FeatureCards({
             </Link>
           )
         })}
-      </div>
-    </section>
-  )
-}
-
-// Muted, looping preview that only plays while the card is on screen.
-function AutoPreview({ v }) {
-  const ref = useRef(null)
-  const [live, setLive] = useState(false)
-  const [ready, setReady] = useState(false)
-  useEffect(() => {
-    const el = ref.current
-    if (!el || !('IntersectionObserver' in window)) { setLive(true); return undefined }
-    const io = new IntersectionObserver(([e]) => setLive(e.isIntersecting), { threshold: 0.5 })
-    io.observe(el)
-    return () => io.disconnect()
-  }, [])
-  const reduced = typeof window !== 'undefined' && window.matchMedia?.('(prefers-reduced-motion: reduce)').matches
-  const play = live && !reduced
-  return (
-    <span className="lipv ratio" ref={ref}>
-      {v.yt && <Thumb yt={v.yt} loading="lazy" />}
-      {play && v.mp4 && <video className={ready ? 'is-on' : ''} src={v.mp4} autoPlay muted loop playsInline preload="metadata" onPlaying={() => setReady(true)} />}
-      {play && !v.mp4 && v.yt && (
-        <iframe
-          className={`embed ${ready ? 'is-on' : ''}`}
-          onLoad={() => setTimeout(() => setReady(true), 1200)}
-          title={`Preview: ${v.name}`}
-          tabIndex={-1}
-          allow="autoplay; encrypted-media"
-          src={`https://www.youtube-nocookie.com/embed/${v.yt}?autoplay=1&mute=1&controls=0&loop=1&playlist=${v.yt}&start=${v.start || 0}&modestbranding=1&playsinline=1&rel=0&disablekb=1`}
-        />
-      )}
-      <span className="lipv__live"><i /> {play ? 'Preview' : 'Paused'}</span>
-    </span>
-  )
-}
-
-export function LinkedInVideos() {
-  return (
-    <section className="section" id="linkedin">
-      <SectionHead eyebrow="On LinkedIn" title="Students share their wins" sub="Placement stories, posted by the students themselves." />
-      <div className="ligrid">
-        {LINKEDIN_VIDEOS.map((l, k) => (
-          <article key={k} className="licard">
-            <header className="licard__head">
-              <span className="li__badge">in</span>
-              <span className="licard__who"><strong>{l.name}</strong><small>{l.role}</small></span>
-            </header>
-            <p className="licard__text">{l.text}</p>
-            <div className="licard__media">
-              <AutoPreview v={l} />
-              <a className="licard__overlay" href={l.url} target="_blank" rel="noopener noreferrer" aria-label={`Watch ${l.name}'s post on LinkedIn`} />
-            </div>
-            <a className="licard__foot" href={l.url} target="_blank" rel="noopener noreferrer">
-              <PlayIcon size={26} /> Watch on LinkedIn <Icon name="arrow" size={15} />
-            </a>
-          </article>
-        ))}
       </div>
     </section>
   )

@@ -1,8 +1,11 @@
 import { Link } from 'react-router-dom'
-import { PageHead } from '../components/ui.jsx'
+import { PageHead, SectionHead } from '../components/ui.jsx'
+import SocialLinks from '../components/SocialLinks.jsx'
+import { useAuth } from '../context/AuthContext.jsx'
 
 // PLACEHOLDER copy: replace with Chaitanya's real story and numbers.
 export default function About() {
+  const { user } = useAuth()
   return (
     <>
       <PageHead eyebrow="About us" title="Career with Chaitanya">
@@ -15,12 +18,29 @@ export default function About() {
         <article className="card"><h3>How we teach</h3><p className="muted">Practical first: build, practise out loud, get feedback, repeat.</p></article>
       </div>
 
-      <section className="land__cta">
-        <h2>Join the community</h2>
-        <div className="hero__cta">
-          <Link className="btn" to="/login?mode=signup">Sign up free</Link>
-        </div>
+      <section className="section">
+        <SectionHead eyebrow="Follow along" title="Find Chaitanya online" sub="Free lessons, student wins and career advice, wherever you like to watch." />
+        <SocialLinks variant="cards" />
       </section>
+
+      {user ? (
+        <section className="bigcta">
+          <h2>Keep going, you are doing great.</h2>
+          <p>Pick up your next lesson or explore a roadmap.</p>
+          <div className="hero__cta">
+            <Link className="btn btn--lg" to="/">Back to my dashboard</Link>
+            <Link className="btn btn--cream btn--lg" to="/roadmaps">Browse roadmaps</Link>
+          </div>
+        </section>
+      ) : (
+        <section className="bigcta">
+          <h2>Join the community.</h2>
+          <p>Create a free account and start learning with us today.</p>
+          <div className="hero__cta">
+            <Link className="btn btn--lg" to="/login?mode=signup">Sign up free</Link>
+          </div>
+        </section>
+      )}
     </>
   )
 }

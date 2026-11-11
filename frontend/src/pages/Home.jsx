@@ -4,7 +4,9 @@ import { useApi } from '../lib/useApi.js'
 import { stats, useProgress } from '../lib/progress.js'
 import { Async, Lock, SectionHead } from '../components/ui.jsx'
 import CourseVideos from '../components/CourseVideos.jsx'
-import { FeatureCards, LinkedInVideos } from '../components/HomeSections.jsx'
+import { FeatureCards } from '../components/HomeSections.jsx'
+import HiredStudents from '../components/HiredStudents.jsx'
+import LinkedInPosts from '../components/LinkedInPosts.jsx'
 import { StudentStories, StudentWall } from '../components/StudentStories.jsx'
 import { ActivityChart, Badges, Resume, StatTiles } from '../components/dash.jsx'
 import Logo, { MarkName } from '../components/Logo.jsx'
@@ -48,9 +50,9 @@ export default function Home() {
           </div>
         </section>
 
+        <HiredStudents />
         <StudentStories />
         <StudentWall />
-        <LinkedInVideos />
 
         {!isPro && (
           <section className="promo">
@@ -83,6 +85,8 @@ export default function Home() {
             )}
           </Async>
         </section>
+
+        <LinkedInPosts seeAll />
       </div>
 
     </div>

@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import { PageHead, SectionHead } from '../components/ui.jsx'
 import Icon from '../components/Icon.jsx'
 import MediaModal from '../components/MediaModal.jsx'
+import { StoryCarousel } from '../components/StudentStories.jsx'
 import { PlayIcon } from '../components/VideoModal.jsx'
 import { progress } from '../lib/progress.js'
 import { OPEN_MIC } from '../data/homeContent.js'
@@ -117,11 +118,7 @@ export default function OpenMic() {
                 </span>
               </button>
             ))}
-            <div className="msoon">
-              <Icon name="mic" size={26} />
-              <strong>More recordings are on the way</strong>
-              <span>New meets are added after every session.</span>
-            </div>
+            <StoryCarousel />
           </div>
         </div>
       </section>

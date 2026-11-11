@@ -6,7 +6,7 @@ const clock = (s) => `${Math.floor(s / 60)}:${String(Math.floor(s % 60)).padStar
 // Immersive viewer for student stories, meetup recordings and photos.
 //   item: { video | image, poster, title, eyebrow, avatar, chips[], text[], quote, tabs[], rail[], counter, thumbs[], landscape }
 // Stories play inside a phone-style frame (progress bar, tap to pause, mute); landscape recordings get a wide frame.
-// Esc closes, arrow keys move between items, the blurred poster fills the backdrop.
+// Nothing autoplays: it opens on the poster with a play button. Esc closes, arrow keys move between items.
 export default function MediaModal({ item, onClose, onPrev, onNext }) {
   const vref = useRef(null)
   const [playing, setPlaying] = useState(false)
@@ -64,13 +64,13 @@ export default function MediaModal({ item, onClose, onPrev, onNext }) {
                   className="mv__video"
                   src={item.video}
                   poster={item.poster}
-                  autoPlay
                   playsInline
+                  preload="metadata"
                   muted={muted}
                   onClick={toggle}
                   onPlay={() => setPlaying(true)}
                   onPause={() => setPlaying(false)}
-                  onEnded={() => (onNext ? onNext() : setPlaying(false))}
+                  onEnded={() => setPlaying(false)}
                   onTimeUpdate={(e) => setT({ now: e.currentTarget.currentTime, dur: e.currentTarget.duration || 0 })}
                   onLoadedMetadata={(e) => setLand(e.currentTarget.videoWidth > e.currentTarget.videoHeight)}
                 />
