@@ -145,3 +145,15 @@ CLOUDFLARE = {
     "STREAM_API_TOKEN": os.environ.get("CLOUDFLARE_STREAM_API_TOKEN", ""),
     "STREAM_CUSTOMER_CODE": os.environ.get("CLOUDFLARE_STREAM_CUSTOMER_CODE", ""),
 }
+
+# ---------- Logging ----------
+# Django only logs request errors to the console when DEBUG is on. On Vercel DEBUG is off, so a failing query
+# showed up as a bare "Server Error (500)" with nothing in the logs. Send errors (with tracebacks) to stderr,
+# which Vercel captures under Project -> Logs.
+LOGGING = {
+    "version": 1,
+    "disable_existing_loggers": False,
+    "handlers": {"console": {"class": "logging.StreamHandler"}},
+    "root": {"handlers": ["console"], "level": "WARNING"},
+    "loggers": {"django.request": {"handlers": ["console"], "level": "ERROR", "propagate": False}},
+}
