@@ -218,3 +218,9 @@
 .lw__dots { pointer-events: none; }
 .lw__dots button { pointer-events: auto; }
 @media (max-width: 999px) { .lw__stage { transition: none; } }
+
+/* featured meetup: the picture grows to fill the card, so it is never taller than its content (no gap under the footer) */
+.meetx > .mfeat { height: 100%; }
+.mfeat__img { flex: 1 1 auto; aspect-ratio: auto; min-height: 300px; }
+.mfeat__foot { flex: none; }
+@media (max-width: 900px) { .meetx > .mfeat { height: auto; } .mfeat__img { flex: none; aspect-ratio: 16 / 9; min-height: 0; } }

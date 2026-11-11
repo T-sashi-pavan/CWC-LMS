@@ -9,6 +9,7 @@ import { useAuth } from '../context/AuthContext.jsx'
 
 const TABS = [
   { to: '/', label: 'Home', end: true },
+  { to: '/open-mic', label: 'Open Mic' },
   { to: '/roadmaps', label: 'Roadmaps' },
   { to: '/interviews', label: 'Interviews' },
   { to: '/jobs', label: 'Jobs' },

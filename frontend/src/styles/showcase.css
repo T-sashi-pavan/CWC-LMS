@@ -299,3 +299,6 @@
   .hero3__a { font-size: clamp(40px, 13vw, 64px); }
   .hero3__b, .hero3__c { font-size: clamp(48px, 15.4vw, 80px); }
 }
+
+/* eight nav tabs for members: tighter spacing on mid-size screens so they still fit */
+@media (min-width: 861px) and (max-width: 1100px) { .topbar__in { gap: 16px; } .tab { padding: 0 9px; font-size: 13.5px; } }
