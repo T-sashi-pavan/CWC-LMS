@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import Icon from './Icon.jsx'
 import { SectionHead } from './ui.jsx'
 import { HIRED_REELS } from '../data/site.js'
-import { STUDENTS } from '../data/students.js'
+import { STORIES, STUDENTS } from '../data/students.js'
 
 // Instagram's own player, loaded only when the card scrolls near the screen (it is a heavy third-party page).
 // Nothing plays until the visitor presses play inside it.
@@ -32,7 +32,7 @@ function Reel({ reel, n }) {
 
 export default function HiredStudents() {
   const faces = STUDENTS.filter((s) => s.photo).slice(0, 12)
-  const stories = STUDENTS.filter((s) => s.short || s.full || s.short2 || s.meetupVideo).length
+  const stories = STORIES.length
   return (
     <section className="section" id="hired">
       <SectionHead eyebrow="Success stories" title="Our students who got hired" sub="Hear it straight from the students who turned their learning into a job." />

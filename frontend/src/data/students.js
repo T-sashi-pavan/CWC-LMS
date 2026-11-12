@@ -176,9 +176,27 @@ export const TRACK_LABEL = {
   'automation': 'Automation', 'forward-deployment': 'Forward Deployment',
 }
 
-// the main video for a student (short story first, then the others)
-export const mainVideo = (s) => s.short || s.full || s.short2 || s.meetupVideo || null
-export const STORIES = STUDENTS.filter(mainVideo)
+// The student-story videos (from videos_links2.txt). Only students listed here appear in the Student stories sections.
+// `landscape: true` marks 16:9 videos: they get a wide card and a wide player; the rest are phone-shaped (9:16).
+// Their older 1-minute clips are no longer used in the story sections (the meetup recordings on the Open Mic page are separate).
+const CLIPS = {
+  sravya: { clip: 'v1794476949/sravya.mp4', landscape: true },
+  ravikiran: { clip: 'v1794476929/ravi_kiran.mp4' },
+  manikumar: { clip: 'v1794390183/manikumar.mp4' },
+  ramya: { clip: 'v1794390146/ramya.mp4' },
+  divya: { clip: 'v1794390132/divya.mp4', landscape: true },
+  satish: { clip: 'v1794390128/satish.mp4' },
+  narendra: { clip: 'v1794390113/Narendra.mp4' },
+  afsana: { clip: 'v1794390102/afsana.mp4' },
+  mounika: { clip: 'v1794390112/mounika.mp4' },
+  raju: { clip: 'v1794390103/desing_raju.mp4' },
+}
+const ORDER = Object.keys(CLIPS)
+STUDENTS.forEach((s) => Object.assign(s, CLIPS[s.id] || {}))
+
+// the story video for a student, or null
+export const mainVideo = (s) => s.clip || null
+export const STORIES = ORDER.map((id) => STUDENTS.find((s) => s.id === id)).filter(Boolean)
 
 // Fixed information we need from the client for every student before launch.
 export const INFO_NEEDED = [

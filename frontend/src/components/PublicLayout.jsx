@@ -2,15 +2,15 @@ import { Link, NavLink } from 'react-router-dom'
 import Logo, { Wordmark } from './Logo.jsx'
 import ThemeToggle from './ThemeToggle.jsx'
 import Footer from './Footer.jsx'
+import NavDropdown from './NavDropdown.jsx'
 import useReveal from './useReveal.js'
 import { useAuth } from '../context/AuthContext.jsx'
 import AppLayout from './AppLayout.jsx'
 
 const NAV = [
   { to: '/', label: 'Home', end: true },
-  { to: '/open-mic', label: 'Open Mic' },
+  { dropdown: true },
   { to: '/interview-simulator', label: 'Interview Simulator' },
-  { to: '/roadmaps', label: 'Roadmaps' },
   { to: '/testimonials', label: 'Testimonials' },
   { to: '/about', label: 'About us' },
 ]
@@ -27,11 +27,11 @@ export function PublicLayout({ children }) {
             <Wordmark />
           </Link>
           <nav className="tabs land__nav" aria-label="Main">
-            {NAV.map((t) => (
+            {NAV.map((t) => (t.dropdown ? <NavDropdown key="free" /> : (
               <NavLink key={t.to} to={t.to} end={t.end} className={({ isActive }) => `tab ${isActive ? 'is-active' : ''}`}>
                 {t.label}
               </NavLink>
-            ))}
+            )))}
           </nav>
           <div className="user">
             <ThemeToggle />

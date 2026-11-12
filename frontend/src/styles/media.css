@@ -133,3 +133,19 @@
   .mrow__img { width: 42%; }
   .stories--grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
 }
+
+/* ===== story cards in two shapes: phone-shaped (9:16) and landscape (16:9), all the same height in the row ===== */
+.stories { --sh: clamp(300px, 27vw, 372px); align-items: flex-start; }
+.story { flex: 0 0 auto; width: calc(var(--sh) * 9 / 14); }
+.story__media { aspect-ratio: auto; height: var(--sh); }
+.story--wide { width: calc(var(--sh) * 16 / 9); }
+.story--wide .story__who strong { font-size: 17px; }
+.story--more { aspect-ratio: auto; height: var(--sh); width: calc(var(--sh) * 9 / 14); flex-basis: auto; }
+.stories--grid .story, .stories--grid .story--more { width: auto; }
+@media (max-width: 640px) {
+  .stories { --sh: 300px; align-items: center; }
+  .story { flex-basis: auto; width: calc(var(--sh) * 9 / 14); }
+  .story--wide { width: min(84vw, 360px); }
+  .story--wide .story__media { height: auto; aspect-ratio: 16 / 9; }
+  .story--more { flex-basis: auto; }
+}

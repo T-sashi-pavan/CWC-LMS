@@ -224,3 +224,10 @@
 .mfeat__img { flex: 1 1 auto; aspect-ratio: auto; min-height: 300px; }
 .mfeat__foot { flex: none; }
 @media (max-width: 900px) { .meetx > .mfeat { height: auto; } .mfeat__img { flex: none; aspect-ratio: 16 / 9; min-height: 0; } }
+
+/* the small carousel beside the recorded meets: phone-shaped cards two across, landscape cards fill the row */
+.scar__track { align-items: center; }
+.story--sm { width: auto; }
+.story--sm .story__media { height: auto; aspect-ratio: 9 / 14; }
+.story--sm.story--wide { flex: 0 0 100%; }
+.story--sm.story--wide .story__media { aspect-ratio: 16 / 9; }

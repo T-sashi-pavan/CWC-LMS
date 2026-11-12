@@ -25,12 +25,14 @@ UA = "Mozilla/5.0 Chrome/124"
 
 def jobs(vid):
     still = vid.rsplit(".", 1)[0] + ".webp"
-    for w in (360, 540, 640, 720):
+    for w in (200, 360, 540, 640, 720, 900):
         yield f"so_1,w_{w},q_auto,f_webp/{still}", "*/*"
     yield f"so_2,du_4,w_360,q_auto:low,ac_none/{vid}", "video/mp4,*/*"
     yield f"f_auto,q_auto,w_540/{vid}", "video/webm,video/mp4,*/*"       # Chrome / Firefox -> WebM
     yield f"f_auto,q_auto,w_540/{vid}", "video/mp4,*/*;q=0.5"            # Safari -> MP4
     yield f"f_auto,q_auto,w_720/{vid}", "video/webm,video/mp4,*/*"       # meetup recordings
+    yield f"f_auto,q_auto,w_900/{vid}", "video/webm,video/mp4,*/*"       # landscape student stories (Chrome / Firefox)
+    yield f"f_auto,q_auto,w_900/{vid}", "video/mp4,*/*;q=0.5"            # landscape student stories (Safari)
 
 
 def fetch(job):

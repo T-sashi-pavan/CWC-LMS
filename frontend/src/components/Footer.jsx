@@ -18,6 +18,7 @@ export default function Footer() {
           <Link to="/open-mic">CWC Open Mic</Link>
           <Link to="/interview-simulator">Interview Simulator</Link>
           <Link to="/roadmaps">Roadmaps</Link>
+          <Link to="/courses">Course videos</Link>
           <Link to="/testimonials">Testimonials</Link>
         </nav>
         <nav className="footer__col" aria-label="Company">

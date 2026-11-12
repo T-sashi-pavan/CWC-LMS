@@ -144,7 +144,7 @@ export default function MediaModal({ item, onClose, onPrev, onNext }) {
                 <h4>More stories</h4>
                 <div>
                   {item.rail.map((r) => (
-                    <button key={r.key} className="mv__rcard" onClick={r.onClick} aria-label={`Watch ${r.title}`}>
+                    <button key={r.key} className={`mv__rcard ${r.wide ? 'mv__rcard--wide' : ''}`} onClick={r.onClick} aria-label={`Watch ${r.title}`}>
                       <img src={r.poster} alt="" loading="lazy" />
                       <span>{r.title}</span>
                     </button>

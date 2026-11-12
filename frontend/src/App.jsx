@@ -13,6 +13,7 @@ import About from './pages/About.jsx'
 import OpenMic from './pages/OpenMic.jsx'
 import InterviewSimulator from './pages/InterviewSimulator.jsx'
 import RoadmapDetail from './pages/RoadmapDetail.jsx'
+import Courses from './pages/Courses.jsx'
 import SiteLayout from './components/PublicLayout.jsx'
 import GreetingPopup from './components/GreetingPopup.jsx'
 import { useAuth } from './context/AuthContext.jsx'
@@ -34,6 +35,7 @@ export default function App() {
       <Route path="/roadmaps" element={<SiteLayout><Roadmaps /></SiteLayout>} />
       <Route path="/roadmaps/:slug" element={<SiteLayout><RoadmapDetail /></SiteLayout>} />
       <Route path="/testimonials" element={<SiteLayout><Testimonials /></SiteLayout>} />
+      <Route path="/courses" element={<SiteLayout><Courses /></SiteLayout>} />
       <Route path="/open-mic" element={<SiteLayout><OpenMic /></SiteLayout>} />
       <Route path="/interview-simulator" element={<SiteLayout><InterviewSimulator /></SiteLayout>} />
       <Route path="/about" element={<SiteLayout><About /></SiteLayout>} />

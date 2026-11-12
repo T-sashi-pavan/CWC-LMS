@@ -18,38 +18,30 @@ function Avatar({ s, size = 40 }) {
 // poster and the visitor presses play.
 export function useStoryViewer() {
   const [curId, setCurId] = useState(null)
-  const [tab, setTab] = useState(0)
   const s = curId ? STUDENTS.find((x) => x.id === curId) : null
   const idx = s ? STORIES.findIndex((x) => x.id === s.id) : -1
 
-  const open = useCallback((st) => { setTab(0); setCurId(st.id) }, [])
+  const open = useCallback((st) => setCurId(st.id), [])
   const step = useCallback((d) => {
-    setTab(0)
     setCurId((id) => STORIES[(STORIES.findIndex((x) => x.id === id) + d + STORIES.length) % STORIES.length].id)
   }, [])
 
   let item = null
   if (s) {
-    const versions = [
-      s.short && { label: '1-min', id: s.short }, s.full && { label: 'Full story', id: s.full },
-      s.short2 && { label: 'Part 2', id: s.short2 }, s.meetupVideo && { label: 'Meetup', id: s.meetupVideo },
-    ].filter(Boolean)
-    const cur = versions[Math.min(tab, versions.length - 1)]
-    const isMeet = cur.id === s.meetupVideo
+    const land = Boolean(s.landscape)
     item = {
-      video: cld(cur.id, 'f_auto,q_auto,w_540'),
-      poster: poster(cur.id, 540),
-      landscape: isMeet && Boolean(s.meetupLandscape),
+      video: cld(s.clip, land ? 'f_auto,q_auto,w_900' : 'f_auto,q_auto,w_540'),
+      poster: poster(s.clip, land ? 900 : 540),
+      landscape: land,
       title: s.name,
       avatar: s.photo,
       eyebrow: TRACK_LABEL[s.track] || 'Student story',
-      chips: [TRACK_LABEL[s.track], isMeet ? 'Online meet' : 'Student story'].filter(Boolean),
+      chips: [TRACK_LABEL[s.track], 'Student story'].filter(Boolean),
       counter: idx >= 0 ? `${idx + 1} / ${STORIES.length}` : undefined,
       text: showText(s) ? [s.headline, s.story] : [`${TRACK_LABEL[s.track] || 'Career with Chaitanya'} learner`],
       quote: showText(s) ? s.quote : null,
-      tabs: versions.map((v, i) => ({ label: v.label, on: v === cur, onClick: () => setTab(i) })),
-      rail: STORIES.filter((x) => x.id !== s.id).slice(0, 10).map((x) => ({
-        key: x.id, title: x.name, poster: poster(mainVideo(x), 200), onClick: () => open(x),
+      rail: STORIES.filter((x) => x.id !== s.id).map((x) => ({
+        key: x.id, title: x.name, poster: poster(mainVideo(x), 200), wide: Boolean(x.landscape), onClick: () => open(x),
       })),
     }
   }
@@ -61,9 +53,9 @@ export function useStoryViewer() {
 export function StoryCard({ s, onOpen, small = false }) {
   const vid = mainVideo(s)
   return (
-    <button className={`story ${small ? 'story--sm' : ''}`} onClick={() => onOpen(s)} aria-label={`Watch ${s.name}'s story`}>
+    <button className={`story ${small ? 'story--sm' : ''} ${s.landscape ? 'story--wide' : ''}`} onClick={() => onOpen(s)} aria-label={`Watch ${s.name}'s story`}>
       <span className="story__media">
-        <img src={poster(vid, 360)} alt="" loading="lazy" />
+        <img src={poster(vid, s.landscape ? 640 : 360)} alt="" loading="lazy" />
         <span className="story__shade" />
         <span className="story__play"><PlayIcon size={small ? 36 : 44} /></span>
         <span className="story__who">

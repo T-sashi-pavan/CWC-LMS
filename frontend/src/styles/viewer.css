@@ -96,3 +96,8 @@
 .mv__box.is-land .mv__main { width: min(680px, 100%); }
 .mv__box.is-land .mv__stage { width: 100%; }
 @media (max-width: 900px) { .mv__box.is-land .mv__main { width: 100%; } }
+
+/* "More stories" strip: landscape stories get a wide thumbnail */
+.mv__rcard--wide { width: 128px; }
+.mv__rcard--wide img { width: 128px; height: 72px; }
+.mv__rail > div { align-items: flex-end; }

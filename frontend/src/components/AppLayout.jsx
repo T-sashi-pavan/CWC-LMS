@@ -4,13 +4,13 @@ import Icon from './Icon.jsx'
 import ThemeToggle from './ThemeToggle.jsx'
 import ProfileMenu from './ProfileMenu.jsx'
 import Footer from './Footer.jsx'
+import NavDropdown from './NavDropdown.jsx'
 import useReveal from './useReveal.js'
 import { useAuth } from '../context/AuthContext.jsx'
 
 const TABS = [
   { to: '/', label: 'Home', end: true },
-  { to: '/open-mic', label: 'Open Mic' },
-  { to: '/roadmaps', label: 'Roadmaps' },
+  { dropdown: true },
   { to: '/interviews', label: 'Interviews' },
   { to: '/jobs', label: 'Jobs' },
   { to: '/testimonials', label: 'Testimonials' },
@@ -35,7 +35,7 @@ export default function AppLayout({ children }) {
           </NavLink>
 
           <nav className="tabs" aria-label="Main">
-            {TABS.map((t) => (
+            {TABS.map((t) => (t.dropdown ? <NavDropdown key="free" /> : (
               <NavLink
                 key={t.to}
                 to={t.to}
@@ -45,7 +45,7 @@ export default function AppLayout({ children }) {
                 {t.pro && <Icon name="sparkle" size={14} />}
                 {t.label}
               </NavLink>
-            ))}
+            )))}
           </nav>
 
           <div className="user">
