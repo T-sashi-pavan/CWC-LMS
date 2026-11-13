@@ -37,7 +37,6 @@ export function useStoryViewer() {
       avatar: s.photo,
       eyebrow: TRACK_LABEL[s.track] || 'Student story',
       chips: [TRACK_LABEL[s.track], 'Student story'].filter(Boolean),
-      counter: idx >= 0 ? `${idx + 1} / ${STORIES.length}` : undefined,
       text: showText(s) ? [s.headline, s.story] : [`${TRACK_LABEL[s.track] || 'Career with Chaitanya'} learner`],
       quote: showText(s) ? s.quote : null,
       rail: STORIES.filter((x) => x.id !== s.id).map((x) => ({
@@ -91,7 +90,7 @@ export function StudentStories({ limit, title = 'Student stories', sub = 'Real s
         {cta && (
           <Link to="/testimonials" className="story story--more">
             <Icon name="star" size={26} />
-            <strong>+{STORIES.length - list.length} more stories</strong>
+            <strong>More stories</strong>
             <span>See every student story on the testimonials page.</span>
             <span className="btn btn--sm">See all stories</span>
           </Link>
@@ -128,7 +127,7 @@ export function StoryCarousel() {
         {STORIES.map((s) => <StoryCard key={s.id} s={s} small onOpen={viewer.open} />)}
       </div>
       <div className="scar__foot">
-        <span>{pos} / {STORIES.length}</span>
+        <span aria-hidden="true">{Array.from({ length: Math.min(STORIES.length, 10) }, (_, i) => <i key={i} className={`scar__dot ${i + 1 === pos ? 'is-on' : ''}`} />)}</span>
         <Link to="/testimonials" className="link">See all testimonials →</Link>
       </div>
       {viewer.element}

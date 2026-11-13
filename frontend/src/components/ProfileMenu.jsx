@@ -50,11 +50,6 @@ export default function ProfileMenu() {
             <span>Current plan</span>
             <span className={`badge ${isPro ? 'badge--pro' : ''}`}>{isPro ? 'PRO' : 'FREE'}</span>
           </div>
-          {!isPro && (
-            <Link to="/pro" role="menuitem" className="profile__item" onClick={() => setOpen(false)}>
-              <Icon name="sparkle" size={17} /> Upgrade to Pro · ₹499
-            </Link>
-          )}
           <button
             role="menuitem"
             className="profile__item"

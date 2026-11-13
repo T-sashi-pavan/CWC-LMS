@@ -38,8 +38,8 @@ export default function CourseVideos({ track = false, gated = false }) {
         eyebrow="Video courses"
         title="Learn with our free video courses"
         sub={gated
-          ? `Watch the first ${FREE_PER_COURSE} lessons of each course right now. Log in (it's free) to unlock ${hidden} more courses and every lesson.`
-          : `${TOTAL_VIDEOS} lessons · ${TOTAL_HOURS}+ hours across ${PLAYLISTS.length} playlists, in Telugu and English.`}
+          ? `Watch the first ${FREE_PER_COURSE} lessons of each course right now. Log in (it's free) to unlock more courses and every lesson.`
+          : 'Full playlists with progress tracking, in Telugu and English.'}
       >
         <span className="badge">FREE</span>
       </SectionHead>
@@ -55,7 +55,7 @@ export default function CourseVideos({ track = false, gated = false }) {
                 <span className="cnav__thumb"><img src={ytThumb(c.videos[0].id)} alt="" loading="lazy" width="96" height="54" /></span>
                 <span className="cnav__txt">
                   <strong>{c.label}</strong>
-                  <small>{track ? `${done}/${c.videos.length} watched` : `${c.videos.length} lessons`}{c.lang ? ` · ${c.lang}` : ''}</small>
+                  <small>{track ? `${done} watched` : 'Playlist'}{c.lang ? ` · ${c.lang}` : ''}</small>
                 </span>
               </button>
             )
@@ -63,7 +63,7 @@ export default function CourseVideos({ track = false, gated = false }) {
           {hidden > 0 && (
             <Link to="/login?mode=signup" className="cnav__tab cnav__tab--more">
               <span className="cnav__lock"><Icon name="lock" size={18} /></span>
-              <span className="cnav__txt"><strong>+{hidden} more courses</strong><small>Log in, it's free</small></span>
+              <span className="cnav__txt"><strong>More courses</strong><small>Log in, it's free</small></span>
             </Link>
           )}
         </div>
@@ -83,7 +83,7 @@ export default function CourseVideos({ track = false, gated = false }) {
           <h3 className="cv__title">{cur.title}</h3>
           <div className="cv__meta2">
             {course.lang && <span className="chip">{course.lang}</span>}
-            <span className="muted">Lesson {idx + 1} of {course.videos.length} · {fmt(cur.seconds)}</span>
+            <span className="muted">Lesson {idx + 1} · {fmt(cur.seconds)}</span>
             <button className="btn btn--sm btn--outline cv__next" onClick={next} disabled={idx + 1 >= visible.length}>
               Next lesson <Icon name="arrow" size={15} />
             </button>
@@ -95,7 +95,7 @@ export default function CourseVideos({ track = false, gated = false }) {
           <aside className={`cvl ${gated ? 'cvl--short' : ''}`} aria-label={`${course.label} playlist`}>
             <div className="cvl__head">
               <strong>{course.label}</strong>
-              <span className="muted">{course.videos.length} lessons · {course.hours} h</span>
+              <span className="muted">Course playlist</span>
             </div>
             <ol className="cvl__list">
               {visible.map((x, k) => {

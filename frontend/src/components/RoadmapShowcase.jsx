@@ -23,7 +23,7 @@ export default function RoadmapShowcase() {
         {gated && rest > 0 && (
           <Link to="/login?mode=signup" className="rmore">
             <Icon name="lock" size={26} />
-            <strong>+{rest} more roadmaps</strong>
+            <strong>More roadmaps</strong>
             <span>Log in to see your interested roadmap guidance. It’s free.</span>
             <span className="btn btn--sm">Log in to unlock</span>
           </Link>

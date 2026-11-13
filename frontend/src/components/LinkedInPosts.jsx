@@ -85,7 +85,7 @@ export default function LinkedInPosts({ title = 'Our students on LinkedIn', sub 
         <nav className="lw__rail" aria-label="Choose a student">
           <button className={`lw__who ${who === 'all' ? 'is-on' : ''}`} onClick={() => setWho('all')}>
             <span className="lw__all"><Icon name="star" size={18} /></span>
-            <span className="lw__name"><strong>All students</strong><small>{posts.length} posts</small></span>
+            <span className="lw__name"><strong>All students</strong><small>Every post</small></span>
           </button>
           {people.map(([name, n]) => (
             <button key={name} className={`lw__who ${who === name ? 'is-on' : ''}`} onClick={() => setWho(name)}>
@@ -98,7 +98,7 @@ export default function LinkedInPosts({ title = 'Our students on LinkedIn', sub 
         <div className="lw__stage" style={wide ? { height: STAGE_H } : undefined} ref={stageRef} tabIndex={-1}>
           <header className="lw__bar">
             <Avatar name={cur.name} size={40} />
-            <span className="lw__title"><strong>{cur.name}</strong><small>Post {list.indexOf(cur) + 1} of {list.length}{who === 'all' ? ' · all students' : ''}</small></span>
+            <span className="lw__title"><strong>{cur.name}</strong><small>LinkedIn post{who === 'all' ? ' · all students' : ''}</small></span>
             <a className="lw__open" href={cur.url} target="_blank" rel="noopener noreferrer">Open on LinkedIn <Icon name="arrow" size={14} /></a>
           </header>
 

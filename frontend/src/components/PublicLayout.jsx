@@ -10,7 +10,9 @@ import AppLayout from './AppLayout.jsx'
 const NAV = [
   { to: '/', label: 'Home', end: true },
   { dropdown: true },
+  { to: '/course-tracks', label: 'Courses' },
   { to: '/interview-simulator', label: 'Interview Simulator' },
+  { to: '/jobs', label: 'Jobs' },
   { to: '/testimonials', label: 'Testimonials' },
   { to: '/about', label: 'About us' },
 ]

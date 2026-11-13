@@ -28,7 +28,7 @@ export default function Roadmaps() {
               {gatedCount > 0 && (
                 <div className="rgate">
                   <Icon name="lock" size={20} />
-                  <p><strong>{gatedCount} more roadmaps are waiting.</strong> Log in (it’s free) to see your interested roadmap guidance.</p>
+                  <p><strong>More roadmaps are waiting.</strong> Log in (it’s free) to see your interested roadmap guidance.</p>
                   <Link className="btn btn--sm" to="/login?mode=signup">Sign up free</Link>
                 </div>
               )}
@@ -36,7 +36,7 @@ export default function Roadmaps() {
               <div className="rtools rtools--levels">
                 <div className="lvjump" aria-label="Jump to a level">
                   {blocks.map((b) => (
-                    <a key={b.id} href={`#level-${b.id}`} className="lvjump__a">{b.title}<span className="ctab__n">{b.items.length}</span></a>
+                    <a key={b.id} href={`#level-${b.id}`} className="lvjump__a">{b.title}</a>
                   ))}
                 </div>
                 <input className="rsearch" type="search" placeholder="Search roadmaps or tools" value={q} onChange={(e) => setQ(e.target.value)} aria-label="Search roadmaps" />
@@ -51,7 +51,7 @@ export default function Roadmaps() {
                       <span className="level__icon"><Icon name={b.id === 'fresher' ? 'sparkle' : 'route'} size={26} /></span>
                       <div>
                         <span className="level__badge">{b.badge}</span>
-                        <h2>{b.title} <small>{b.items.length} {b.items.length === 1 ? 'roadmap' : 'roadmaps'}</small></h2>
+                        <h2>{b.title}</h2>
                         <p className="muted">{b.text}</p>
                       </div>
                     </header>

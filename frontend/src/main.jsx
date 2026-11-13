@@ -16,6 +16,7 @@ import './styles/viewer.css'
 import './styles/social.css'
 import './styles/courses-nav.css'
 import './styles/navdd.css'
+import './styles/jobs.css'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>

@@ -63,12 +63,10 @@ export default function OpenMic() {
     eyebrow: 'Online meet',
     chips: ['Online meet', TRACK_LABEL[r.track], r.meetupSeconds && mmss(r.meetupSeconds)].filter(Boolean),
     text: [`${r.name} in a Career with Chaitanya online meet.`, 'Recorded from a live session of the CWC Open Mic community.'],
-    counter: `${rec + 1} / ${RECORDINGS.length}`,
   }
   const lightbox = shot === null ? null : {
     image: `/meetups/m${pad(photos[shot].n)}.webp`,
-    title: `Meetup photo ${shot + 1} of ${photos.length}`,
-    counter: `${shot + 1} / ${photos.length}`,
+    title: 'Meetup photo',
     thumbs: photos.map((p, i) => ({ src: `/meetups/m${pad(p.n)}-sm.webp`, on: i === shot, onClick: () => setShot(i), label: `Photo ${i + 1}` })),
   }
 
@@ -82,7 +80,7 @@ export default function OpenMic() {
 
       <section className="section">
         <SectionHead eyebrow="Online meets" title="Watch recent meets" sub="Recordings from our online sessions: students presenting, explaining and answering questions.">
-          <span className="chip">{RECORDINGS.length} recordings</span>
+          <span className="chip">Recordings</span>
         </SectionHead>
         <div className="meetx">
           <button className="mfeat" onClick={() => setRec(0)} aria-label={`Play meetup: ${feat.name}`}>

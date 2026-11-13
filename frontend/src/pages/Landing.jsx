@@ -11,8 +11,7 @@ import { StudentStories } from '../components/StudentStories.jsx'
 import HiredStudents from '../components/HiredStudents.jsx'
 import LinkedInPosts from '../components/LinkedInPosts.jsx'
 import { FeatureCards } from '../components/HomeSections.jsx'
-import { ROUNDS } from '../data/homeContent.js'
-import { TOTAL_HOURS, TOTAL_VIDEOS } from '../data/courses.js'
+import JobsTicker from '../components/JobsSpotlight.jsx'
 
 const SIGNUP = '/login?mode=signup'
 
@@ -25,6 +24,7 @@ const STEPS = [
 export default function Landing() {
   return (
     <PublicLayout>
+      <JobsTicker />
       <section className="hero3">
         <h1 className="hero3__title">
           <span className="hero3__a">Learn.</span>
@@ -53,9 +53,9 @@ export default function Landing() {
       </section>
 
       <section className="strip" aria-label="At a glance">
-        <div><strong>{TOTAL_VIDEOS}</strong><span>free video lessons</span></div>
-        <div><strong>{TOTAL_HOURS}+</strong><span>hours of learning</span></div>
-        <div><strong>{ROUNDS.length}</strong><span>interview rounds</span></div>
+        <div><strong>Free</strong><span>video lessons</span></div>
+        <div><strong>Hours</strong><span>of guided learning</span></div>
+        <div><strong>Mock</strong><span>interview rounds</span></div>
         <div><strong>₹0</strong><span>to get started</span></div>
       </section>
 

@@ -11,6 +11,7 @@ import { useAuth } from '../context/AuthContext.jsx'
 const TABS = [
   { to: '/', label: 'Home', end: true },
   { dropdown: true },
+  { to: '/course-tracks', label: 'Courses' },
   { to: '/interviews', label: 'Interviews' },
   { to: '/jobs', label: 'Jobs' },
   { to: '/testimonials', label: 'Testimonials' },

@@ -8,6 +8,12 @@ export const FREE_RESOURCES = [
   { to: '/courses', icon: 'sparkle', title: 'Course videos', text: 'Free video playlists in Telugu and English.' },
 ]
 
+// Paid course tracks: not launched yet, so both blocks say "Coming soon" and don't link anywhere.
+export const COURSE_LEVELS = [
+  { soon: true, icon: 'sparkle', title: 'Freshers', text: 'Job-ready courses for your first role.' },
+  { soon: true, icon: 'route', title: 'Experienced', text: 'Upskill and switch to a higher-paying role.' },
+]
+
 // One nav item that opens a menu. The tab strip scrolls sideways on small screens (which would clip a normal
 // dropdown), so the menu is positioned with `fixed` from the button's own position.
 export default function NavDropdown({ label = 'Free resources', items = FREE_RESOURCES }) {
@@ -16,7 +22,7 @@ export default function NavDropdown({ label = 'Free resources', items = FREE_RES
   const btn = useRef(null)
   const wrap = useRef(null)
   const { pathname } = useLocation()
-  const active = items.some((i) => pathname === i.to || pathname.startsWith(`${i.to}/`))
+  const active = items.some((i) => i.to && pathname === i.to || pathname.startsWith(`${i.to}/`))
 
   const place = () => {
     const r = btn.current?.getBoundingClientRect()
@@ -59,7 +65,13 @@ export default function NavDropdown({ label = 'Free resources', items = FREE_RES
       </button>
       {open && (
         <div className="navdd__menu" role="menu" style={{ left: pos.left, top: pos.top, width: pos.width }}>
-          {items.map((i) => (
+          {items.map((i) => i.soon ? (
+            <div key={i.title} role="menuitem" aria-disabled="true" className="navdd__item navdd__item--soon">
+              <span className="navdd__icon"><Icon name={i.icon} size={20} /></span>
+              <span className="navdd__txt"><strong>{i.title}</strong><small>{i.text}</small></span>
+              <span className="navdd__soon">Coming soon</span>
+            </div>
+          ) : (
             <Link key={i.to} to={i.to} role="menuitem" className={`navdd__item ${pathname.startsWith(i.to) ? 'is-active' : ''}`}>
               <span className="navdd__icon"><Icon name={i.icon} size={20} /></span>
               <span className="navdd__txt"><strong>{i.title}</strong><small>{i.text}</small></span>

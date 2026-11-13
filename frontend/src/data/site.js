@@ -9,4 +9,5 @@ export const SOCIAL = [
 export const HIRED_REELS = [
   { id: 'DfCgNF5yR5H', url: 'https://www.instagram.com/careerwithchaitanya/reel/DfCgNF5yR5H/' },
   { id: 'DezDeoqS__G', url: 'https://www.instagram.com/careerwithchaitanya/reel/DezDeoqS__G/' },
+  { id: 'DfpJva6kgad', kind: 'p', url: 'https://www.instagram.com/careerwithchaitanya/p/DfpJva6kgad/' },
 ]
