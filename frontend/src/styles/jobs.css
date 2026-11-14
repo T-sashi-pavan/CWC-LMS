@@ -75,3 +75,13 @@
 .mockwhy { line-height: 1.65; max-width: 80ch; }
 .mocknote { padding: 14px 18px; border-radius: 16px; border: 1px dashed var(--line); color: var(--muted); font-size: 14px; line-height: 1.55; }
 @media (max-width: 700px) { .mockhero { flex-direction: column; align-items: flex-start; padding: 22px; } }
+
+/* members-only file-based course (LangGraph) */
+.cv__file { position: absolute; inset: 0; width: 100%; height: 100%; background: #000; border-radius: inherit; }
+.cv__poster-img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.cv__soon { display: grid; place-items: center; text-align: center; background: var(--ink); color: var(--paper); cursor: default; }
+.cv__soon span { display: flex; flex-direction: column; gap: 6px; padding: 20px; }
+.cv__soon small { opacity: .75; }
+.cnav__mem, .cvl__nothumb { display: grid; place-items: center; background: var(--orange); color: #FFF7EC; border-radius: 10px; }
+.cnav__mem { width: 96px; height: 54px; }
+.cvl__nothumb { width: 100%; height: 100%; min-height: 54px; }

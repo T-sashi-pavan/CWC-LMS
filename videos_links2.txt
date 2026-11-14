@@ -18,3 +18,10 @@ https://res.cloudinary.com/kr5lzd8b/video/upload/v1794390102/afsana.mp4
 https://res.cloudinary.com/kr5lzd8b/video/upload/v1794390112/mounika.mp4
 
 https://res.cloudinary.com/kr5lzd8b/video/upload/v1794390103/desing_raju.mp4
+
+
+langgraph:
+
+https://res.cloudinary.com/zph8sv31/video/upload/v1794673639/human_in_loop.mp4
+https://res.cloudinary.com/zph8sv31/video/upload/v1794673642/conditional_graph_2_langgraph_5.mp4
+https://res.cloudinary.com/zph8sv31/video/upload/v1794673653/iintro_langgrapg_-part_1.mp4

@@ -4,6 +4,8 @@ import { SectionHead } from './ui.jsx'
 import Icon from './Icon.jsx'
 import { Embed, PlayIcon, Thumb } from './VideoModal.jsx'
 import { progress, useProgress } from '../lib/progress.js'
+import { api } from '../lib/api.js'
+import { useAuth } from '../context/AuthContext.jsx'
 import { FREE_PER_COURSE, PLAYLISTS, PUBLIC_COURSES, TOTAL_HOURS, TOTAL_VIDEOS, fmt, ytThumb } from '../data/courses.js'
 
 // Course player: a course switcher, then the video on the left and its playlist on the right (same height).
@@ -11,7 +13,17 @@ import { FREE_PER_COURSE, PLAYLISTS, PUBLIC_COURSES, TOTAL_HOURS, TOTAL_VIDEOS, 
 //   gated  = visitor: a few courses, FREE_PER_COURSE lessons each, then one "log in to see more" block
 export default function CourseVideos({ track = false, gated = false }) {
   const p = useProgress()
-  const list = gated ? PLAYLISTS.filter((c) => PUBLIC_COURSES.includes(c.label)) : PLAYLISTS
+  const { user } = useAuth()
+  // Members-only courses (LangGraph...) come from the API after login; visitors never receive them.
+  const [members, setMembers] = useState([])
+  useEffect(() => {
+    if (!user || gated) { setMembers([]); return undefined }
+    let live = true
+    api('/courses/members/').then((d) => { if (live && Array.isArray(d)) setMembers(d) }).catch(() => {})
+    return () => { live = false }
+  }, [user, gated])
+  const ALL = gated ? PLAYLISTS : [...PLAYLISTS, ...members]
+  const list = gated ? PLAYLISTS.filter((c) => PUBLIC_COURSES.includes(c.label)) : ALL
   const hidden = PLAYLISTS.length - list.length
   const [local, setLocal] = useState({ course: list[0].id, idx: 0 })
   const [playing, setPlaying] = useState(false)
@@ -52,10 +64,10 @@ export default function CourseVideos({ track = false, gated = false }) {
             const done = (p.watched[c.id] || []).length
             return (
               <button key={c.id} role="tab" aria-selected={on} className={`cnav__tab ${on ? 'is-on' : ''}`} onClick={() => { go(c.id, 0); setPlaying(false) }}>
-                <span className="cnav__thumb"><img src={ytThumb(c.videos[0].id)} alt="" loading="lazy" width="96" height="54" /></span>
+                <span className="cnav__thumb">{c.members ? <span className="cnav__mem"><Icon name="sparkle" size={20} /></span> : <img src={ytThumb(c.videos[0].id)} alt="" loading="lazy" width="96" height="54" />}</span>
                 <span className="cnav__txt">
                   <strong>{c.label}</strong>
-                  <small>{track ? `${done} watched` : 'Playlist'}{c.lang ? ` · ${c.lang}` : ''}</small>
+                  <small>{track ? `${c.members ? 'Members only' : `${done} watched`}` : 'Playlist'}{c.lang ? ` · ${c.lang}` : ''}</small>
                 </span>
               </button>
             )
@@ -72,9 +84,21 @@ export default function CourseVideos({ track = false, gated = false }) {
       <div className="cv2">
         <div className="cv2__main">
           <div className="ratio cv__player">
-            {playing ? <Embed yt={cur.id} title={cur.title} /> : (
+            {!course.members ? (
+              playing ? <Embed yt={cur.id} title={cur.title} /> : (
+                <button className="vc__poster" onClick={() => play(course.id, idx)} aria-label={`Play: ${cur.title}`}>
+                  <Thumb yt={cur.id} />
+                  <span className="vc__shade" />
+                  <PlayIcon size={64} />
+                </button>
+              )
+            ) : !cur.src ? (
+              <div className="vc__poster cv__soon"><span><strong>This lesson is being uploaded</strong><small>It will appear here soon. Please check back later.</small></span></div>
+            ) : playing ? (
+              <video className="cv__file" src={cur.src} poster={cur.poster || undefined} controls autoPlay playsInline controlsList="nodownload" onContextMenu={(e) => e.preventDefault()} />
+            ) : (
               <button className="vc__poster" onClick={() => play(course.id, idx)} aria-label={`Play: ${cur.title}`}>
-                <Thumb yt={cur.id} />
+                {cur.poster && <img className="cv__poster-img" src={cur.poster} alt="" />}
                 <span className="vc__shade" />
                 <PlayIcon size={64} />
               </button>
@@ -83,7 +107,7 @@ export default function CourseVideos({ track = false, gated = false }) {
           <h3 className="cv__title">{cur.title}</h3>
           <div className="cv__meta2">
             {course.lang && <span className="chip">{course.lang}</span>}
-            <span className="muted">Lesson {idx + 1} · {fmt(cur.seconds)}</span>
+            <span className="muted">Lesson {idx + 1}{cur.seconds ? ` · ${fmt(cur.seconds)}` : ''}</span>
             <button className="btn btn--sm btn--outline cv__next" onClick={next} disabled={idx + 1 >= visible.length}>
               Next lesson <Icon name="arrow" size={15} />
             </button>
@@ -105,8 +129,8 @@ export default function CourseVideos({ track = false, gated = false }) {
                     <button className={`cvl__item ${on ? 'is-on' : ''}`} onClick={() => play(course.id, k)} aria-current={on}>
                       <span className="cvl__no">{on ? <i className="eqbars"><b /><b /><b /></i> : k + 1}</span>
                       <span className="cvl__thumb">
-                        <img src={ytThumb(x.id)} alt="" loading="lazy" width="320" height="180" />
-                        <span className="cvl__dur">{fmt(x.seconds)}</span>
+                        {x.poster || !course.members ? <img src={x.poster || ytThumb(x.id)} alt="" loading="lazy" width="320" height="180" /> : <span className="cvl__nothumb"><Icon name="sparkle" size={20} /></span>}
+                        {x.seconds ? <span className="cvl__dur">{fmt(x.seconds)}</span> : null}
                         {watched.has(k) && <span className="cv__done" aria-label="Watched">✓</span>}
                       </span>
                       <span className="cvl__txt"><strong>{x.title}</strong></span>

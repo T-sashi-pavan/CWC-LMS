@@ -1,5 +1,9 @@
+import json
+from pathlib import Path
+
 from django.shortcuts import get_object_or_404
 from rest_framework.generics import ListAPIView
+from rest_framework.permissions import IsAuthenticated
 from rest_framework.throttling import ScopedRateThrottle
 from rest_framework.response import Response
 from rest_framework.views import APIView
@@ -138,3 +142,37 @@ class TestimonialList(ListAPIView):
 class PlanList(APIView):
     def get(self, request):
         return Response(PLANS)
+
+
+CLOUDINARY_HOST = "https://res.cloudinary.com/"
+DEFAULT_CLOUD = "kr5lzd8b"
+_MEMBER_COURSES = json.loads((Path(__file__).parent / "member_courses.json").read_text(encoding="utf-8"))["courses"]
+
+
+class MemberCourses(APIView):
+    """GET /api/courses/members/: video courses for logged-in users only (401 for visitors).
+
+    The lesson list and video addresses are never part of the public JavaScript bundle; they are only sent here,
+    after the login token is checked. A lesson whose `public_id` is still empty is listed as "coming soon"
+    (set the id with scripts/upload_langgraph.py after uploading the video).
+    """
+
+    permission_classes = [IsAuthenticated]
+
+    def get(self, request):
+        out = []
+        for c in _MEMBER_COURSES:
+            lessons = []
+            for i, x in enumerate(c["lessons"]):
+                vid = x.get("public_id")
+                base = f"{CLOUDINARY_HOST}{x.get('cloud', DEFAULT_CLOUD)}/video/upload/"
+                lessons.append({
+                    "id": f"{c['id']}-{i + 1}",
+                    "title": x["title"],
+                    "src": f"{base}f_auto,q_auto,w_1280/{vid}" if vid else None,
+                    "poster": f"{base}so_3,w_480,q_auto,f_webp/{vid.rsplit('.', 1)[0]}.webp" if vid else None,
+                })
+            out.append({k: c[k] for k in ("id", "label", "lang", "blurb")} | {"members": True, "videos": lessons})
+        resp = Response(out)
+        resp["Cache-Control"] = "private, no-store"
+        return resp

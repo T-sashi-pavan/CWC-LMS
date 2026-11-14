@@ -81,3 +81,6 @@ Thumbs.db
 # ---------- Google OAuth client secret downloads ----------
 client_secret*.json
 client_secrets*.json
+
+# ---------- Large local course videos (hosted on Cloudinary) ----------
+langgraph/

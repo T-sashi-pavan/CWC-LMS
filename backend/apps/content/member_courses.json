@@ -1,0 +1,30 @@
+{
+  "courses": [
+    {
+      "id": "langgraph",
+      "label": "LangGraph",
+      "lang": "Telugu",
+      "blurb": "Build stateful AI agents with LangGraph: graphs, conditional routing, human in the loop and a resume-analysis project.",
+      "lessons": [
+        {
+          "title": "Introduction to LangGraph",
+          "file": "iintro langgrapg -part 1.mp4",
+          "public_id": "v1794673653/iintro_langgrapg_-part_1.mp4",
+          "cloud": "zph8sv31"
+        },
+        {
+          "title": "Conditional graphs, part 2",
+          "file": "conditional graph 2 langgraph 5.mp4",
+          "public_id": "v1794673642/conditional_graph_2_langgraph_5.mp4",
+          "cloud": "zph8sv31"
+        },
+        {
+          "title": "Human in the loop",
+          "file": "human in loop.mp4",
+          "public_id": "v1794673639/human_in_loop.mp4",
+          "cloud": "zph8sv31"
+        }
+      ]
+    }
+  ]
+}
