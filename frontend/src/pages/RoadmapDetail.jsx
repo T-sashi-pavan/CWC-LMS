@@ -218,7 +218,7 @@ function Lock({ r }) {
           : 'Every module, practical lab, tool and project is free once you have an account.'}
       </p>
       {pro
-        ? <Link className="btn btn--lg" to="/pro">Unlock with Pro</Link>
+        ? <span className="chip">Coming soon</span>
         : <div className="hero__cta">
             <Link className="btn btn--lg" {...loginLink(r.slug, true)}>Sign up free</Link>
             <Link className="btn btn--outline btn--lg" {...loginLink(r.slug)}>Log in</Link>

@@ -95,8 +95,8 @@ export default function Logo({ size = 56, animate: wantAnimate = false, once = f
 export function Wordmark({ light = false }) {
   return (
     <div className={`wordmark ${light ? 'wordmark--light' : ''}`}>
-      <strong>Career</strong>
-      <span>WITH CHAITANYA</span>
+      <strong>CWC Ecosystem</strong>
+      <span>CAREER WITH CHAITANYA</span>
     </div>
   )
 }
@@ -108,8 +108,8 @@ export function HeroMark({ size = 180 }) {
     <div className="hero__mark">
       <Logo size={size} animate once tone="dark" />
       <div className={`hero__brand ${intro ? 'hero__brand--intro' : ''}`}>
-        <strong>Career</strong>
-        <span>WITH CHAITANYA</span>
+        <strong>CWC Ecosystem</strong>
+        <span>CAREER WITH CHAITANYA</span>
       </div>
     </div>
   )
@@ -119,8 +119,8 @@ export function HeroMark({ size = 180 }) {
 export function MarkName() {
   return (
     <div className="markname">
-      <strong>Career</strong>
-      <span>WITH CHAITANYA</span>
+      <strong>CWC Ecosystem</strong>
+      <span>CAREER WITH CHAITANYA</span>
     </div>
   )
 }

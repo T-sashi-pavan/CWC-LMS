@@ -16,7 +16,6 @@ const TABS = [
   { to: '/jobs', label: 'Jobs' },
   { to: '/testimonials', label: 'Testimonials' },
   { to: '/about', label: 'About us' },
-  { to: '/pro', label: 'Pro', pro: true },
 ]
 
 export default function AppLayout({ children }) {

@@ -30,7 +30,14 @@ export default function NavDropdown({ label = 'Free resources', items = FREE_RES
     const width = Math.min(340, window.innerWidth - 24)
     setPos({ left: Math.max(12, Math.min(r.left, window.innerWidth - width - 12)), top: r.bottom + 6, width })
   }
-  const toggle = () => { if (!open) place(); setOpen((o) => !o) }
+  // On devices with a mouse the menu opens on hover (with a short delay before closing so the pointer can
+  // travel to it); touch devices keep tap-to-open.
+  const timer = useRef(null)
+  const canHover = () => typeof window !== 'undefined' && window.matchMedia?.('(hover: hover)').matches
+  const enter = () => { if (!canHover()) return; clearTimeout(timer.current); if (!open) place(); setOpen(true) }
+  const leave = () => { if (!canHover()) return; clearTimeout(timer.current); timer.current = setTimeout(() => setOpen(false), 160) }
+  useEffect(() => () => clearTimeout(timer.current), [])
+  const toggle = () => { if (canHover()) { place(); setOpen(true); return } if (!open) place(); setOpen((o) => !o) }
 
   useEffect(() => { setOpen(false) }, [pathname])
   useEffect(() => {
@@ -51,7 +58,7 @@ export default function NavDropdown({ label = 'Free resources', items = FREE_RES
   }, [open])
 
   return (
-    <div className="navdd" ref={wrap}>
+    <div className="navdd" ref={wrap} onMouseEnter={enter} onMouseLeave={leave}>
       <button
         ref={btn}
         type="button"
@@ -64,7 +71,7 @@ export default function NavDropdown({ label = 'Free resources', items = FREE_RES
         <Icon name="chevron" size={15} className="navdd__chev" />
       </button>
       {open && (
-        <div className="navdd__menu" role="menu" style={{ left: pos.left, top: pos.top, width: pos.width }}>
+        <div className="navdd__menu" role="menu" onMouseEnter={enter} onMouseLeave={leave} style={{ left: pos.left, top: pos.top, width: pos.width }}>
           {items.map((i) => i.soon ? (
             <div key={i.title} role="menuitem" aria-disabled="true" className="navdd__item navdd__item--soon">
               <span className="navdd__icon"><Icon name={i.icon} size={20} /></span>

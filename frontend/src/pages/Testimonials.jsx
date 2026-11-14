@@ -2,7 +2,8 @@ import { Link } from 'react-router-dom'
 import { PageHead } from '../components/ui.jsx'
 import Icon from '../components/Icon.jsx'
 import LinkedInPosts from '../components/LinkedInPosts.jsx'
-import { StudentWall } from '../components/StudentStories.jsx'
+import HiredStudents from '../components/HiredStudents.jsx'
+import { StudentStories, StudentWall } from '../components/StudentStories.jsx'
 import { useAuth } from '../context/AuthContext.jsx'
 
 export default function Testimonials() {
@@ -10,9 +11,11 @@ export default function Testimonials() {
   return (
     <>
       <PageHead eyebrow="Testimonials" title="Watch the improvements of our students">
-        Real students, real progress. See how they learned, practised and moved forward with Career with Chaitanya.
+        Real students, real progress. See how they learned, practised and moved forward with CWC Ecosystem.
       </PageHead>
 
+      <StudentStories title="Watch their stories" />
+      <HiredStudents />
       <LinkedInPosts title="Our students on LinkedIn" sub="Students share their improvements and wins in their own posts." />
       <StudentWall />
 

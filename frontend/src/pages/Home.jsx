@@ -16,7 +16,7 @@ import JobsTicker from '../components/JobsSpotlight.jsx'
 import BadgeCelebration from '../components/Confetti.jsx'
 
 export default function Home() {
-  const { displayName, isPro } = useAuth()
+  const { displayName } = useAuth()
   const jobs = useApi('/jobs/')
   const p = useProgress()
   const s = stats(p)
@@ -56,16 +56,6 @@ export default function Home() {
         <StudentStories />
         <StudentWall />
 
-        {!isPro && (
-          <section className="promo">
-            <div>
-              <span className="eyebrow eyebrow--orange">Pro · ₹499</span>
-              <h2>Take the next level</h2>
-              <p>Video simulation interviews, next-level AI interview, bigger job openings and mock interviews with more features.</p>
-            </div>
-            <Link className="btn" to="/pro">See what’s in Pro</Link>
-          </section>
-        )}
 
         <section className="section">
           <SectionHead eyebrow="Careers" title="Latest job openings">

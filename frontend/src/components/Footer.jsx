@@ -34,7 +34,7 @@ export default function Footer() {
           )}
         </nav>
       </div>
-      <div className="footer__copy">© {new Date().getFullYear()} Career with Chaitanya. All rights reserved.</div>
+      <div className="footer__copy">© {new Date().getFullYear()} CWC Ecosystem (Career with Chaitanya). All rights reserved.</div>
     </footer>
   )
 }

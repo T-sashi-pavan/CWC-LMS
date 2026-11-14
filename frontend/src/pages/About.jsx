@@ -8,7 +8,7 @@ export default function About() {
   const { user } = useAuth()
   return (
     <>
-      <PageHead eyebrow="About us" title="Career with Chaitanya">
+      <PageHead eyebrow="About us" title="CWC Ecosystem">
         We help students and freshers turn learning into a first offer letter.
       </PageHead>
 

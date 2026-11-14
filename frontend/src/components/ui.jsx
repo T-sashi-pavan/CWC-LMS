@@ -36,7 +36,7 @@ export function Lock({ children = 'Pro' }) {
 }
 
 export function UpgradeLink({ children = 'Unlock with Pro · ₹499' }) {
-  return <Link to="/pro" className="btn btn--sm">{children}</Link>
+  return <span className="chip">Coming soon</span>
 }
 
 export function SectionHead({ eyebrow, title, sub, children }) {

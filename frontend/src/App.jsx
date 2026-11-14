@@ -8,7 +8,6 @@ import Roadmaps from './pages/Roadmaps.jsx'
 import Interviews from './pages/Interviews.jsx'
 import Jobs from './pages/Jobs.jsx'
 import Testimonials from './pages/Testimonials.jsx'
-import Pro from './pages/Pro.jsx'
 import About from './pages/About.jsx'
 import OpenMic from './pages/OpenMic.jsx'
 import InterviewSimulator from './pages/InterviewSimulator.jsx'
@@ -47,7 +46,6 @@ export default function App() {
       <Route element={<ProtectedRoute />}>
         <Route element={<AppLayout />}>
           <Route path="/interviews" element={<Interviews />} />
-          <Route path="/pro" element={<Pro />} />
         </Route>
       </Route>
       <Route path="*" element={<Navigate to="/" replace />} />

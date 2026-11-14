@@ -5,7 +5,7 @@ import Icon from './Icon.jsx'
 
 // Avatar button at the top right; the full name and email live in the dropdown so nothing gets cropped.
 export default function ProfileMenu() {
-  const { user, displayName, isPro, signOut } = useAuth()
+  const { user, displayName, signOut } = useAuth()
   const navigate = useNavigate()
   const [open, setOpen] = useState(false)
   const box = useRef(null)
@@ -45,10 +45,6 @@ export default function ProfileMenu() {
               <strong>{displayName}</strong>
               <span className="muted">{user?.email}</span>
             </div>
-          </div>
-          <div className="profile__plan">
-            <span>Current plan</span>
-            <span className={`badge ${isPro ? 'badge--pro' : ''}`}>{isPro ? 'PRO' : 'FREE'}</span>
           </div>
           <button
             role="menuitem"
