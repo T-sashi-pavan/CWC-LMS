@@ -64,7 +64,7 @@ export default function CourseVideos({ track = false, gated = false }) {
             const done = (p.watched[c.id] || []).length
             return (
               <button key={c.id} role="tab" aria-selected={on} className={`cnav__tab ${on ? 'is-on' : ''}`} onClick={() => { go(c.id, 0); setPlaying(false) }}>
-                <span className="cnav__thumb">{c.members ? <span className="cnav__mem"><Icon name="sparkle" size={20} /></span> : <img src={ytThumb(c.videos[0].id)} alt="" loading="lazy" width="96" height="54" />}</span>
+                <span className="cnav__thumb">{c.members && !c.videos[0].poster ? <span className="cnav__mem"><Icon name="sparkle" size={20} /></span> : <img src={c.videos[0].poster || ytThumb(c.videos[0].id)} alt="" loading="lazy" width="96" height="54" />}</span>
                 <span className="cnav__txt">
                   <strong>{c.label}</strong>
                   <small>{track ? `${c.members ? 'Members only' : `${done} watched`}` : 'Playlist'}{c.lang ? ` · ${c.lang}` : ''}</small>
