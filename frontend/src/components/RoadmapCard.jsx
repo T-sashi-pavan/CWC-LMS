@@ -25,21 +25,10 @@ export default function RoadmapCard({ r, index = 0 }) {
       <span className="rcard__art">
         <span className="rcard__no">{String(index + 1).padStart(2, '0')}</span>
         <span className="rcard__icon"><Icon name={gated ? 'lock' : catIcon(r.category)} size={30} /></span>
-        <span className="rcard__cat">{catLabel(r.category)}</span>
-        {r.highlights?.length > 0 && (
-          <span className={`rcard__chips ${gated ? 'is-blur' : ''}`}>
-            {r.highlights.slice(0, 4).map((h) => <i key={h}>{h}</i>)}
-          </span>
-        )}
       </span>
       <span className="rcard__bar">
         <span className="rcard__txt">
           <strong>{r.title}</strong>
-          <small>
-            {gated
-              ? 'Log in to see your roadmap guidance'
-              : [r.phase_count && `${r.phase_count} phases`, r.lab_count && `${r.lab_count} labs`].filter(Boolean).join(' · ') || r.tagline}
-          </small>
         </span>
         <span className="fcard__arrow"><Icon name={gated ? 'lock' : 'arrow'} size={18} /></span>
       </span>
