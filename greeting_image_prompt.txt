@@ -1,0 +1,37 @@
+PROMPT FOR AN AI IMAGE TOOL (group photo of Chaitanya Sir and his students)
+=====================================================================
+
+How to use
+1. Open an image tool that accepts reference photos and keeps faces consistent
+   (for example Gemini image generation, ChatGPT image generation or Midjourney with character/face reference).
+2. Upload the reference photos: Chaitanya Sir's photo, and the student photos from
+   F:\pikachu\cwc\frontend\public\students\  (afsana, bhavya, divya, jillasrivardhan, mahendhar,
+   manikumar, mounika, narendra, phanindra, raju, ramireddy). Use at most 6 to 8 faces per image:
+   tools mix up faces when too many are uploaded. Make 2 images if you want everyone.
+3. Paste the prompt below. Then check EVERY face against its original photo. If a face is wrong,
+   regenerate or edit only that person ("keep everyone the same, fix the 3rd person from the left
+   to match reference photo 4").
+4. Only include students who have agreed to appear.
+5. Export as a 4:5 portrait picture (about 1200 x 1500) and save it as
+   F:\pikachu\cwc\frontend\public\greetings\chaitanya-and-students.webp
+   (or send me the file path and I will convert it and check it on phone and desktop).
+
+Prompt
+------
+A realistic, high-quality group photograph taken outdoors at golden hour in front of a modern
+office building. Chaitanya Sir, a teacher, stands in the centre in a smart casual shirt, smiling
+warmly, with his arm around the shoulders of the students next to him. Around him stand his
+students, young Indian men and women in formal and smart-casual clothes, all laughing and smiling
+happily, some holding offer letters or wearing company ID cards, as if celebrating that they all
+got hired with his guidance. Two rows of people, faces clearly visible and well lit, natural
+candid joy, shallow depth of field, warm cream and orange colour tones, professional photography.
+Every person must look exactly like the person in the matching reference photo: same face, same
+hair, same skin tone. Do not change or beautify any face. No text, no logos, no watermark.
+
+Optional second line to add under the photo in our site code (not in the picture itself):
+"Guided by Chaitanya. Succeeding together."
+
+Tips
+- Say "full body visible, 4:5 portrait" if people are cropped.
+- If the tool changes faces, upload fewer people per image and merge two photos later.
+- Do not edit a real person's face to look different from the original.

@@ -13,6 +13,7 @@ import OpenMic from './pages/OpenMic.jsx'
 import InterviewSimulator from './pages/InterviewSimulator.jsx'
 import RoadmapDetail from './pages/RoadmapDetail.jsx'
 import CourseTracks from './pages/CourseTracks.jsx'
+import CrackCompany from './pages/CrackCompany.jsx'
 import Courses from './pages/Courses.jsx'
 import SiteLayout from './components/PublicLayout.jsx'
 import GreetingPopup from './components/GreetingPopup.jsx'
@@ -38,6 +39,7 @@ export default function App() {
       <Route path="/roadmaps/:slug" element={<SiteLayout><RoadmapDetail /></SiteLayout>} />
       <Route path="/testimonials" element={<SiteLayout><Testimonials /></SiteLayout>} />
       <Route path="/courses" element={<SiteLayout><Courses /></SiteLayout>} />
+      <Route path="/crack-company" element={<SiteLayout><CrackCompany /></SiteLayout>} />
       <Route path="/jobs" element={<SiteLayout><Jobs /></SiteLayout>} />
       <Route path="/course-tracks" element={<SiteLayout><CourseTracks /></SiteLayout>} />
       <Route path="/open-mic" element={<SiteLayout><OpenMic /></SiteLayout>} />

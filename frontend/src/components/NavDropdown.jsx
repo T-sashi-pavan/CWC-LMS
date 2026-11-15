@@ -6,6 +6,7 @@ export const FREE_RESOURCES = [
   { to: '/open-mic', icon: 'mic', title: 'Open Mic', text: 'Online and offline meets to speak up and learn.' },
   { to: '/roadmaps', icon: 'route', title: 'Roadmaps', text: 'Step-by-step plans for fresher and experienced roles.' },
   { to: '/courses', icon: 'sparkle', title: 'Course videos', text: 'Free video playlists in Telugu and English.' },
+  { to: '/crack-company', icon: 'briefcase', title: 'Crack the Company', text: 'How each company hires and how to prepare.' },
 ]
 
 // Paid course tracks: not launched yet, so both blocks say "Coming soon" and don't link anywhere.

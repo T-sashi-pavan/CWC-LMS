@@ -1,0 +1,167 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Greeting pop-up: six group photo layouts</title>
+<style>
+  :root { --ink:#17110C; --cream:#F6F0E6; --paper:#FFFDF9; --orange:#C2560C; --line:#E2D6C4; --muted:#6F6253; --ph:#D8D0C4; }
+  * { box-sizing: border-box; }
+  body { margin:0; font-family: system-ui, "Segoe UI", Roboto, sans-serif; background:var(--cream); color:var(--ink); }
+  header { padding:28px clamp(16px,4vw,48px) 8px; max-width:1280px; margin:0 auto; }
+  h1 { margin:0 0 6px; font-size:clamp(24px,4vw,36px); }
+  header p { margin:0; color:var(--muted); max-width:70ch; line-height:1.5; }
+  .bar { display:flex; flex-wrap:wrap; gap:10px; align-items:center; max-width:1280px; margin:14px auto 0; padding:0 clamp(16px,4vw,48px); }
+  .bar button { padding:9px 16px; border-radius:999px; border:1px solid var(--line); background:var(--paper); font:inherit; font-weight:600; cursor:pointer; }
+  .bar button.on { background:var(--orange); border-color:var(--orange); color:#fff; }
+  .bar small { color:var(--muted); }
+  main { max-width:1280px; margin:0 auto; padding:18px clamp(16px,4vw,48px) 48px; display:grid; grid-template-columns:repeat(auto-fill,minmax(340px,1fr)); gap:22px; }
+  .opt { background:var(--paper); border:1px solid var(--line); border-radius:22px; padding:16px; display:flex; flex-direction:column; gap:12px; }
+  .opt h2 { margin:0; font-size:19px; display:flex; align-items:center; gap:10px; }
+  .opt h2 b { display:grid; place-items:center; width:30px; height:30px; border-radius:50%; background:var(--ink); color:#fff; font-size:14px; }
+  .opt p { margin:0; color:var(--muted); font-size:14px; line-height:1.5; }
+  .opt ul { margin:0; padding-left:18px; font-size:13.5px; line-height:1.5; }
+  .opt .tag { font-size:12px; font-weight:700; color:var(--orange); letter-spacing:.04em; text-transform:uppercase; }
+
+  /* the frame = the pop-up image */
+  .frame { position:relative; width:100%; background:#EFE7DA; border:2px dashed #BFB3A0; border-radius:16px; overflow:hidden; }
+  .r45 { aspect-ratio: 4/5; } .r169 { aspect-ratio: 16/10; } .r11 { aspect-ratio: 1/1; }
+  .frame .t { position:absolute; left:0; right:0; text-align:center; font-weight:800; line-height:1.1; color:#3b2f22; }
+  .frame .t small { display:block; font-size:10px; letter-spacing:.2em; color:var(--orange); margin-bottom:3px; }
+  .frame .t.sm { font-size:15px; } .frame .t.md { font-size:19px; }
+  .frame .t i { color:var(--orange); font-style:normal; }
+  .frame .foot { position:absolute; left:0; right:0; bottom:8px; text-align:center; font-size:11px; font-weight:700; color:#3b2f22; }
+
+  /* a person placeholder: grey block with a head+shoulders silhouette, or a real photo */
+  .p { position:absolute; background:var(--ph); overflow:hidden; background-size:cover; background-position:center top; display:grid; place-items:end center; border:2px solid #fff; box-shadow:0 2px 6px rgba(0,0,0,.18); }
+  .p::before { content:""; width:46%; aspect-ratio:1; border-radius:50%; background:#A89D8E; position:absolute; top:16%; left:27%; }
+  .p::after { content:""; width:84%; height:42%; border-radius:50% 50% 0 0; background:#A89D8E; position:absolute; bottom:-6%; left:8%; }
+  .photos .p { background-image:var(--img); }
+  .photos .p::before, .photos .p::after { display:none; }
+  .p.c { border-radius:50%; } .p.r { border-radius:12px; } .p.t { border-radius:10px 10px 4px 4px; }
+  .teacher { border-color:var(--orange); border-width:3px; z-index:4; }
+  .teacher::before, .teacher::after { background:#7C6F60; }
+  .lbl { position:absolute; z-index:6; padding:2px 8px; border-radius:999px; background:var(--ink); color:#fff; font-size:10px; font-weight:700; transform:translateX(-50%); white-space:nowrap; }
+  .spark { position:absolute; color:var(--orange); font-size:14px; opacity:.8; }
+  .conf { position:absolute; width:7px; height:12px; border-radius:2px; opacity:.85; }
+  .note { font-size:12px; color:var(--muted); }
+  .grid-note { max-width:1280px; margin:0 auto; padding:0 clamp(16px,4vw,48px) 40px; color:var(--muted); font-size:14px; line-height:1.6; }
+  .grid-note strong { color:var(--ink); }
+</style>
+</head>
+<body>
+<header>
+  <h1>Greeting pop-up: six group photo layouts</h1>
+  <p>Wireframes only: the grey figures show where the teacher and students stand, how big the faces are and where the headline goes. Pick the layout you like best (reply with a number). Then we produce the final photo with every face matched to the originals.</p>
+</header>
+<div class="bar">
+  <button id="b0" class="on">Plain wireframe</button>
+  <button id="b1">Show real student photos in the slots</button>
+  <small>Chaitanya Sir is always a placeholder (the teacher slot has an orange border).</small>
+</div>
+
+<main id="app"></main>
+
+<div class="grid-note">
+  <strong>What happens after you choose:</strong> the final image must be either a real group photo, or an AI-made image built from the real photos (teacher and students all happy, faces checked one by one against the originals). I cannot generate photographic images myself, so the face-accurate version needs your image tool or photographer; I will fit the finished picture into the pop-up for desktop and phone. Only include students who have agreed to appear.
+</div>
+
+<script>
+const IMGS = ['afsana','bhavya','divya','jillasrivardhan','mahendhar','manikumar','mounika','narendra','phanindra','raju','ramireddy'].map(n => `frontend/public/students/${n}.webp`);
+let n = 0;
+const P = (css, cls = 'c', teacher = false) => {
+  const img = IMGS[n++ % IMGS.length];
+  return `<div class="p ${cls} ${teacher ? 'teacher' : ''}" style="${css};--img:url('${img}')"></div>`;
+};
+const T = (css) => `<div class="p c teacher" style="${css}"></div>`;
+const L = (txt, left, top) => `<span class="lbl" style="left:${left}%;top:${top}%">${txt}</span>`;
+const S = (l, t, s = 14) => `<span class="spark" style="left:${l}%;top:${t}%;font-size:${s}px">✦</span>`;
+const colors = ['#E8761E', '#F4B24A', '#C2560C', '#17110C', '#7FB069'];
+const confetti = (k) => Array.from({ length: k }, (_, i) => `<span class="conf" style="left:${(i * 37 + 7) % 96}%;top:${(i * 53 + 3) % 60}%;background:${colors[i % 5]};transform:rotate(${(i * 47) % 180}deg)"></span>`).join('');
+
+// 1. classic two-row group
+function o1() {
+  n = 0; let h = '';
+  h += `<div class="t md" style="top:4%"><small>CAREER WITH CHAITANYA</small>Guided by Chaitanya.<br><i>Succeeding together.</i></div>`;
+  for (let i = 0; i < 6; i++) h += P(`width:13%;height:16%;left:${5 + i * 15.5}%;top:36%`, 't');
+  h += T(`width:22%;height:27%;left:39%;top:42%;border-radius:50%`);
+  for (let i = 0; i < 5; i++) h += P(`width:15%;height:18%;left:${6 + i * 18.5}%;top:64%`, 't');
+  h += L('Chaitanya Sir', 50, 71);
+  h += `<div class="foot">Learn. Practise. Get hired. Together.</div>`;
+  return { cls: 'r45', body: h, name: 'Classic group photo', text: 'Teacher in the middle, students in two rows, like a real class photo. Faces stay large and easy to recognise.', pros: ['Most natural, "real photo" feel', 'Works best with 10 to 14 people', 'Headline fits above the group'] };
+}
+// 2. arc
+function o2() {
+  n = 0; let h = '';
+  h += `<div class="t sm" style="top:4%"><small>CAREER WITH CHAITANYA</small>Guided by Chaitanya. <i>Succeeding together.</i></div>`;
+  const cx = 50, cy = 76, rx = 40, ry = 38;
+  for (let i = 0; i < 11; i++) {
+    const a = Math.PI + (i / 10) * Math.PI;
+    h += P(`width:14%;aspect-ratio:1;left:${cx + rx * Math.cos(a) - 7}%;top:${cy + ry * Math.sin(a) - 7}%`, 'c');
+  }
+  h += T(`width:26%;aspect-ratio:1;left:37%;top:48%`);
+  h += L('Chaitanya Sir', 50, 80);
+  h += `<div class="foot">Learn. Practise. Get hired. Together.</div>`;
+  return { cls: 'r45', body: h, name: 'Arch of students', text: 'Students form a rainbow arch behind the teacher, who stands in front. Feels like a celebration and a rising path.', pros: ['Strong focus on the teacher', 'Round faces look friendly', 'Easy to crop for phones'] };
+}
+// 3. pyramid / tiers
+function o3() {
+  n = 0; let h = '';
+  h += `<div class="t sm" style="top:3%"><small>CAREER WITH CHAITANYA</small>Guided by Chaitanya. <i>Succeeding together.</i></div>`;
+  const rows = [[3, 44], [4, 59], [5, 74]];
+  rows.forEach(([c, top]) => {
+    const w = 15, gap = 3, total = c * w + (c - 1) * gap, start = (100 - total) / 2;
+    for (let i = 0; i < c; i++) h += P(`width:${w}%;height:13%;left:${start + i * (w + gap)}%;top:${top}%`, 'r');
+  });
+  h += T(`width:24%;height:24%;left:38%;top:17%;border-radius:14px`);
+  h += `<div class="lbl" style="left:50%;top:38%">Chaitanya Sir</div>`;
+  h += `<div class="foot">Learn. Practise. Get hired. Together.</div>`;
+  return { cls: 'r45', body: h, name: 'Pyramid, teacher on top', text: 'Tiers widening downwards with the teacher at the peak. Reads as "guided from the top, students growing".', pros: ['Clear hierarchy and tidy grid', 'Square faces keep photos easy to match', 'Headline and group never collide'] };
+}
+// 4. polaroids scattered
+function o4() {
+  n = 0; let h = confetti(14);
+  h += `<div class="t md" style="top:4%"><small>CAREER WITH CHAITANYA</small>Guided by Chaitanya.<br><i>Succeeding together.</i></div>`;
+  const pos = [[6, 30, -8], [70, 28, 7], [4, 58, 6], [74, 58, -6], [30, 66, -4], [54, 68, 5]];
+  pos.forEach(([l, t, r]) => { h += P(`width:22%;height:24%;left:${l}%;top:${t}%;transform:rotate(${r}deg);border-width:5px 5px 14px`, 'r'); });
+  h += T(`width:30%;height:33%;left:35%;top:30%;border-radius:12px;border-width:6px 6px 16px;transform:rotate(-2deg)`);
+  h += L('Chaitanya Sir', 50, 66);
+  return { cls: 'r45', body: h, name: 'Polaroid memories', text: 'Happy snapshots pinned around a bigger teacher photo, with confetti. Playful and warm.', pros: ['Best for candid, smiling photos', 'Works with any number of photos', 'Most "festive" feeling'] };
+}
+// 5. wide banner
+function o5() {
+  n = 0; let h = '';
+  for (let i = 0; i < 7; i++) h += P(`width:11%;height:44%;left:${3 + i * 13.4}%;top:30%`, 't');
+  h += T(`width:17%;height:56%;left:41.5%;top:36%;border-radius:12px 12px 4px 4px`);
+  for (let i = 0; i < 6; i++) h += P(`width:11%;height:30%;left:${9 + i * 14}%;top:56%`, 't');
+  h += `<div class="t sm" style="top:5%"><small>CAREER WITH CHAITANYA</small>Guided by Chaitanya. <i>Succeeding together.</i></div>`;
+  h += L('Chaitanya Sir', 50, 90);
+  return { cls: 'r169', body: h, name: 'Wide cinematic group', text: 'A landscape group shot with the teacher centre and two rows. Best for the home page banner as well as the pop-up.', pros: ['Fits many people at once', 'Can double as a hero banner', 'Pop-up becomes landscape (smaller on phones)'] };
+}
+// 6. celebration jump
+function o6() {
+  n = 0; let h = confetti(20);
+  h += `<div class="t md" style="top:4%"><small>CAREER WITH CHAITANYA</small>Guided by Chaitanya.<br><i>Succeeding together.</i></div>`;
+  const pts = [[8, 40], [27, 34], [66, 34], [84, 40], [4, 64], [88, 64], [20, 72], [74, 72]];
+  pts.forEach(([l, t]) => { h += P(`width:15%;aspect-ratio:1;left:${l}%;top:${t}%`, 'c'); h += S(l + 5, t - 4, 12); });
+  h += T(`width:30%;aspect-ratio:1;left:35%;top:44%`);
+  h += L('Chaitanya Sir', 50, 78);
+  h += `<div class="foot">Learn. Practise. Get hired. Together.</div>`;
+  return { cls: 'r45', body: h, name: 'Celebration burst', text: 'Everyone around the teacher with confetti and sparks. Joyful and energetic: arms-up or cap-toss poses work well.', pros: ['Strongest "happy faces" message', 'Great for results or festival days', 'Needs a photoshoot or AI for the poses'] };
+}
+
+const opts = [o1(), o2(), o3(), o4(), o5(), o6()];
+document.getElementById('app').innerHTML = opts.map((o, i) => `
+  <article class="opt">
+    <h2><b>${i + 1}</b>${o.name}</h2>
+    <div class="frame ${o.cls}">${o.body}</div>
+    <p>${o.text}</p>
+    <ul>${o.pros.map(x => `<li>${x}</li>`).join('')}</ul>
+  </article>`).join('');
+
+const app = document.getElementById('app');
+document.getElementById('b0').onclick = () => { app.classList.remove('photos'); b0.classList.add('on'); b1.classList.remove('on'); };
+document.getElementById('b1').onclick = () => { app.classList.add('photos'); b1.classList.add('on'); b0.classList.remove('on'); };
+</script>
+</body>
+</html>
