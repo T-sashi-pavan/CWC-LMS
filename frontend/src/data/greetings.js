@@ -3,13 +3,13 @@
 // (YYYY-MM-DD, local time), so an old greeting switches itself off. Set `enabled: false` to hide one early.
 export const GREETINGS = [
   {
-    // Welcome poster: Chaitanya sir with his students. No end date, so it shows until you replace or disable it.
-    id: 'chaitanya-and-students',
+    // Welcome pop-up: a built-in tour of the site's features (no photo needed). Shows until disabled.
+    id: 'welcome-features',
+    kind: 'welcome',
     enabled: true,
     from: '2026-01-01',
     to: '2099-12-31',
-    image: '/greetings/chaitanya-and-students.webp',
-    alt: 'Career with Chaitanya: Guided by Chaitanya, succeeding together. Chaitanya sir in the centre, surrounded by portraits of his students.',
+    alt: 'Welcome to CWC Ecosystem',
   },
   {
     // Diwali 2026 greeting: switched off, kept for reuse.
