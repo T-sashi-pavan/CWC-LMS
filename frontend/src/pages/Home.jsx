@@ -40,7 +40,7 @@ export default function Home() {
 
         <StatTiles s={s} />
         <Journey personal done={s.journey} />
-        <FeatureCards eyebrow="Jump in" title="Practise, speak and plan" sub="Your three shortcuts to getting job-ready." />
+        <FeatureCards eyebrow="Jump in" title="Practise, speak and plan" sub="Your shortcuts to getting job-ready." />
         <RoadmapShowcase />
         <CourseVideos track />
 

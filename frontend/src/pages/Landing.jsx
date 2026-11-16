@@ -10,7 +10,7 @@ import CourseVideos from '../components/CourseVideos.jsx'
 import { StudentStories } from '../components/StudentStories.jsx'
 import HiredStudents from '../components/HiredStudents.jsx'
 import LinkedInPosts from '../components/LinkedInPosts.jsx'
-import { FeatureCards } from '../components/HomeSections.jsx'
+import { FeatureCards, CrackPreview } from '../components/HomeSections.jsx'
 import JobsTicker from '../components/JobsSpotlight.jsx'
 
 const SIGNUP = '/login?mode=signup'
@@ -61,6 +61,7 @@ export default function Landing() {
 
       <Journey />
       <FeatureCards />
+      <CrackPreview />
       <RoadmapShowcase />
       <CourseVideos gated />
       <HiredStudents />

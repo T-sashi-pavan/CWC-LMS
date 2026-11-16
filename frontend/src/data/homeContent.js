@@ -14,6 +14,7 @@ export const CARDS = [
   { to: '/open-mic', icon: 'mic', title: 'CWC Open Mic', text: 'Online and offline meets to speak up, network and learn from peers.' },
   { to: '/interview-simulator', icon: 'bot', title: 'Interview Simulator', text: 'Five realistic rounds, from aptitude to a one-to-one review.' },
   { to: '/roadmaps', icon: 'route', title: 'Roadmaps', text: 'Step-by-step paths for the role you are aiming at.' },
+  { to: '/crack-company', icon: 'briefcase', title: 'Crack the Company', text: 'How top companies hire, round by round, and how to prepare.' },
 ]
 
 const mk = (yt) => (title) => ({ yt, title })

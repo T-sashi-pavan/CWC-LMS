@@ -2,6 +2,8 @@ import { Link } from 'react-router-dom'
 import Icon from './Icon.jsx'
 import { SectionHead } from './ui.jsx'
 import { CARDS } from '../data/homeContent.js'
+import { COMPANIES } from '../data/companies.js'
+import { STUDENTS } from '../data/students.js'
 
 const spot = (e) => {
   const r = e.currentTarget.getBoundingClientRect()
@@ -32,14 +34,22 @@ const ART = [
       <span className="art__card"><Icon name="route" size={50} /></span>
     </span>
   ),
+  () => (
+    <span className="art art--crack">
+      <span className="art__card"><Icon name="briefcase" size={54} /></span>
+      <span className="logos4" aria-hidden="true">
+        {['google', 'amazon', 'microsoft', 'tcs'].map((id) => <i key={id}><img src={`/logos/${id}.svg`} alt="" loading="lazy" /></i>)}
+      </span>
+    </span>
+  ),
 ]
 
 // Three big product cards. `compact` is the slimmer logged-in version.
 export function FeatureCards({
   compact = false,
   eyebrow = 'What you get',
-  title = 'Three ways to get job-ready',
-  sub = 'Practise speaking, rehearse interviews and follow a plan.',
+  title = 'Four ways to get job-ready',
+  sub = 'Practise speaking, rehearse interviews, follow a plan and study each company.',
 }) {
   return (
     <section className="section">
@@ -57,6 +67,35 @@ export function FeatureCards({
             </Link>
           )
         })}
+      </div>
+    </section>
+  )
+}
+
+// Teaser for the Crack the Company guide plus a few students, shown on the public home page.
+export function CrackPreview() {
+  const faces = STUDENTS.filter((s) => s.photo).slice(0, 6)
+  return (
+    <section className="section">
+      <SectionHead eyebrow="Crack the Company" title="Know the interview before you walk in" sub="Hiring process, rounds, questions and prep tips for top companies." />
+      <div className="cpv">
+        {COMPANIES.slice(0, 6).map((c) => (
+          <Link key={c.id} to={`/crack-company?c=${c.id}`} className="cpv__card">
+            <span className="cpv__logo"><img src={c.logo} alt={`${c.name} logo`} loading="lazy" /></span>
+            <strong>{c.name}</strong>
+            <small>{c.tagline}</small>
+            <span className="cpv__go">Read the guide <Icon name="arrow" size={14} /></span>
+          </Link>
+        ))}
+      </div>
+      <div className="cpv__foot">
+        <div className="cpv__faces">
+          <span className="cpv__stack">
+            {faces.map((s) => <img key={s.id} src={s.photo} alt={s.name} loading="lazy" />)}
+          </span>
+          <span><strong>Students like these</strong> cracked their interviews with Chaitanya's guidance.</span>
+        </div>
+        <Link className="btn" to="/crack-company">Explore all companies <Icon name="arrow" size={16} /></Link>
       </div>
     </section>
   )
