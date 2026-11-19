@@ -9,6 +9,7 @@ import { LEVELS, levelOf } from '../data/roadmapLevels.js'
 export default function Roadmaps() {
   const state = useApi('/roadmaps/')
   const [q, setQ] = useState('')
+  const [level, setLevel] = useState('fresher')
 
   return (
     <>
@@ -33,14 +34,20 @@ export default function Roadmaps() {
                 </div>
               )}
 
-              <div className="rtools rtools--levels">
-                <div className="lvjump" aria-label="Jump to a level">
-                  {blocks.map((b) => (
-                    <a key={b.id} href={`#level-${b.id}`} className="lvjump__a">{b.title}</a>
-                  ))}
+              <nav className="cnav rnav" aria-label="Choose a level">
+                <div className="rnav__row">
+                  <div className="cnav__list rnav__tabs" role="tablist">
+                    {blocks.map((b) => (
+                      <button key={b.id} role="tab" aria-selected={level === b.id} className={`cnav__tab ${level === b.id ? 'is-on' : ''}`}
+                        onClick={() => { setLevel(b.id); document.getElementById(`level-${b.id}`)?.scrollIntoView({ behavior: 'smooth', block: 'start' }) }}>
+                        <span className="rnav__ic"><Icon name={b.id === 'fresher' ? 'sparkle' : 'route'} size={20} /></span>
+                        <span className="cnav__txt"><strong>{b.title}</strong><small>{b.badge}</small></span>
+                      </button>
+                    ))}
+                  </div>
+                  <input className="rsearch rnav__search" type="search" placeholder="Search roadmaps or tools" value={q} onChange={(e) => setQ(e.target.value)} aria-label="Search roadmaps" />
                 </div>
-                <input className="rsearch" type="search" placeholder="Search roadmaps or tools" value={q} onChange={(e) => setQ(e.target.value)} aria-label="Search roadmaps" />
-              </div>
+              </nav>
 
               {none ? (
                 <div className="card empty"><p>No roadmap matches “{q}”.</p></div>

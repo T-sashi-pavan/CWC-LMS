@@ -1,7 +1,11 @@
 import { useEffect, useMemo, useState } from 'react'
 import { Link, useSearchParams } from 'react-router-dom'
 import Icon from '../components/Icon.jsx'
+import { useAuth } from '../context/AuthContext.jsx'
 import { COMPANIES, SOURCES, TYPES, TYPE_LABEL } from '../data/companies.js'
+
+export const FREE_GUIDES = 3 // guides open to everyone; the rest need a free account
+const isOpen = (c, user) => !!user || COMPANIES.indexOf(c) < FREE_GUIDES
 
 const LEVEL_WORD = ['', 'Easy', 'Easy to medium', 'Medium', 'Hard', 'Very hard']
 const SECTIONS = [
@@ -39,6 +43,8 @@ function Meter({ level }) {
 
 /* ------------------------------------------------------------------ all companies */
 function Browse() {
+  const { user } = useAuth()
+  const lockedCount = user ? 0 : COMPANIES.length - FREE_GUIDES
   const [, setParams] = useSearchParams()
   const [type, setType] = useState('all')
   const [q, setQ] = useState('')
@@ -58,6 +64,14 @@ function Browse() {
         </ul>
       </section>
 
+      {lockedCount > 0 && (
+        <div className="rgate">
+          <Icon name="lock" size={20} />
+          <p><strong>{FREE_GUIDES} guides are free.</strong> Log in (it’s free) to unlock the guide for every other company.</p>
+          <Link className="btn btn--sm" to="/login?mode=signup">Sign up free</Link>
+        </div>
+      )}
+
       <div className="cktools">
         <input className="rsearch" type="search" placeholder="Search a company" value={q} onChange={(e) => setQ(e.target.value)} aria-label="Search a company" />
         <div className="ckchips" role="tablist" aria-label="Company type">
@@ -71,6 +85,15 @@ function Browse() {
         <ul className="ckgrid">
           {list.map((c) => (
             <li key={c.id}>
+              {!isOpen(c, user) ? (
+                <Link className="ckcard ckcard--locked" to="/login?mode=signup" aria-label={`${c.name} guide is locked. Sign up free to unlock`}>
+                  <Logo c={c} big />
+                  <span className="ckcard__type">{TYPE_LABEL[c.type]}</span>
+                  <strong className="ckcard__name">{c.name}</strong>
+                  <span className="ckcard__tag">{c.tagline}</span>
+                  <span className="ckcard__lock"><Icon name="lock" size={16} /> Sign up free to unlock</span>
+                </Link>
+              ) : (
               <button className="ckcard" onClick={() => setParams({ c: c.id })} aria-label={`Open the ${c.name} guide`}>
                 <Logo c={c} big />
                 <span className="ckcard__type">{TYPE_LABEL[c.type]}</span>
@@ -82,6 +105,7 @@ function Browse() {
                 </span>
                 <span className="ckcard__go">View guide <Icon name="arrow" size={15} /></span>
               </button>
+              )}
             </li>
           ))}
         </ul>
@@ -279,10 +303,22 @@ function Detail({ c }) {
 
 export default function CrackCompany() {
   const [params] = useSearchParams()
+  const { user, loading } = useAuth()
   const c = COMPANIES.find((x) => x.id === params.get('c'))
+  const locked = c && !loading && !isOpen(c, user)
   return (
     <div className="ck">
-      {c ? <Detail c={c} /> : <Browse />}
+      {locked ? (
+        <section className="ckgate">
+          <span className="ckgate__ic"><Icon name="lock" size={28} /></span>
+          <h1>The {c.name} guide is for members</h1>
+          <p>Create a free account to unlock the full hiring journey, rounds, questions and prep checklist for {c.name} and every other company.</p>
+          <div className="hero__cta">
+            <Link className="btn btn--lg" to="/login?mode=signup">Sign up free</Link>
+            <Link className="btn btn--outline btn--lg" to="/crack-company">Back to all companies</Link>
+          </div>
+        </section>
+      ) : c ? <Detail c={c} /> : <Browse />}
       <p className="cknote">
         Company names and logos are trademarks of their owners and are shown only to identify each company; CWC is not affiliated with them.
         These guides are written in our own words from public information and shared candidate experiences. Companies change their process often,

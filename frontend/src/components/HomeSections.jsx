@@ -79,7 +79,7 @@ export function CrackPreview() {
     <section className="section">
       <SectionHead eyebrow="Crack the Company" title="Know the interview before you walk in" sub="Hiring process, rounds, questions and prep tips for top companies." />
       <div className="cpv">
-        {COMPANIES.slice(0, 6).map((c) => (
+        {COMPANIES.slice(0, 3).map((c) => (
           <Link key={c.id} to={`/crack-company?c=${c.id}`} className="cpv__card">
             <span className="cpv__logo"><img src={c.logo} alt={`${c.name} logo`} loading="lazy" /></span>
             <strong>{c.name}</strong>
@@ -95,7 +95,7 @@ export function CrackPreview() {
           </span>
           <span><strong>Students like these</strong> cracked their interviews with Chaitanya's guidance.</span>
         </div>
-        <Link className="btn" to="/crack-company">Explore all companies <Icon name="arrow" size={16} /></Link>
+        <Link className="btn" to="/crack-company">See all companies <Icon name="arrow" size={16} /></Link>
       </div>
     </section>
   )
