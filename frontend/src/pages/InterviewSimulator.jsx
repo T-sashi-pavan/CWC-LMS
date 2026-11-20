@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import { progress } from '../lib/progress.js'
 import { PageHead, SectionHead } from '../components/ui.jsx'
 import { ROUNDS } from '../data/homeContent.js'
+import { SIMULATOR_FORM } from '../data/plans.js'
 
 export default function InterviewSimulator() {
   useEffect(() => { progress.visit('simulator') }, [])
@@ -29,9 +30,10 @@ export default function InterviewSimulator() {
 
       <section className="bigcta">
         <h2>Ready to take the first round?</h2>
-        <p>Pick a mock interview and get honest, rubric-based feedback.</p>
+        <p>Register for the Interview Simulator and get honest, rubric-based feedback.</p>
         <div className="hero__cta">
-          <Link className="btn btn--lg" to="/interviews">Start practising</Link>
+          <a className="btn btn--lg" href={SIMULATOR_FORM} target="_blank" rel="noopener noreferrer">Register now</a>
+          <Link className="btn btn--cream btn--lg" to="/interviews">Start practising</Link>
         </div>
       </section>
     </>

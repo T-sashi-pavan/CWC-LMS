@@ -1,10 +1,14 @@
 // Course Hub content: the five fresher courses and the two paid plans (from the updated PRD).
 
-// TODO: replace both with the real Google Form links.
+// One registration form for both plans. Split into two links here if the mentor wants separate forms.
+const PLAN_FORM = 'https://docs.google.com/forms/d/e/1FAIpQLScebFHozhuWO57itM9zJBSH3CC90OU6trprSLq_rZUXXa85WQ/viewform'
 export const FORM_LINKS = {
-  monthly: 'https://forms.gle/REPLACE_WITH_499_MONTH_FORM',
-  program: 'https://forms.gle/REPLACE_WITH_30000_PLAN_FORM',
+  monthly: PLAN_FORM,
+  program: PLAN_FORM,
 }
+
+// Form the mentor shared for the Interview Simulator page.
+export const SIMULATOR_FORM = 'https://docs.google.com/forms/d/e/1FAIpQLSfW2JyV0uLCiCLqi0_zTtYGANYc8EQZyCaAJp02MLY9flSTtg/viewform'
 
 export const FRESHER_COURSES = [
   { id: 'data-science', icon: 'database', title: 'Data Science', text: 'Turn raw data into predictions and decisions.',
