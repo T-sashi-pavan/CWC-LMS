@@ -9,10 +9,10 @@ export const FREE_RESOURCES = [
   { to: '/crack-company', icon: 'briefcase', title: 'Crack the Company', text: 'How each company hires and how to prepare.' },
 ]
 
-// Paid course tracks: not launched yet, so both blocks say "Coming soon" and don't link anywhere.
-export const COURSE_LEVELS = [
-  { soon: true, icon: 'sparkle', title: 'Freshers', text: 'Job-ready courses for your first role.' },
-  { soon: true, icon: 'route', title: 'Experienced', text: 'Upskill and switch to a higher-paying role.' },
+// "Courses Hub" menu: paid courses and the interview simulator.
+export const COURSES_HUB = [
+  { to: '/course-tracks', icon: 'sparkle', title: 'Courses', text: 'Job-ready courses for freshers. Experienced track coming soon.' },
+  { to: '/interview-simulator', icon: 'bot', title: 'Interview Simulator', text: 'Five realistic rounds, from aptitude to a one-to-one review.' },
 ]
 
 // One nav item that opens a menu. The tab strip scrolls sideways on small screens (which would clip a normal

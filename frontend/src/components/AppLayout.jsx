@@ -4,14 +4,14 @@ import Icon from './Icon.jsx'
 import ThemeToggle from './ThemeToggle.jsx'
 import ProfileMenu from './ProfileMenu.jsx'
 import Footer from './Footer.jsx'
-import NavDropdown from './NavDropdown.jsx'
+import NavDropdown, { COURSES_HUB } from './NavDropdown.jsx'
 import useReveal from './useReveal.js'
 import { useAuth } from '../context/AuthContext.jsx'
 
 const TABS = [
   { to: '/', label: 'Home', end: true },
   { dropdown: true },
-  { to: '/course-tracks', label: 'Courses' },
+  { dropdown: 'hub' },
   { to: '/interviews', label: 'Interviews' },
   { to: '/jobs', label: 'Jobs' },
   { to: '/testimonials', label: 'Testimonials' },
@@ -35,7 +35,11 @@ export default function AppLayout({ children }) {
           </NavLink>
 
           <nav className="tabs" aria-label="Main">
-            {TABS.map((t) => (t.dropdown ? <NavDropdown key="free" /> : (
+            {TABS.map((t) => (t.dropdown ? (
+              t.dropdown === 'hub'
+                ? <NavDropdown key="hub" label="Courses Hub" items={COURSES_HUB} />
+                : <NavDropdown key="free" />
+            ) : (
               <NavLink
                 key={t.to}
                 to={t.to}

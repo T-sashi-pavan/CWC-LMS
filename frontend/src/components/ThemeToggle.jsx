@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import Icon from './Icon.jsx'
 
-const read = () => document.documentElement.getAttribute('data-theme') || 'light'
+const read = () => document.documentElement.getAttribute('data-theme') || 'dark'
 
 export default function ThemeToggle({ floating = false }) {
   const [theme, setTheme] = useState(read)

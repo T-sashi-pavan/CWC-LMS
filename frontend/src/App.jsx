@@ -1,4 +1,6 @@
-import { Navigate, Route, Routes } from 'react-router-dom'
+import { useEffect } from 'react'
+import { Navigate, Route, Routes, useLocation, useNavigate } from 'react-router-dom'
+import { takeDest, trackPath } from './lib/afterLogin.js'
 import AppLayout from './components/AppLayout.jsx'
 import ProtectedRoute from './components/ProtectedRoute.jsx'
 import Login from './pages/Login.jsx'
@@ -13,6 +15,7 @@ import OpenMic from './pages/OpenMic.jsx'
 import InterviewSimulator from './pages/InterviewSimulator.jsx'
 import RoadmapDetail from './pages/RoadmapDetail.jsx'
 import CourseTracks from './pages/CourseTracks.jsx'
+import FresherCourses from './pages/FresherCourses.jsx'
 import CrackCompany from './pages/CrackCompany.jsx'
 import Courses from './pages/Courses.jsx'
 import SiteLayout from './components/PublicLayout.jsx'
@@ -27,9 +30,25 @@ function HomeGate() {
   return user ? <AppLayout><Home /></AppLayout> : <Landing />
 }
 
+// Tracks where the visitor is, and after a login (including Google/OAuth, which reloads the app on "/")
+// sends them to the page they started from.
+function AfterLogin() {
+  const { user, loading } = useAuth()
+  const { pathname, search } = useLocation()
+  const navigate = useNavigate()
+  useEffect(() => { trackPath(pathname + search) }, [pathname, search])
+  useEffect(() => {
+    if (loading || !user) return
+    const dest = takeDest()
+    if (dest && dest !== pathname + search) navigate(dest, { replace: true })
+  }, [user, loading]) // eslint-disable-line react-hooks/exhaustive-deps
+  return null
+}
+
 export default function App() {
   return (
     <>
+    <AfterLogin />
     <GreetingPopup />
     <JobsNudge />
     <Routes>
@@ -42,6 +61,7 @@ export default function App() {
       <Route path="/crack-company" element={<SiteLayout><CrackCompany /></SiteLayout>} />
       <Route path="/jobs" element={<SiteLayout><Jobs /></SiteLayout>} />
       <Route path="/course-tracks" element={<SiteLayout><CourseTracks /></SiteLayout>} />
+      <Route path="/course-tracks/freshers" element={<SiteLayout><FresherCourses /></SiteLayout>} />
       <Route path="/open-mic" element={<SiteLayout><OpenMic /></SiteLayout>} />
       <Route path="/interview-simulator" element={<SiteLayout><InterviewSimulator /></SiteLayout>} />
       <Route path="/about" element={<SiteLayout><About /></SiteLayout>} />

@@ -1,0 +1,43 @@
+// Course Hub content: the five fresher courses and the two paid plans (from the updated PRD).
+
+// TODO: replace both with the real Google Form links.
+export const FORM_LINKS = {
+  monthly: 'https://forms.gle/REPLACE_WITH_499_MONTH_FORM',
+  program: 'https://forms.gle/REPLACE_WITH_30000_PLAN_FORM',
+}
+
+export const FRESHER_COURSES = [
+  { id: 'data-science', icon: 'database', title: 'Data Science', text: 'Turn raw data into predictions and decisions.',
+    topics: ['Python', 'Statistics', 'Pandas & NumPy', 'Machine learning', 'Projects'] },
+  { id: 'data-analysis', icon: 'chart', title: 'Data Analysis', text: 'Clean, analyse and present data the way companies expect.',
+    topics: ['Excel', 'SQL', 'Power BI / Tableau', 'Python basics', 'Dashboards'] },
+  { id: 'aiml', icon: 'cpu', title: 'AI & ML', text: 'Build and ship machine learning and AI-powered applications.',
+    topics: ['Python', 'ML algorithms', 'Deep learning', 'Generative AI', 'Projects'] },
+  { id: 'python-fullstack', icon: 'code', title: 'Python Full Stack', text: 'Build complete web applications, front to back, in Python.',
+    topics: ['HTML, CSS, JS', 'React', 'Django', 'Databases', 'Deployment'] },
+  { id: 'java-fullstack', icon: 'coffee', title: 'Java Full Stack', text: 'The enterprise-ready stack that many service companies hire for.',
+    topics: ['Core Java', 'Spring Boot', 'React', 'SQL', 'Deployment'] },
+]
+
+// `monthly` / `program`: true, false, or a short text.
+export const PLAN_ROWS = [
+  { label: 'Mock interview and review', monthly: true, program: true },
+  { label: 'Interview readiness score and feedback', monthly: true, program: true },
+  { label: 'Recorded courses and LMS', monthly: false, program: true },
+  { label: 'Two live classes a day (1.5 hours each)', monthly: false, program: true },
+  { label: 'Daily trainer mentoring', monthly: false, program: true },
+  { label: 'Daily PM calls', monthly: false, program: true },
+  { label: 'Weekly online tests', monthly: false, program: true },
+  { label: 'Weekly mock interviews', monthly: 'Initial review', program: true },
+  { label: 'Company simulation drives', monthly: false, program: true },
+  { label: 'Company exposure target', monthly: false, program: '1 to 2 a month' },
+  { label: 'Internship (1 to 2 months)', monthly: false, program: 'Subject to eligibility' },
+  { label: 'Company referral support', monthly: 'After clearing the review', program: 'After basic requirements and review' },
+]
+
+export const PLANS = [
+  { id: 'monthly', key: 'monthly', name: 'Monthly Career Support', price: '₹499', per: '/ month',
+    who: 'Already have the skills? Get evaluated and enter the referral pipeline if you are ready.', form: FORM_LINKS.monthly },
+  { id: 'program', key: 'program', name: 'Career Development Program', price: '₹30,000', per: '',
+    who: 'Structured live training, daily mentoring, weekly evaluation and career support.', form: FORM_LINKS.program, best: true },
+]

@@ -1,4 +1,4 @@
-import { useCallback, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import { Link, Navigate, useLocation, useNavigate, useSearchParams } from 'react-router-dom'
 import Logo, { Wordmark } from '../components/Logo.jsx'
 import { useToast } from '../context/ToastContext.jsx'
@@ -6,14 +6,16 @@ import ThemeToggle from '../components/ThemeToggle.jsx'
 import Icon from '../components/Icon.jsx'
 import Turnstile from '../components/Turnstile.jsx'
 import { useAuth } from '../context/AuthContext.jsx'
+import { lastPath, rememberDest } from '../lib/afterLogin.js'
 import { turnstileSiteKey } from '../lib/supabase.js'
 
 export default function Login() {
   const { user, loading, signIn, signUp, signInGoogle, demo } = useAuth()
   const navigate = useNavigate()
   const location = useLocation()
-  const dest = location.state?.from?.pathname || '/'
+  const dest = location.state?.from?.pathname || lastPath()
 
+  useEffect(() => { rememberDest(null) }, []) // drop a stale OAuth destination from an abandoned attempt
   const [params] = useSearchParams()
   const [mode, setMode] = useState(params.get('mode') === 'signup' ? 'signup' : 'login') // login | signup
   const [form, setForm] = useState({ name: '', email: '', password: '' })
@@ -134,7 +136,7 @@ export default function Login() {
 
           <div className="divider"><span>or</span></div>
 
-          <button className="btn btn--outline btn--block" type="button" onClick={() => signInGoogle().catch((e) => setError(e.message))}>
+          <button className="btn btn--outline btn--block" type="button" onClick={() => { rememberDest(dest); signInGoogle().catch((e) => setError(e.message)) }}>
             <GoogleIcon /> Continue with Google
           </button>
 

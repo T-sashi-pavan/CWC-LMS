@@ -9,6 +9,7 @@ import { progress } from '../lib/progress.js'
 import { OPEN_MIC } from '../data/homeContent.js'
 import { STUDENTS, TRACK_LABEL, cld, poster } from '../data/students.js'
 import photos from '../data/meetups.json'
+import OfflineCarousel from '../components/OfflineCarousel.jsx'
 
 // longest recording first: it becomes the featured one
 const RECORDINGS = STUDENTS.filter((s) => s.meetupVideo).sort((a, b) => (b.meetupSeconds || 0) - (a.meetupSeconds || 0))
@@ -78,6 +79,11 @@ export default function OpenMic() {
         A friendly stage to practise speaking, share ideas and meet people on the same path.
       </PageHead>
 
+      <section className="section section--room">
+        <SectionHead eyebrow="Offline meets" title="In the room" sub="Moments from our offline sessions and workshops." />
+        <OfflineCarousel photos={photos} onOpen={setShot} />
+      </section>
+
       <section className="section">
         <SectionHead eyebrow="Online meets" title="Watch recent meets" sub="Recordings from our online sessions: students presenting, explaining and answering questions.">
           <span className="chip">Recordings</span>
@@ -123,8 +129,10 @@ export default function OpenMic() {
 
       <Meets title="Join an online meet" note="Join from anywhere." kind="Online" items={OPEN_MIC.online} />
 
+      <Meets title="Meet in person" note="Meet your mentors in person." kind="Offline" items={OPEN_MIC.offline} />
+
       <section className="section">
-        <SectionHead eyebrow="Offline meets" title="In the room" sub="Moments from our offline sessions and workshops." />
+        <SectionHead eyebrow="Offline meets" title="More moments" sub="Tap a photo to see it full size." />
         <div className="gallery">
           {photos.map((p, i) => (
             <button key={p.n} className="gallery__item" onClick={() => setShot(i)} aria-label={`Open photo ${i + 1}`}>
@@ -133,7 +141,6 @@ export default function OpenMic() {
           ))}
         </div>
       </section>
-      <Meets title="Meet in person" note="Meet your mentors in person." kind="Offline" items={OPEN_MIC.offline} />
 
       <MediaModal item={recItem} onClose={() => setRec(null)} onPrev={RECORDINGS.length > 1 ? () => stepRec(-1) : undefined} onNext={RECORDINGS.length > 1 ? () => stepRec(1) : undefined} />
       <MediaModal item={lightbox} onClose={() => setShot(null)} onPrev={() => stepShot(-1)} onNext={() => stepShot(1)} />

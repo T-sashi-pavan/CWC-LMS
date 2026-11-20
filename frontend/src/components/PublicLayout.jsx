@@ -2,7 +2,7 @@ import { Link, NavLink } from 'react-router-dom'
 import Logo, { Wordmark } from './Logo.jsx'
 import ThemeToggle from './ThemeToggle.jsx'
 import Footer from './Footer.jsx'
-import NavDropdown from './NavDropdown.jsx'
+import NavDropdown, { COURSES_HUB } from './NavDropdown.jsx'
 import useReveal from './useReveal.js'
 import { useAuth } from '../context/AuthContext.jsx'
 import AppLayout from './AppLayout.jsx'
@@ -10,8 +10,7 @@ import AppLayout from './AppLayout.jsx'
 const NAV = [
   { to: '/', label: 'Home', end: true },
   { dropdown: true },
-  { to: '/course-tracks', label: 'Courses' },
-  { to: '/interview-simulator', label: 'Interview Simulator' },
+  { dropdown: 'hub' },
   { to: '/jobs', label: 'Jobs' },
   { to: '/testimonials', label: 'Testimonials' },
   { to: '/about', label: 'About us' },
@@ -29,7 +28,11 @@ export function PublicLayout({ children }) {
             <Wordmark />
           </Link>
           <nav className="tabs land__nav" aria-label="Main">
-            {NAV.map((t) => (t.dropdown ? <NavDropdown key="free" /> : (
+            {NAV.map((t) => (t.dropdown ? (
+              t.dropdown === 'hub'
+                ? <NavDropdown key="hub" label="Courses Hub" items={COURSES_HUB} />
+                : <NavDropdown key="free" />
+            ) : (
               <NavLink key={t.to} to={t.to} end={t.end} className={({ isActive }) => `tab ${isActive ? 'is-active' : ''}`}>
                 {t.label}
               </NavLink>
