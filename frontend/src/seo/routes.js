@@ -141,3 +141,14 @@ export const jsonLd = () => ({
     },
   ],
 })
+
+const clip = (t, n) => (t.length <= n ? t : `${t.slice(0, n - 1).replace(/\s+\S*$/, '')}…`)
+
+// Title and description for one roadmap, from the public roadmap list.
+export const roadmapMeta = (r) => ({
+  title: `${r.title} Roadmap | Career with Chaitanya`,
+  description: clip(`${r.title} roadmap by Career with Chaitanya. ${(r.summary || '').trim()}`, 158),
+  h1: `${r.title} roadmap`,
+  text: (r.summary || '').trim(),
+  priority: '0.8',
+})

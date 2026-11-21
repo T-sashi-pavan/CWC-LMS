@@ -1,10 +1,12 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Link, useParams } from 'react-router-dom'
 import { useApi } from '../lib/useApi.js'
 import { Async, SectionHead } from '../components/ui.jsx'
 import Icon from '../components/Icon.jsx'
 import Protected from '../components/Protected.jsx'
 import { catIcon, catLabel, loginLink } from '../components/RoadmapCard.jsx'
+import { applyMeta } from '../components/Seo.jsx'
+import { roadmapMeta } from '../seo/routes.js'
 
 const pct = (s) => Number((/(\d+)\s*%/.exec(s) || [])[1])
 
@@ -227,6 +229,15 @@ function Lock({ r }) {
   )
 }
 
+// Gives this roadmap its own title and description for search engines and link previews.
+function RoadmapSeo({ r }) {
+  useEffect(() => {
+    const m = roadmapMeta(r)
+    applyMeta({ title: m.title, description: m.description, path: `/roadmaps/${r.slug}` })
+  }, [r])
+  return null
+}
+
 export default function RoadmapDetail() {
   const { slug } = useParams()
   const state = useApi(`/roadmaps/${slug}/`)
@@ -237,6 +248,7 @@ export default function RoadmapDetail() {
         const full = r.access === 'full'
         return (
           <Protected className="rdetail">
+            <RoadmapSeo r={r} />
             <Hero r={r} c={c} />
             {c && <Overview c={c} />}
             {c?.phases?.length > 0 && <Phases phases={c.phases} full={full} />}

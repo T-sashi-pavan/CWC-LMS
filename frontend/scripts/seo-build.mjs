@@ -4,7 +4,7 @@
 // status for inner pages). Search engines and link previews now get the right tags and a 200 response up front.
 import { existsSync, mkdirSync, readFileSync, writeFileSync } from 'node:fs'
 import { dirname, join } from 'node:path'
-import { PAGES, SITE, jsonLd } from '../src/seo/routes.js'
+import { PAGES, SITE, jsonLd, roadmapMeta } from '../src/seo/routes.js'
 
 const DIST = 'dist'
 const src = join(DIST, 'index.html')
@@ -44,10 +44,29 @@ function head(path, p) {
 }
 
 const noscript = (p) =>
-  `<noscript><main><h1>${esc(p.h1)}</h1><p>${esc(p.text)}</p><p>${esc(p.description)}</p><nav>${links}</nav></main></noscript>`
+  `<noscript><main><h1>${esc(p.h1)}</h1><p>${esc(p.text)}</p><p>${esc(p.description)}</p>${p.extra || ''}<nav>${links}</nav></main></noscript>`
+
+// One page per roadmap, from the public list endpoint. Only the title, summary and phase titles are used:
+// the full roadmap stays behind the members-only API. If the API cannot be reached the build still succeeds.
+const API = (process.env.VITE_API_URL || 'https://cwc-lms.vercel.app/api').replace(/\/$/, '')
+const ALL = { ...PAGES }
+try {
+  const res = await fetch(`${API}/roadmaps/`, { signal: AbortSignal.timeout(20000) })
+  if (!res.ok) throw new Error(`HTTP ${res.status}`)
+  const list = await res.json()
+  for (const r of Array.isArray(list) ? list : []) {
+    if (!r.slug || !r.title) continue
+    const m = roadmapMeta(r)
+    const phases = (r.steps || []).map((s) => s.title).filter(Boolean)
+    ALL[`/roadmaps/${r.slug}`] = { ...m, extra: phases.length ? `<ul>${phases.map((t) => `<li>${esc(t)}</li>`).join('')}</ul>` : '' }
+  }
+  console.log(`seo-build: ${Object.keys(ALL).length - Object.keys(PAGES).length} roadmap pages from ${API}`)
+} catch (e) {
+  console.log(`seo-build: roadmap list not fetched (${e.message}); roadmap pages skipped`)
+}
 
 let count = 0
-for (const [path, p] of Object.entries(PAGES)) {
+for (const [path, p] of Object.entries(ALL)) {
   let html = template.slice(0, a) + head(path, p) + template.slice(b + END.length)
   html = html.replace('<div id="root"></div>', `<div id="root"></div>\n    ${noscript(p)}`)
   const out = path === '/' ? src : join(DIST, path, 'index.html')
@@ -57,7 +76,7 @@ for (const [path, p] of Object.entries(PAGES)) {
 }
 
 const today = new Date().toISOString().slice(0, 10)
-const urls = Object.entries(PAGES).filter(([, p]) => p.index !== false)
+const urls = Object.entries(ALL).filter(([, p]) => p.index !== false)
   .map(([path, p]) => `  <url><loc>${abs(path)}</loc><lastmod>${today}</lastmod><priority>${p.priority || '0.5'}</priority></url>`).join('\n')
 writeFileSync(join(DIST, 'sitemap.xml'), `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${urls}\n</urlset>\n`)
 console.log(`seo-build: wrote ${count} pages and sitemap.xml`)
