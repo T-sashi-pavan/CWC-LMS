@@ -14,54 +14,53 @@ export const SITE = {
   ],
 }
 
-const BRAND = 'CWC Ecosystem | Career with Chaitanya'
-
 // `index: false` keeps a page out of search results and the sitemap.
+// Lengths follow Bing's checks: titles up to about 65 characters, descriptions 110 to 155.
 export const PAGES = {
   '/': {
-    title: `${BRAND} – Courses, Roadmaps & Mock Interviews`,
-    description: 'CWC Ecosystem by Career with Chaitanya: free video courses, role roadmaps, mock interviews, open mic meets and fresh job openings to help you land your first offer letter.',
+    title: 'CWC Ecosystem | Career with Chaitanya – Courses & Jobs',
+    description: 'CWC Ecosystem by Career with Chaitanya: free video courses, role roadmaps, mock interviews, open mic meets and fresh job openings for freshers.',
     h1: 'CWC Ecosystem – Career with Chaitanya',
     text: 'Learn, practise and get hired. Video courses, role roadmaps, mock interviews and a friendly open mic, guided by Chaitanya.',
     priority: '1.0',
   },
   '/roadmaps': {
-    title: 'Career Roadmaps for Freshers & Experienced | Career with Chaitanya',
-    description: 'Step-by-step career roadmaps from Career with Chaitanya: know exactly what to learn, in what order, for fresher and experienced software and data roles.',
+    title: 'Career Roadmaps for Freshers | Career with Chaitanya',
+    description: 'Step-by-step career roadmaps from Career with Chaitanya: know what to learn and in what order for fresher and experienced software and data roles.',
     h1: 'Career roadmaps',
     text: 'Step-by-step plans for fresher and experienced roles.',
     priority: '0.9',
   },
   '/courses': {
-    title: 'Free Course Videos in Telugu & English | Career with Chaitanya',
+    title: 'Free Course Videos | Career with Chaitanya',
     description: 'Free video playlists from Career with Chaitanya in Telugu and English: DSA, Python, MERN stack and Java for placements and projects.',
     h1: 'Free course videos',
     text: 'Free video playlists in Telugu and English: DSA, Python, MERN and Java.',
     priority: '0.8',
   },
   '/course-tracks': {
-    title: 'Courses Hub – Freshers & Experienced Tracks | Career with Chaitanya',
-    description: 'Career with Chaitanya Courses Hub: job-ready courses for freshers, with an experienced track coming soon. Pick your level and start.',
+    title: 'Courses Hub: Fresher Courses | Career with Chaitanya',
+    description: 'Career with Chaitanya Courses Hub: job-ready courses for freshers, with an experienced track coming soon. Pick your level and get started.',
     h1: 'Courses Hub',
     text: 'Choose your level: Freshers or Experienced.',
     priority: '0.9',
   },
   '/course-tracks/freshers': {
-    title: 'Fresher Courses: Data Science, AI/ML, Full Stack | Career with Chaitanya',
-    description: 'Job-focused fresher courses by Career with Chaitanya: Data Science, Data Analysis, AI & ML, Python Full Stack and Java Full Stack, with mentoring and mock interviews.',
+    title: 'Fresher Courses: Data Science, AI/ML | Career with Chaitanya',
+    description: 'Job-focused fresher courses: Data Science, Data Analysis, AI & ML, Python and Java Full Stack, with mentoring and mock interviews. Career with Chaitanya.',
     h1: 'Courses for freshers',
     text: 'Data Science, Data Analysis, AI & ML, Python Full Stack and Java Full Stack.',
     priority: '0.9',
   },
   '/interview-simulator': {
-    title: 'Interview Simulator – Mock Interview Rounds | Career with Chaitanya',
-    description: 'Practise the full hiring process in five rounds with the Career with Chaitanya Interview Simulator: aptitude, reasoning, technical, HR and a one-to-one review.',
+    title: 'Interview Simulator | Career with Chaitanya',
+    description: 'Practise the full hiring process in five rounds with the Career with Chaitanya Interview Simulator: aptitude, reasoning, technical, HR and a 1-to-1 review.',
     h1: 'Interview Simulator',
     text: 'Five realistic rounds, from aptitude to a one-to-one review.',
     priority: '0.9',
   },
   '/crack-company': {
-    title: 'Crack the Company – How Top Companies Hire | Career with Chaitanya',
+    title: 'Crack the Company Interview Guides | Career with Chaitanya',
     description: 'Round-by-round guides to how top companies such as TCS, Infosys, Amazon, Microsoft and Google hire, and how to prepare. By Career with Chaitanya.',
     h1: 'Crack the Company',
     text: 'How each company hires, round by round, and how to prepare.',
@@ -75,15 +74,15 @@ export const PAGES = {
     priority: '0.8',
   },
   '/open-mic': {
-    title: 'CWC Open Mic – Online & Offline Meets | Career with Chaitanya',
-    description: 'Join the CWC Open Mic: online and offline meets to practise speaking, share ideas and meet people on the same path. Photos and recordings from past sessions.',
+    title: 'CWC Open Mic: Online & Offline Meets | Career with Chaitanya',
+    description: 'Join the CWC Open Mic: online and offline meets to practise speaking, share ideas and meet people on the same path. See photos and recordings.',
     h1: 'CWC Open Mic',
     text: 'A friendly stage to practise speaking, share ideas and meet people on the same path.',
     priority: '0.7',
   },
   '/testimonials': {
-    title: 'Student Success Stories & Testimonials | Career with Chaitanya',
-    description: 'Hear from students who followed the Career with Chaitanya plan and landed their first offer letter.',
+    title: 'Student Success Stories | Career with Chaitanya',
+    description: 'Hear from students who followed the Career with Chaitanya plan and landed their first offer letter. Real stories, honest advice and the steps that worked.',
     h1: 'Student stories',
     text: 'Stories from students who followed the plan.',
     priority: '0.7',

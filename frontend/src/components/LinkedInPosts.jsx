@@ -18,7 +18,7 @@ const studentFor = (name) => {
 function Avatar({ name, size = 40 }) {
   const s = studentFor(name)
   return s?.photo
-    ? <img className="lw-av" src={s.photo} alt="" width={size} height={size} loading="lazy" style={{ width: size, height: size }} />
+    ? <img className="lw-av" src={s.photo} alt={s.name} width={size} height={size} loading="lazy" style={{ width: size, height: size }} />
     : <span className="lw-av lw-av--init" style={{ width: size, height: size }} aria-hidden="true">{name.trim()[0] || 'in'}</span>
 }
 

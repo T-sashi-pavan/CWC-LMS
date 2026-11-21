@@ -79,7 +79,7 @@ export default function MediaModal({ item, onClose, onPrev, onNext }) {
                     <i style={{ width: `${t.dur ? (t.now / t.dur) * 100 : 0}%` }} />
                   </div>
                   <div className="mv__who">
-                    {item.avatar && <img src={item.avatar} alt="" width="36" height="36" />}
+                    {item.avatar && <img src={item.avatar} alt="Presenter" width="36" height="36" />}
                     <span><strong>{item.title}</strong>{item.eyebrow && <small>{item.eyebrow}</small>}</span>
                   </div>
                 </div>
@@ -112,7 +112,7 @@ export default function MediaModal({ item, onClose, onPrev, onNext }) {
               <span className="mv__count">{item.counter}</span>
               {item.thumbs.map((th) => (
                 <button key={th.src} role="tab" aria-selected={th.on} className={th.on ? 'is-on' : ''} onClick={th.onClick} aria-label={th.label}>
-                  <img src={th.src} alt="" loading="lazy" />
+                  <img src={th.src} alt={th.label || 'Photo thumbnail'} loading="lazy" />
                 </button>
               ))}
             </div>
@@ -123,7 +123,7 @@ export default function MediaModal({ item, onClose, onPrev, onNext }) {
           <aside className="mv__side">
             {item.counter && !item.thumbs && <span className="mv__count">{item.counter}</span>}
             <div className="mv__head">
-              {item.avatar && <img src={item.avatar} alt="" width="54" height="54" />}
+              {item.avatar && <img src={item.avatar} alt="Presenter" width="54" height="54" />}
               <div>
                 {item.eyebrow && <span className="eyebrow">{item.eyebrow}</span>}
                 <h3>{item.title}</h3>
@@ -145,7 +145,7 @@ export default function MediaModal({ item, onClose, onPrev, onNext }) {
                 <div>
                   {item.rail.map((r) => (
                     <button key={r.key} className={`mv__rcard ${r.wide ? 'mv__rcard--wide' : ''}`} onClick={r.onClick} aria-label={`Watch ${r.title}`}>
-                      <img src={r.poster} alt="" loading="lazy" />
+                      <img src={r.poster} alt={r.title || 'Related video'} loading="lazy" />
                       <span>{r.title}</span>
                     </button>
                   ))}

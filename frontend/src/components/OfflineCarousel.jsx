@@ -27,7 +27,7 @@ export default function OfflineCarousel({ photos, onOpen }) {
       <div className="ocar__stage">
         {slides.map((p, k) => (
           <button key={p.n} className={`ocar__slide ${k === i ? 'is-on' : ''}`} onClick={() => onOpen(p.idx)} aria-hidden={k !== i} tabIndex={k === i ? 0 : -1} aria-label={`Open offline meet photo ${k + 1}`}>
-            <img className="ocar__img" src={`/meetups/m${pad(p.n)}.webp`} alt="" loading={k === 0 ? 'eager' : 'lazy'} />
+            <img className="ocar__img" src={`/meetups/m${pad(p.n)}.webp`} alt={`Career with Chaitanya offline meet, photo ${k + 1}`} loading={k === 0 ? 'eager' : 'lazy'} />
           </button>
         ))}
         <span className="ocar__tag"><i /> Offline meet</span>

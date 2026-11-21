@@ -38,7 +38,7 @@ const ART = [
     <span className="art art--crack">
       <span className="art__card"><Icon name="briefcase" size={54} /></span>
       <span className="logos4" aria-hidden="true">
-        {['google', 'amazon', 'microsoft', 'tcs'].map((id) => <i key={id}><img src={`/logos/${id}.svg`} alt="" loading="lazy" /></i>)}
+        {['google', 'amazon', 'microsoft', 'tcs'].map((id) => <i key={id}><img src={`/logos/${id}.svg`} alt={`${id} logo`} loading="lazy" /></i>)}
       </span>
     </span>
   ),

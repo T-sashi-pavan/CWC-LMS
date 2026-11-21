@@ -40,7 +40,7 @@ export default function HiredStudents() {
 
         <Link to="/testimonials" className="hmore">
           <span className="hmore__mosaic" aria-hidden="true">
-            {faces.map((s) => <img key={s.id} src={s.photo} alt="" loading="lazy" />)}
+            {faces.map((s) => <img key={s.id} src={s.photo} alt={s.name} loading="lazy" />)}
           </span>
           <span className="hmore__body">
             <span className="eyebrow eyebrow--light">Our community</span>

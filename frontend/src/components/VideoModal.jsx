@@ -7,7 +7,7 @@ export function Thumb({ yt, ...rest }) {
   return (
     <img
       src={thumb(yt)}
-      alt=""
+      alt="Video thumbnail"
       onError={(e) => { e.currentTarget.onerror = null; e.currentTarget.src = `https://i.ytimg.com/vi/${yt}/hqdefault.jpg` }}
       {...rest}
     />

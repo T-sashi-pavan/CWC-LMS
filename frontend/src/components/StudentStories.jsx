@@ -10,7 +10,7 @@ const showText = (s) => SHOW_SAMPLE_STORIES || !s.placeholder
 
 function Avatar({ s, size = 40 }) {
   return s.photo
-    ? <img className="sv-av" src={s.photo} alt="" width={size} height={size} loading="lazy" />
+    ? <img className="sv-av" src={s.photo} alt={s.name} width={size} height={size} loading="lazy" />
     : <span className="sv-av sv-av--init" style={{ width: size, height: size }} aria-hidden="true">{s.name.trim()[0]}</span>
 }
 
@@ -54,7 +54,7 @@ export function StoryCard({ s, onOpen, small = false }) {
   return (
     <button className={`story ${small ? 'story--sm' : ''} ${s.landscape ? 'story--wide' : ''}`} onClick={() => onOpen(s)} aria-label={`Watch ${s.name}'s story`}>
       <span className="story__media">
-        <img src={poster(vid, s.landscape ? 640 : 360)} alt="" loading="lazy" />
+        <img src={poster(vid, s.landscape ? 640 : 360)} alt={`${s.name}'s story`} loading="lazy" />
         <span className="story__shade" />
         <span className="story__play"><PlayIcon size={small ? 36 : 44} /></span>
         <span className="story__who">

@@ -64,7 +64,7 @@ export default function CourseVideos({ track = false, gated = false }) {
             const done = (p.watched[c.id] || []).length
             return (
               <button key={c.id} role="tab" aria-selected={on} className={`cnav__tab ${on ? 'is-on' : ''}`} onClick={() => { go(c.id, 0); setPlaying(false) }}>
-                <span className="cnav__thumb">{c.members && !c.videos[0].poster ? <span className="cnav__mem"><Icon name="sparkle" size={20} /></span> : <img src={c.videos[0].poster || ytThumb(c.videos[0].id)} alt="" loading="lazy" width="96" height="54" />}</span>
+                <span className="cnav__thumb">{c.members && !c.videos[0].poster ? <span className="cnav__mem"><Icon name="sparkle" size={20} /></span> : <img src={c.videos[0].poster || ytThumb(c.videos[0].id)} alt={`${c.label} course preview`} loading="lazy" width="96" height="54" />}</span>
                 <span className="cnav__txt">
                   <strong>{c.label}</strong>
                   <small>{track ? `${c.members ? 'Members only' : `${done} watched`}` : 'Playlist'}{c.lang ? ` · ${c.lang}` : ''}</small>
@@ -98,7 +98,7 @@ export default function CourseVideos({ track = false, gated = false }) {
               <video className="cv__file" src={cur.src} poster={cur.poster || undefined} controls autoPlay playsInline controlsList="nodownload" onContextMenu={(e) => e.preventDefault()} />
             ) : (
               <button className="vc__poster" onClick={() => play(course.id, idx)} aria-label={`Play: ${cur.title}`}>
-                {cur.poster && <img className="cv__poster-img" src={cur.poster} alt="" />}
+                {cur.poster && <img className="cv__poster-img" src={cur.poster} alt={cur.title || 'Course video'} />}
                 <span className="vc__shade" />
                 <PlayIcon size={64} />
               </button>
@@ -129,7 +129,7 @@ export default function CourseVideos({ track = false, gated = false }) {
                     <button className={`cvl__item ${on ? 'is-on' : ''}`} onClick={() => play(course.id, k)} aria-current={on}>
                       <span className="cvl__no">{on ? <i className="eqbars"><b /><b /><b /></i> : k + 1}</span>
                       <span className="cvl__thumb">
-                        {x.poster || !course.members ? <img src={x.poster || ytThumb(x.id)} alt="" loading="lazy" width="320" height="180" /> : <span className="cvl__nothumb"><Icon name="sparkle" size={20} /></span>}
+                        {x.poster || !course.members ? <img src={x.poster || ytThumb(x.id)} alt={x.title || 'Course video'} loading="lazy" width="320" height="180" /> : <span className="cvl__nothumb"><Icon name="sparkle" size={20} /></span>}
                         {x.seconds ? <span className="cvl__dur">{fmt(x.seconds)}</span> : null}
                         {watched.has(k) && <span className="cv__done" aria-label="Watched">✓</span>}
                       </span>

@@ -68,7 +68,10 @@ try {
 let count = 0
 for (const [path, p] of Object.entries(ALL)) {
   let html = template.slice(0, a) + head(path, p) + template.slice(b + END.length)
-  html = html.replace('<div id="root"></div>', `<div id="root"></div>\n    ${noscript(p)}`)
+  // A real <h1> in the raw HTML (visually hidden; React replaces it when the app starts) so crawlers that read
+  // the HTML without running JavaScript still find the page heading. The <noscript> block adds text and links.
+  const h1 = `<h1 style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap">${esc(p.h1)}</h1>`
+  html = html.replace('<div id="root"></div>', `<div id="root">${h1}</div>\n    ${noscript(p)}`)
   const out = path === '/' ? src : join(DIST, path, 'index.html')
   mkdirSync(dirname(out), { recursive: true })
   writeFileSync(out, html)

@@ -18,7 +18,7 @@ const pad = (n) => String(n).padStart(2, '0')
 
 function Host({ s, size = 40 }) {
   return s.photo
-    ? <img className="sv-av" src={s.photo} alt="" width={size} height={size} loading="lazy" />
+    ? <img className="sv-av" src={s.photo} alt={s.name} width={size} height={size} loading="lazy" />
     : <span className="sv-av sv-av--init" style={{ width: size, height: size }}>{s.name[0]}</span>
 }
 
@@ -91,7 +91,7 @@ export default function OpenMic() {
         <div className="meetx">
           <button className="mfeat" onClick={() => setRec(0)} aria-label={`Play meetup: ${feat.name}`}>
             <span className="mfeat__img">
-              <img src={poster(feat.meetupVideo, 960)} alt="" loading="lazy" />
+              <img src={poster(feat.meetupVideo, 960)} alt={`Online meet by ${feat.name}`} loading="lazy" />
               <span className="mfeat__shade" />
               <span className="mtag"><i /> Featured · Online meet</span>
               {feat.meetupSeconds && <span className="mdur">{mmss(feat.meetupSeconds)}</span>}
@@ -111,7 +111,7 @@ export default function OpenMic() {
             {rest.map((s, i) => (
               <button key={s.id} className="mrow" onClick={() => setRec(i + 1)} aria-label={`Play meetup: ${s.name}`}>
                 <span className="mrow__img">
-                  <img src={poster(s.meetupVideo, 360)} alt="" loading="lazy" />
+                  <img src={poster(s.meetupVideo, 360)} alt={`Online meet by ${s.name}`} loading="lazy" />
                   <PlayIcon size={36} />
                   {s.meetupSeconds && <span className="mdur">{mmss(s.meetupSeconds)}</span>}
                 </span>
@@ -136,7 +136,7 @@ export default function OpenMic() {
         <div className="gallery">
           {photos.map((p, i) => (
             <button key={p.n} className="gallery__item" onClick={() => setShot(i)} aria-label={`Open photo ${i + 1}`}>
-              <img src={`/meetups/m${pad(p.n)}-sm.webp`} alt="" loading="lazy" width={480} height={Math.round((480 * p.h) / p.w)} />
+              <img src={`/meetups/m${pad(p.n)}-sm.webp`} alt={`Offline meet photo ${i + 1}`} loading="lazy" width={480} height={Math.round((480 * p.h) / p.w)} />
             </button>
           ))}
         </div>
