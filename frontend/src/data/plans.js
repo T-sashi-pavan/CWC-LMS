@@ -40,8 +40,8 @@ export const PLAN_ROWS = [
 ]
 
 export const PLANS = [
-  { id: 'monthly', key: 'monthly', name: 'Monthly Career Support', price: '₹499', per: '/ month',
+  { id: 'monthly', key: 'monthly', name: 'Monthly Career Support', price: 'Evaluation & referral', per: 'track',
     who: 'Already have the skills? Get evaluated and enter the referral pipeline if you are ready.', form: FORM_LINKS.monthly },
-  { id: 'program', key: 'program', name: 'Career Development Program', price: '₹30,000', per: '',
+  { id: 'program', key: 'program', name: 'Career Development Program', price: 'Complete mentoring', per: 'program',
     who: 'Structured live training, daily mentoring, weekly evaluation and career support.', form: FORM_LINKS.program, best: true },
 ]
