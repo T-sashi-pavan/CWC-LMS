@@ -19,6 +19,7 @@ import FresherCourses from './pages/FresherCourses.jsx'
 import CrackCompany from './pages/CrackCompany.jsx'
 import Courses from './pages/Courses.jsx'
 import SiteLayout from './components/PublicLayout.jsx'
+import Seo from './components/Seo.jsx'
 import GreetingPopup from './components/GreetingPopup.jsx'
 import { JobsNudge } from './components/JobsSpotlight.jsx'
 import { useAuth } from './context/AuthContext.jsx'
@@ -49,6 +50,7 @@ export default function App() {
   return (
     <>
     <AfterLogin />
+    <Seo />
     <GreetingPopup />
     <JobsNudge />
     <Routes>

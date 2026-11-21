@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+Disallow: /login
+Disallow: /interviews
+
+Sitemap: https://www.cwcecosystem.com/sitemap.xml

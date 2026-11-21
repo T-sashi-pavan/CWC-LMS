@@ -7,7 +7,7 @@
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
-    "postbuild": "node scripts/spa-fallback.mjs"
+    "postbuild": "node scripts/seo-build.mjs && node scripts/spa-fallback.mjs"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.45.0",
