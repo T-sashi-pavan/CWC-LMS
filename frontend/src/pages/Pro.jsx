@@ -25,8 +25,7 @@ export default function Pro() {
                     {pro && <span className="badge badge--pro">BEST VALUE</span>}
                   </div>
                   <p className="plan__price">
-                    <strong>{p.price === 0 ? '₹0' : `₹${p.price}`}</strong>
-                    <span>{pro ? ' / month' : ' forever'}</span>
+                    <strong>{p.tagline}</strong>
                   </p>
                   <ul className="ticks">
                     {p.features.map((f) => <li key={f}>{f}</li>)}
@@ -34,7 +33,7 @@ export default function Pro() {
                   <button
                     className={`btn btn--block ${pro ? '' : 'btn--outline'}`}
                     disabled={current}
-                    onClick={() => pro && toast('Online payment for Pro (₹499) will be connected in the full build.', { title: 'Subscription coming soon' })}
+                    onClick={() => pro && toast('Online payment for Pro will be connected in the full build.', { title: 'Subscription coming soon' })}
                   >
                     {current ? 'Your current plan' : pro ? 'Upgrade to Pro' : 'Free plan'}
                   </button>

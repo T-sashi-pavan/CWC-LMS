@@ -35,7 +35,7 @@ export function Lock({ children = 'Pro' }) {
   return <span className="lock"><Icon name="lock" size={15} /> {children}</span>
 }
 
-export function UpgradeLink({ children = 'Unlock with Pro · ₹499' }) {
+export function UpgradeLink({ children = 'Unlock with Pro' }) {
   return <span className="chip">Coming soon</span>
 }
 

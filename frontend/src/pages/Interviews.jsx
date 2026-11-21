@@ -11,7 +11,7 @@ const INCLUDED = [
 ]
 
 const STEPS = [
-  { t: 'Register and pay ₹499', d: 'Select your preferred domain and target role.' },
+  { t: 'Register for the program', d: 'Select your preferred domain and target role.' },
   { t: 'Attend your 1-on-1 mock interview', d: 'Take part in a structured, role-specific interview simulation.' },
   { t: 'Receive your evaluation', d: 'Get assessed on your performance and receive actionable feedback.' },
   { t: 'Clear the evaluation', d: 'Candidates who meet the criteria move to the referral consideration stage.' },
@@ -36,8 +36,8 @@ export default function Interviews() {
 
       <section className="mockhero">
         <div>
-          <span className="eyebrow">Program fee</span>
-          <h2>₹499</h2>
+          <span className="eyebrow">Personal mock interview</span>
+          <h2>1-on-1 evaluation</h2>
           <p>
             Prepare for your next opportunity with a personalized, one-on-one mock interview designed around your target role and domain.
             Get a realistic interview experience, a structured evaluation and actionable feedback to close your skill gaps.
@@ -81,12 +81,12 @@ export default function Interviews() {
           A mock interview is more than a practice session. It shows how you perform under interview conditions, gives you focused feedback,
           and helps you work on the gaps that may affect your results. Our goal is to make you more confident, prepared and aligned with relevant job opportunities.
         </p>
-        <p className="mocknote"><strong>Important note:</strong> The ₹499 fee covers the 1-on-1 mock interview and performance evaluation. Company referrals are considered only for candidates who clear the evaluation and are subject to eligibility, role suitability and available openings. Participation does not guarantee a job, interview call or placement.</p>
+        <p className="mocknote"><strong>Important note:</strong> The program covers the 1-on-1 mock interview and performance evaluation. Company referrals are considered only for candidates who clear the evaluation and are subject to eligibility, role suitability and available openings. Participation does not guarantee a job, interview call or placement.</p>
       </section>
 
       <section className="bigcta">
         <h2>Ready to test your interview skills?</h2>
-        <p>Book your 1-on-1 mock interview · Program fee ₹499</p>
+        <p>Book your 1-on-1 mock interview and get a structured evaluation</p>
         <div className="hero__cta"><a className="btn btn--lg" {...form}>Book now</a></div>
       </section>
     </>

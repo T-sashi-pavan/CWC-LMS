@@ -23,9 +23,7 @@ PLANS = [
     {
         "id": "free",
         "name": "Free",
-        "price": 0,
-        "currency": "INR",
-        "period": "forever",
+        "tagline": "Free to start",
         "features": [
             "Free guidance and roadmaps",
             "Free mock interviews",
@@ -37,9 +35,7 @@ PLANS = [
     {
         "id": "pro",
         "name": "Pro",
-        "price": 499,
-        "currency": "INR",
-        "period": "month",
+        "tagline": "Pro membership",
         "features": [
             "Everything in Free",
             "Next-level AI interview",
