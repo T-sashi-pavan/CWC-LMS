@@ -1,14 +1,17 @@
-import { useToast } from '../context/ToastContext.jsx'
+import { Link } from 'react-router-dom'
+import { useAuth } from '../context/AuthContext.jsx'
 import { useApi } from '../lib/useApi.js'
 import { Async, Lock, PageHead, UpgradeLink } from '../components/ui.jsx'
 
 export default function Jobs() {
   const state = useApi('/jobs/')
-  const toast = useToast()
+  const { user, loading } = useAuth()
   return (
     <>
       <PageHead eyebrow="Opportunities" title="Job openings">
-        Free openings for everyone. Pro unlocks the bigger ones.
+        {user
+          ? 'Fresh openings for freshers and early-career candidates. Apply straight from the listing.'
+          : 'Fresh openings for freshers and early-career candidates. Create a free account to apply.'}
       </PageHead>
       <Async state={state}>
         {(list) => (
@@ -26,8 +29,13 @@ export default function Jobs() {
                 </div>
                 {j.locked ? (
                   <div className="locked"><Lock /> <UpgradeLink>Unlock</UpgradeLink></div>
+                ) : loading ? null : !user || j.login_required ? (
+                  // visitors can browse every opening; applying needs a free account (they come back to /jobs after signing up)
+                  <Link className="btn btn--sm" to="/login?mode=signup" state={{ from: { pathname: '/jobs' } }}>Apply</Link>
+                ) : j.apply_url ? (
+                  <a className="btn btn--sm" href={j.apply_url} target="_blank" rel="noopener noreferrer">Apply</a>
                 ) : (
-                  <button className="btn btn--sm" onClick={() => toast('Applying will be available very soon.', { title: j.title })}>Apply</button>
+                  <span className="chip">Apply link coming soon</span>
                 )}
               </article>
             ))}

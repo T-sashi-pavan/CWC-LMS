@@ -1,4 +1,5 @@
 import { useEffect, useMemo, useState } from 'react'
+import { SIMULATOR_FORM } from '../data/plans.js'
 import { Link, useSearchParams } from 'react-router-dom'
 import Icon from '../components/Icon.jsx'
 import { useAuth } from '../context/AuthContext.jsx'
@@ -172,7 +173,7 @@ function Checklist({ c }) {
           </li>
         ))}
       </ul>
-      <Link className="btn btn--sm" to="/interviews">Book a mock interview <Icon name="arrow" size={15} /></Link>
+      <a className="btn btn--sm" href={SIMULATOR_FORM} target="_blank" rel="noopener noreferrer">Book a mock interview <Icon name="arrow" size={15} /></a>
     </div>
   )
 }

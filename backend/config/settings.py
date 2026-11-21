@@ -141,6 +141,11 @@ if not DEBUG:
     CSRF_COOKIE_SECURE = True
     SESSION_COOKIE_SECURE = True
 
+# ---------- Jobs from a published Google Sheet ----------
+# "Publish to web" CSV link of the sheet. Empty = only jobs added in the admin. See apps/content/jobs_sheet.py.
+JOBS_SHEET_URL = os.environ.get("JOBS_SHEET_URL", "").strip()
+JOBS_SHEET_TTL = int(os.environ.get("JOBS_SHEET_TTL", "300") or 300)  # seconds an edit may take to show up
+
 # ---------- CORS / CSRF ----------
 CORS_ALLOWED_ORIGINS = env_list("CORS_ALLOWED_ORIGINS", "http://localhost:5173")
 CSRF_TRUSTED_ORIGINS = env_list("CSRF_TRUSTED_ORIGINS", "http://localhost:5173")

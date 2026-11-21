@@ -1,6 +1,6 @@
 import { PageHead } from '../components/ui.jsx'
 import Icon from '../components/Icon.jsx'
-import { useToast } from '../context/ToastContext.jsx'
+import { SIMULATOR_FORM } from '../data/plans.js'
 
 const INCLUDED = [
   { icon: 'mic', title: 'Personalized 1-on-1 mock interview', text: 'An individual interview built around your target job role, experience level and preparation needs.' },
@@ -26,8 +26,8 @@ const WHO = [
 ]
 
 export default function Interviews() {
-  const toast = useToast()
-  const book = () => toast('Booking opens very soon. We will let you know here.', { title: '1-on-1 mock interview' })
+  // Booking is handled through the registration form (opens in a new tab).
+  const form = { href: SIMULATOR_FORM, target: '_blank', rel: 'noopener noreferrer' }
   return (
     <>
       <PageHead eyebrow="CWC ecosystem" title="1-on-1 mock interview program">
@@ -43,7 +43,7 @@ export default function Interviews() {
             Get a realistic interview experience, a structured evaluation and actionable feedback to close your skill gaps.
           </p>
         </div>
-        <button className="btn btn--lg" onClick={book}>Book your mock interview <Icon name="arrow" size={18} /></button>
+        <a className="btn btn--lg" {...form}>Book your mock interview <Icon name="arrow" size={18} /></a>
       </section>
 
       <section className="section">
@@ -87,7 +87,7 @@ export default function Interviews() {
       <section className="bigcta">
         <h2>Ready to test your interview skills?</h2>
         <p>Book your 1-on-1 mock interview · Program fee ₹499</p>
-        <div className="hero__cta"><button className="btn btn--lg" onClick={book}>Book now</button></div>
+        <div className="hero__cta"><a className="btn btn--lg" {...form}>Book now</a></div>
       </section>
     </>
   )

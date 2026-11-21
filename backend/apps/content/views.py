@@ -10,6 +10,7 @@ from rest_framework.views import APIView
 
 from apps.accounts.views import request_is_pro
 
+from .jobs_sheet import sheet_jobs
 from .models import Interview, Job, Roadmap, Testimonial
 from .serializers import (
     InterviewSerializer,
@@ -130,8 +131,31 @@ class InterviewList(TieredListView):
 
 
 class JobList(TieredListView):
+    """Jobs added in the admin plus jobs from the published Google Sheet (see jobs_sheet.py)."""
+
     queryset = Job.objects.all()
     serializer_class = JobSerializer
+
+    def list(self, request, *args, **kwargs):
+        response = super().list(request, *args, **kwargs)
+        if isinstance(response.data, list):
+            response.data = gate_apply_links(sheet_jobs() + list(response.data), bool(getattr(request.user, "is_authenticated", False)))
+        return response  # sheet jobs first: they are the freshest
+
+
+def gate_apply_links(jobs, authed):
+    """Everyone can see the openings; only logged-in users receive the apply link (visitors are sent to sign up).
+
+    The link is removed here, on the server, so it cannot be read from the page source or the network tab.
+    """
+    out = []
+    for job in jobs:
+        job = dict(job)
+        job["login_required"] = not authed
+        if not authed:
+            job["apply_url"] = ""
+        out.append(job)
+    return out
 
 
 class TestimonialList(ListAPIView):
