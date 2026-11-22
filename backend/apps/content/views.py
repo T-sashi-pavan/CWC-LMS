@@ -149,7 +149,9 @@ def gate_apply_links(jobs, authed):
         job = dict(job)
         job["login_required"] = not authed
         if not authed:
-            job["apply_url"] = ""
+            # every way of applying is removed for visitors: link, HR email and contact note
+            for field in ("apply_url", "apply_email", "apply_note"):
+                job[field] = ""
         out.append(job)
     return out
 
