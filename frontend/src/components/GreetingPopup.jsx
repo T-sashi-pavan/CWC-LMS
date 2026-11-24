@@ -1,15 +1,24 @@
 import { useEffect, useRef, useState } from 'react'
-import { Link } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import Icon from './Icon.jsx'
 import { activeGreeting } from '../data/greetings.js'
 
-const FEATURES = [
-  { to: '/open-mic', icon: 'mic', title: 'Free resources', text: 'Open Mic, roadmaps and course videos' },
-  { to: '/jobs', icon: 'briefcase', title: 'Jobs', text: 'Fresh openings for freshers and experienced' },
-  { to: '/crack-company', icon: 'sparkle', title: 'Crack the Company', text: 'Round by round prep for top companies' },
-  { to: '/interview-simulator', icon: 'bot', title: 'Interview Simulator', text: 'Practise real interview rounds' },
-  { to: '/roadmaps', icon: 'route', title: 'Roadmaps', text: 'A clear path for the role you want' },
-  { to: '/testimonials', icon: 'star', title: 'Success stories', text: 'Students who got hired' },
+const PERSONAS = [
+  {
+    id: 'freshers',
+    to: '/course-tracks/freshers',
+    icon: 'sparkle',
+    title: 'I am a Fresher',
+    text: 'Student, recent graduate, or looking for my first tech offer.',
+  },
+  {
+    id: 'experienced',
+    to: '/course-tracks/experienced',
+    icon: 'route',
+    title: 'I am Experienced',
+    text: 'Working professional looking to upskill or shift domains.',
+    badge: 'Coming soon',
+  },
 ]
 
 const seenKey = (id) => `cwc_greeting_seen_${id}`
@@ -24,6 +33,13 @@ export default function GreetingPopup() {
   })
   const [open, setOpen] = useState(false)
   const closeBtn = useRef(null)
+  const navigate = useNavigate()
+
+  const pickPersona = (p) => {
+    try { localStorage.setItem('cwc_track', p.id) } catch { /* ignore */ }
+    close()
+    navigate(p.to)
+  }
 
   // preload the image, then show: the pop-up never appears as an empty box
   useEffect(() => {
@@ -64,20 +80,23 @@ export default function GreetingPopup() {
             <h2 className="welc__title">CWC Ecosystem</h2>
             <p className="welc__alias">Career with Chaitanya</p>
           </header>
-          <p className="welc__sub">Everything you need for your first offer, in one place.</p>
-          <ul className="welc__grid">
-            {FEATURES.map((f, i) => (
-              <li key={f.to} style={{ '--i': i }}>
-                <Link to={f.to} onClick={close} className="welc__item">
-                  <span className="welc__ic"><Icon name={f.icon} size={20} /></span>
-                  <span><strong>{f.title}</strong><small>{f.text}</small></span>
-                </Link>
-              </li>
+          <p className="welc__sub">Tell us where you are in your career so we can show the right track.</p>
+          <div className="persona-grid">
+            {PERSONAS.map((p) => (
+              <button key={p.id} type="button" onClick={() => pickPersona(p)} className="persona-card">
+                <div className="persona-card__head">
+                  <span className="welc__ic"><Icon name={p.icon} size={20} /></span>
+                  {p.badge && <span className="persona-card__badge">{p.badge}</span>}
+                </div>
+                <strong>{p.title}</strong>
+                <small>{p.text}</small>
+                <span className="persona-card__go">Explore track <Icon name="arrow" size={14} /></span>
+              </button>
             ))}
-          </ul>
+          </div>
           <footer className="welc__foot">
             <span className="welc__bar" aria-hidden="true"><i /></span>
-            <button className="btn welc__go" onClick={close}>Start exploring <Icon name="arrow" size={16} /></button>
+            <button type="button" className="btn btn--outline welc__go" onClick={close}>Just browsing <Icon name="arrow" size={16} /></button>
           </footer>
         </div>
       </div>

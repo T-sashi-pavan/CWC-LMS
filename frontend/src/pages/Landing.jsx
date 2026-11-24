@@ -49,6 +49,15 @@ export default function Landing() {
             <Link className="btn btn--lg" to={SIGNUP}>Get started free <Icon name="arrow" size={18} /></Link>
             <Link className="btn btn--outline btn--lg" to="/login">I have an account</Link>
           </div>
+          <div className="hero-tracks" aria-label="Choose your track">
+            <span className="hero-tracks__label">Pick your track:</span>
+            <Link className="hero-tracks__pill" to="/course-tracks/freshers">
+              <Icon name="sparkle" size={14} /> Freshers
+            </Link>
+            <Link className="hero-tracks__pill" to="/course-tracks/experienced">
+              <Icon name="route" size={14} /> Experienced <small>Soon</small>
+            </Link>
+          </div>
         </div>
       </section>
 

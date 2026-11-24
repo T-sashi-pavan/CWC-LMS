@@ -16,6 +16,7 @@ import InterviewSimulator from './pages/InterviewSimulator.jsx'
 import RoadmapDetail from './pages/RoadmapDetail.jsx'
 import CourseTracks from './pages/CourseTracks.jsx'
 import FresherCourses from './pages/FresherCourses.jsx'
+import ExperiencedCourses from './pages/ExperiencedCourses.jsx'
 import CrackCompany from './pages/CrackCompany.jsx'
 import Courses from './pages/Courses.jsx'
 import SiteLayout from './components/PublicLayout.jsx'
@@ -64,6 +65,7 @@ export default function App() {
       <Route path="/jobs" element={<SiteLayout><Jobs /></SiteLayout>} />
       <Route path="/course-tracks" element={<SiteLayout><CourseTracks /></SiteLayout>} />
       <Route path="/course-tracks/freshers" element={<SiteLayout><FresherCourses /></SiteLayout>} />
+      <Route path="/course-tracks/experienced" element={<SiteLayout><ExperiencedCourses /></SiteLayout>} />
       <Route path="/open-mic" element={<SiteLayout><OpenMic /></SiteLayout>} />
       <Route path="/interview-simulator" element={<SiteLayout><InterviewSimulator /></SiteLayout>} />
       <Route path="/about" element={<SiteLayout><About /></SiteLayout>} />

@@ -52,6 +52,13 @@ export const PAGES = {
     text: 'Data Science, Data Analysis, AI & ML, Python Full Stack and Java Full Stack.',
     priority: '0.9',
   },
+  '/course-tracks/experienced': {
+    title: 'Experienced Tracks: Domain Shift & Upshift | Career with Chaitanya',
+    description: 'Dedicated tracks for working professionals: Domain Shift and Career Upshift & Senior Prep (Coming Soon) by Career with Chaitanya.',
+    h1: 'Experienced tracks',
+    text: 'Domain Shift and Career Upshift tracks for working professionals.',
+    priority: '0.8',
+  },
   '/interview-simulator': {
     title: 'Interview Simulator | Career with Chaitanya',
     description: 'Practise the full hiring process in five rounds with the Career with Chaitanya Interview Simulator: aptitude, reasoning, technical, HR and a 1-to-1 review.',

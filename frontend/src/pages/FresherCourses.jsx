@@ -23,7 +23,14 @@ export default function FresherCourses() {
 
   return (
     <>
-      <Link to="/course-tracks" className="backlink"><Icon name="back" size={16} /> Courses Hub</Link>
+      <div className="track-switch" role="tablist" aria-label="Course track">
+        <span className="track-switch__btn track-switch__btn--active" role="tab" aria-selected="true">
+          Freshers
+        </span>
+        <Link to="/course-tracks/experienced" className="track-switch__btn" role="tab" aria-selected="false">
+          Experienced <small>Soon</small>
+        </Link>
+      </div>
       <PageHead eyebrow="Freshers" title="Courses for your first role">
         Five job-focused tracks. Each one builds from the basics to projects and interview practice.
       </PageHead>

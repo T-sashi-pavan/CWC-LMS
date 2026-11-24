@@ -470,3 +470,179 @@
 .jmodal__text { margin: 0; font-size: 14px; line-height: 1.65; color: var(--muted); white-space: pre-line; }
 .jmodal__act { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; margin-top: 22px; padding-top: 18px; border-top: 1px solid var(--line); }
 @media (max-width: 560px) { .jmodal { align-items: end; padding: 0; } .jmodal__box { width: 100%; max-height: 90vh; border-radius: 16px 16px 0 0; padding: 22px 18px 20px; } }
+
+/* Track switcher (Freshers | Experienced) */
+.track-switch {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px;
+  border-radius: 999px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  margin-bottom: 18px;
+}
+.track-switch__btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 18px;
+  border-radius: 999px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--muted);
+  text-decoration: none;
+  transition: background 0.2s, color 0.2s;
+}
+.track-switch__btn:hover {
+  color: var(--ink);
+}
+.track-switch__btn--active {
+  background: var(--orange);
+  color: #fff;
+}
+.track-switch__btn small {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  opacity: 0.85;
+  padding: 2px 6px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.14);
+}
+
+/* Experienced 2-block grid */
+.exp-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 20px;
+  margin: 24px 0 32px;
+}
+.exp-card {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  padding: 26px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.exp-card__top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+.exp-card h2 {
+  font-size: 1.25rem;
+  margin: 0;
+  color: var(--ink);
+}
+.exp-card p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.95rem;
+  line-height: 1.55;
+}
+@media (max-width: 720px) {
+  .exp-grid { grid-template-columns: 1fr; }
+}
+
+/* Persona selector in GreetingPopup */
+.persona-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+  margin: 18px 0;
+}
+.persona-card {
+  text-align: left;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  padding: 16px;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  color: var(--ink);
+  transition: border-color 0.2s, transform 0.2s;
+}
+.persona-card:hover {
+  border-color: var(--orange);
+  transform: translateY(-2px);
+}
+.persona-card__head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 4px;
+}
+.persona-card__badge {
+  font-size: 0.68rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  padding: 2px 8px;
+  border-radius: 999px;
+  background: rgba(232, 101, 10, 0.14);
+  color: var(--orange-text);
+}
+.persona-card strong {
+  font-size: 1rem;
+}
+.persona-card small {
+  color: var(--muted);
+  font-size: 0.82rem;
+  line-height: 1.4;
+}
+.persona-card__go {
+  margin-top: auto;
+  padding-top: 8px;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--orange-text);
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+}
+@media (max-width: 560px) {
+  .persona-grid { grid-template-columns: 1fr; }
+}
+
+/* Home page track pills */
+.hero-tracks {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+  margin-top: 16px;
+}
+.hero-tracks__label {
+  font-size: 0.85rem;
+  color: var(--muted);
+  font-weight: 500;
+}
+.hero-tracks__pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 14px;
+  border-radius: 999px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  color: var(--ink);
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: border-color 0.2s, color 0.2s;
+}
+.hero-tracks__pill:hover {
+  border-color: var(--orange);
+  color: var(--orange-text);
+}
+.hero-tracks__pill small {
+  font-size: 0.68rem;
+  text-transform: uppercase;
+  color: var(--orange-text);
+  opacity: 0.9;
+}
