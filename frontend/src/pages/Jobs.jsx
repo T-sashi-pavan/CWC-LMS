@@ -25,6 +25,14 @@ const RECENT = [
   { id: 'r14', label: 'Last 14 days', max: 14 },
 ]
 
+const isMobileBrowser = () => typeof navigator !== 'undefined' && /Mobi|Android|iPhone|iPad|iPod/i.test(navigator.userAgent)
+const mailHref = (email, subject) => {
+  if (isMobileBrowser()) {
+    return `mailto:${email}?subject=${encodeURIComponent(subject)}`
+  }
+  return `https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(email)}&su=${encodeURIComponent(subject)}`
+}
+
 // How a signed-in member can apply; visitors are sent to sign up and come back to /jobs.
 function Apply({ j, user, loading }) {
   if (j.locked) return <div className="locked"><Lock /> <UpgradeLink>Unlock</UpgradeLink></div>
@@ -32,12 +40,22 @@ function Apply({ j, user, loading }) {
   if (!user || j.login_required) {
     return <Link className="btn btn--sm" to="/login?mode=signup" state={{ from: { pathname: '/jobs' } }}>Apply</Link>
   }
-  const mail = j.apply_email && `mailto:${j.apply_email}?subject=${encodeURIComponent(`Application: ${j.title} at ${j.company}`)}`
+  const subject = `Application: ${j.title} at ${j.company}`
+  const mail = j.apply_email && mailHref(j.apply_email, subject)
+  const desktop = !isMobileBrowser()
   if (!j.apply_url && !mail && !j.apply_note) return <span className="chip">Apply link coming soon</span>
   return (
     <>
       {j.apply_url && <a className="btn btn--sm" href={j.apply_url} target="_blank" rel="noopener noreferrer">Apply</a>}
-      {mail && <a className={`btn btn--sm ${j.apply_url ? 'btn--outline' : ''}`} href={mail}>{j.apply_url ? 'Email HR' : 'Apply by email'}</a>}
+      {mail && (
+        <a
+          className={`btn btn--sm ${j.apply_url ? 'btn--outline' : ''}`}
+          href={mail}
+          {...(desktop ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
+        >
+          {j.apply_url ? 'Email HR' : 'Apply by email'}
+        </a>
+      )}
       {j.apply_note && <span className="chip" title="HR contact">HR: {j.apply_note}</span>}
     </>
   )
@@ -65,6 +83,9 @@ function JobModal({ j, user, loading, onClose }) {
           {j.location && <div><dt>Location</dt><dd>{j.location}</dd></div>}
           {j.salary && <div><dt>Salary</dt><dd>{j.salary}</dd></div>}
           {j.posted_at && <div><dt>Posted</dt><dd>{fmt(j.posted_at, true)}</dd></div>}
+          {user && !j.locked && j.apply_email && (
+            <div><dt>Apply email</dt><dd>{j.apply_email}</dd></div>
+          )}
         </dl>
         {skills.length > 0 && (
           <section>

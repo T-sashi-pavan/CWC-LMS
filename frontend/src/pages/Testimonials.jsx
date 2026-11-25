@@ -15,7 +15,7 @@ export default function Testimonials() {
       </PageHead>
 
       <StudentStories title="Watch their stories" />
-      <HiredStudents />
+      <HiredStudents showMore={false} />
       <LinkedInPosts title="Our students on LinkedIn" sub="Students share their improvements and wins in their own posts." />
       <StudentWall />
 

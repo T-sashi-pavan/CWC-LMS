@@ -3,7 +3,7 @@ from pathlib import Path
 
 from django.shortcuts import get_object_or_404
 from rest_framework.generics import ListAPIView
-from rest_framework.permissions import IsAuthenticated
+from rest_framework.permissions import AllowAny, IsAuthenticated
 from rest_framework.throttling import ScopedRateThrottle
 from rest_framework.response import Response
 from rest_framework.views import APIView
@@ -198,3 +198,15 @@ class MemberCourses(APIView):
         resp = Response(out)
         resp["Cache-Control"] = "private, no-store"
         return resp
+
+
+class OfflineMeetList(APIView):
+    """GET /api/offline-meets/: active offline meets from OFFLINE_MEETS_SHEET_URL."""
+
+    permission_classes = [AllowAny]
+
+    def get(self, request):
+        from .offline_meets_sheet import get_offline_meets
+
+        meets = get_offline_meets()
+        return Response({"meets": meets, "active_count": len(meets)})

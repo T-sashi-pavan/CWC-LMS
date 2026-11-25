@@ -646,3 +646,129 @@
   color: var(--orange-text);
   opacity: 0.9;
 }
+
+/* Open Mic single responsive ticket + offline unavailable state */
+.tickets--single {
+  grid-template-columns: minmax(0, 1fr);
+}
+.tickets--single .ticket {
+  width: 100%;
+}
+.ticket__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: center;
+}
+.ticket--unavailable {
+  opacity: 0.78;
+}
+.ticket__disabled,
+.ticket__disabled:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+/* Compact "See more of our students" row card on Home */
+.hmore--compact {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: minmax(0, 1.3fr) auto;
+  align-items: center;
+  gap: 20px 28px;
+  padding: 24px 28px;
+  min-height: 0;
+}
+.hmore__left {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  min-width: 0;
+}
+.hmore--compact .hmore__mosaic {
+  display: flex;
+  flex-wrap: nowrap;
+  flex-shrink: 0;
+  gap: 0;
+  width: auto;
+  height: auto;
+  overflow: visible;
+}
+.hmore--compact .hmore__mosaic img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid #fff;
+  margin-left: -12px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.25);
+}
+.hmore--compact .hmore__mosaic img:first-child {
+  margin-left: 0;
+}
+.hmore--compact .hmore__body {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 0;
+}
+.hmore__right {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 12px;
+}
+.hmore--compact .hmore__stats {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 8px;
+  border: 0;
+  padding: 0;
+  margin: 0;
+}
+.hmore__stat-link {
+  display: inline-flex;
+  align-items: center;
+  padding: 6px 13px;
+  border-radius: 999px;
+  font-size: 0.82rem;
+  font-weight: 600;
+  background: rgba(255, 255, 255, 0.14);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  color: #fff;
+  text-decoration: none;
+  transition: background 0.2s, transform 0.2s;
+}
+.hmore__stat-link:hover {
+  background: rgba(255, 255, 255, 0.24);
+  transform: translateY(-1px);
+}
+@media (max-width: 920px) {
+  .hmore--compact {
+    grid-template-columns: 1fr;
+  }
+  .hmore__left {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .hmore__right {
+    align-items: flex-start;
+  }
+  .hmore--compact .hmore__stats {
+    justify-content: flex-start;
+  }
+}
+@media (max-width: 520px) {
+  .hmore--compact {
+    padding: 20px;
+  }
+  .hmore--compact .hmore__mosaic img:nth-child(n+6) {
+    display: none;
+  }
+  .hmore__cta {
+    width: 100%;
+    justify-content: center;
+  }
+}

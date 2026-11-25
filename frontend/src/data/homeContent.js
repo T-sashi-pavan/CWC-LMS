@@ -60,12 +60,15 @@ export const LINKEDIN_VIDEOS = [
 export const OPEN_MIC = {
   demo: { yt: YT.python, title: 'See an Open Mic in action' },
   online: [
-    { date: 'Every Saturday', time: '7:00 PM IST', place: 'Google Meet', text: 'Share a 3 minute talk, get feedback from mentors and peers.' },
-    { date: 'Every Sunday', time: '6:00 PM IST', place: 'Zoom', text: 'Mock group discussions and Q&A with Chaitanya.' },
+    {
+      date: 'Every day',
+      time: '6:00 PM – 7:00 PM IST',
+      place: 'Google Meet',
+      text: 'Share a 3 minute talk, practise mock discussions and get feedback from mentors and peers.',
+      form: 'https://forms.gle/nTRR7ToHfdNaXqkb9',
+    },
   ],
-  offline: [
-    { date: 'To be announced', time: '10:00 AM', place: 'City, Venue', text: 'In-person meet-up: speak, network and meet your mentors.' },
-  ],
+  offlineForm: 'https://forms.gle/QjpB4AMhs4KzWVgH7',
 }
 
 export const ROUNDS = [

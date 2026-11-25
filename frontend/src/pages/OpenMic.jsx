@@ -5,6 +5,7 @@ import Icon from '../components/Icon.jsx'
 import MediaModal from '../components/MediaModal.jsx'
 import { StoryCarousel } from '../components/StudentStories.jsx'
 import { PlayIcon } from '../components/VideoModal.jsx'
+import { useApi } from '../lib/useApi.js'
 import { progress } from '../lib/progress.js'
 import { OPEN_MIC } from '../data/homeContent.js'
 import { STUDENTS, TRACK_LABEL, cld, poster } from '../data/students.js'
@@ -22,11 +23,11 @@ function Host({ s, size = 40 }) {
     : <span className="sv-av sv-av--init" style={{ width: size, height: size }}>{s.name[0]}</span>
 }
 
-function Meets({ title, note, kind, items }) {
+function OnlineMeets({ title, note, kind, items }) {
   return (
     <section className="section">
       <SectionHead eyebrow={kind} title={title} sub={note} />
-      <div className="tickets">
+      <div className={`tickets ${items.length === 1 ? 'tickets--single' : ''}`}>
         {items.map((m, k) => (
           <article key={k} className="ticket">
             <div className="ticket__date">
@@ -37,11 +38,83 @@ function Meets({ title, note, kind, items }) {
             <div className="ticket__body">
               <h3>{m.place}</h3>
               <p className="muted">{m.text}</p>
-              <Link className="btn btn--sm" to="/login?mode=signup">Reserve a spot <Icon name="arrow" size={15} /></Link>
+              <a className="btn btn--sm" href={m.form} target="_blank" rel="noopener noreferrer">
+                Reserve a spot <Icon name="arrow" size={15} />
+              </a>
             </div>
           </article>
         ))}
       </div>
+    </section>
+  )
+}
+
+function OfflineMeets({ formUrl }) {
+  const { data, loading } = useApi('/offline-meets/')
+  const meets = data?.meets || []
+  const hasMeets = meets.length > 0
+
+  return (
+    <section className="section">
+      <SectionHead eyebrow="Offline" title="Meet in person" note="Meet your mentors in person." sub="Meet your mentors in person." />
+      {loading ? (
+        <div className="tickets tickets--single">
+          <article className="ticket">
+            <div className="ticket__date">
+              <Icon name="mic" size={22} />
+              <strong>Checking…</strong>
+              <span>Schedule</span>
+            </div>
+            <div className="ticket__body">
+              <h3>Loading offline meets</h3>
+              <p className="muted">Fetching the latest meetup schedule…</p>
+            </div>
+          </article>
+        </div>
+      ) : hasMeets ? (
+        <div className={`tickets ${meets.length === 1 ? 'tickets--single' : ''}`}>
+          {meets.map((m, k) => (
+            <article key={k} className="ticket">
+              <div className="ticket__date">
+                <Icon name="mic" size={22} />
+                <strong>{m.date || 'Upcoming'}</strong>
+                <span>{[m.day, m.timing].filter(Boolean).join(' · ')}</span>
+              </div>
+              <div className="ticket__body">
+                <h3>{m.city || 'Offline Meet'}</h3>
+                <p className="muted">{m.location || 'Venue details to be shared.'}</p>
+                <div className="ticket__actions">
+                  <a className="btn btn--sm" href={formUrl} target="_blank" rel="noopener noreferrer">
+                    Reserve a spot <Icon name="arrow" size={15} />
+                  </a>
+                  {m.map_link && (
+                    <a className="btn btn--sm btn--outline" href={m.map_link} target="_blank" rel="noopener noreferrer">
+                      View map <Icon name="arrow" size={14} />
+                    </a>
+                  )}
+                </div>
+              </div>
+            </article>
+          ))}
+        </div>
+      ) : (
+        <div className="tickets tickets--single">
+          <article className="ticket ticket--unavailable">
+            <div className="ticket__date">
+              <Icon name="mic" size={22} />
+              <strong>Unavailable</strong>
+              <span>No active meets</span>
+            </div>
+            <div className="ticket__body">
+              <h3>Meets unavailable</h3>
+              <p className="muted">No offline meets are scheduled right now. Check back soon for upcoming city dates.</p>
+              <button type="button" className="btn btn--sm ticket__disabled" disabled aria-disabled="true">
+                Reserve a spot
+              </button>
+            </div>
+          </article>
+        </div>
+      )}
     </section>
   )
 }
@@ -127,9 +200,9 @@ export default function OpenMic() {
         </div>
       </section>
 
-      <Meets title="Join an online meet" note="Join from anywhere." kind="Online" items={OPEN_MIC.online} />
+      <OnlineMeets title="Join an online meet" note="Join from anywhere." kind="Online" items={OPEN_MIC.online} />
 
-      <Meets title="Meet in person" note="Meet your mentors in person." kind="Offline" items={OPEN_MIC.offline} />
+      <OfflineMeets formUrl={OPEN_MIC.offlineForm} />
 
       <section className="section">
         <SectionHead eyebrow="Offline meets" title="More moments" sub="Tap a photo to see it full size." />

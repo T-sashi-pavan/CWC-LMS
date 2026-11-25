@@ -7,10 +7,10 @@ const STEPS = [
   { icon: 'route', title: 'Build momentum', text: 'Get 5 lessons under your belt.', to: '#videos' },
   { icon: 'mic', title: 'Speak up', text: 'Join a CWC Open Mic meet.', to: '/open-mic' },
   { icon: 'bot', title: 'Simulate', text: 'Run the five-round interview.', to: '/interview-simulator' },
-  { icon: 'star', title: 'Offer letter', text: 'Land the role you came for.', to: '/roadmaps' },
+  { icon: 'star', title: 'Job-ready', text: 'Follow your roadmap and apply with confidence.', to: '/roadmaps' },
 ]
 
-// The road to the offer letter. Logged out it is a preview; logged in `done` lights the steps up.
+// Your step-by-step learning roadmap. Logged out it is a preview; logged in `done` lights the steps up.
 export default function Journey({ done = [], personal = false }) {
   const count = STEPS.findIndex((_, i) => !done[i])
   const reached = count === -1 ? STEPS.length : count // steps completed in a row
@@ -20,7 +20,7 @@ export default function Journey({ done = [], personal = false }) {
     <section className="section journey-wrap" id="journey">
       <SectionHead
         eyebrow={personal ? 'Your journey' : 'The road ahead'}
-        title="The road to your offer letter"
+        title="Your step-by-step learning roadmap"
         sub={personal ? `${Math.min(reached, STEPS.length - 1)} of ${STEPS.length - 1} milestones reached. Each one lights up as you go.` : 'Five milestones. Every one of them is free to start.'}
       />
       <ol className="journey" style={{ '--fill': `${Math.min(fill, 100)}%` }}>

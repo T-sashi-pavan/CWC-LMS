@@ -146,6 +146,9 @@ if not DEBUG:
 JOBS_SHEET_URL = os.environ.get("JOBS_SHEET_URL", "").strip()
 JOBS_SHEET_TTL = int(os.environ.get("JOBS_SHEET_TTL", "300") or 300)  # seconds an edit may take to show up
 
+OFFLINE_MEETS_SHEET_URL = os.environ.get("OFFLINE_MEETS_SHEET_URL", "").strip()
+OFFLINE_MEETS_SHEET_TTL = int(os.environ.get("OFFLINE_MEETS_SHEET_TTL", "300") or 300)
+
 # ---------- CORS / CSRF ----------
 CORS_ALLOWED_ORIGINS = env_list("CORS_ALLOWED_ORIGINS", "http://localhost:5173")
 CSRF_TRUSTED_ORIGINS = env_list("CSRF_TRUSTED_ORIGINS", "http://localhost:5173")

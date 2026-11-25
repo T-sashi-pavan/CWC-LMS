@@ -30,7 +30,7 @@ function Reel({ reel, n }) {
   )
 }
 
-export default function HiredStudents() {
+export default function HiredStudents({ showMore = true }) {
   const faces = STUDENTS.filter((s) => s.photo).slice(0, 12)
   return (
     <section className="section" id="hired">
@@ -38,22 +38,28 @@ export default function HiredStudents() {
       <div className="hired">
         {HIRED_REELS.map((r, i) => <Reel key={r.id} reel={r} n={i + 1} />)}
 
-        <Link to="/testimonials" className="hmore">
-          <span className="hmore__mosaic" aria-hidden="true">
-            {faces.map((s) => <img key={s.id} src={s.photo} alt={s.name} loading="lazy" />)}
-          </span>
-          <span className="hmore__body">
-            <span className="eyebrow eyebrow--light">Our community</span>
-            <strong>See more of our students</strong>
-            <span className="hmore__txt">Watch their progress, read their wins and meet the whole community.</span>
-          </span>
-          <span className="hmore__stats">
-            <span>Student profiles</span>
-            <span>Video stories</span>
-            <span>LinkedIn wins</span>
-          </span>
-          <span className="btn">See more students <Icon name="arrow" size={16} /></span>
-        </Link>
+        {showMore && (
+          <div className="hmore hmore--compact">
+            <div className="hmore__left">
+              <span className="hmore__mosaic" aria-hidden="true">
+                {faces.slice(0, 8).map((s) => <img key={s.id} src={s.photo} alt={s.name} loading="lazy" />)}
+              </span>
+              <span className="hmore__body">
+                <span className="eyebrow eyebrow--light">Our community</span>
+                <strong>See more of our students</strong>
+                <span className="hmore__txt">Watch their progress, read their wins and meet the whole community.</span>
+              </span>
+            </div>
+            <div className="hmore__right">
+              <span className="hmore__stats">
+                <Link to="/testimonials#students" className="hmore__stat-link">Student profiles</Link>
+                <Link to="/testimonials#stories" className="hmore__stat-link">Video stories</Link>
+                <Link to="/testimonials#linkedin" className="hmore__stat-link">LinkedIn wins</Link>
+              </span>
+              <Link to="/testimonials" className="btn hmore__cta">See more students <Icon name="arrow" size={16} /></Link>
+            </div>
+          </div>
+        )}
       </div>
     </section>
   )

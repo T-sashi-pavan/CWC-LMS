@@ -36,9 +36,17 @@ function HomeGate() {
 // sends them to the page they started from.
 function AfterLogin() {
   const { user, loading } = useAuth()
-  const { pathname, search } = useLocation()
+  const { pathname, search, hash } = useLocation()
   const navigate = useNavigate()
   useEffect(() => { trackPath(pathname + search) }, [pathname, search])
+  useEffect(() => {
+    if (!hash) return
+    const id = hash.slice(1)
+    const timer = setTimeout(() => {
+      document.getElementById(id)?.scrollIntoView({ behavior: 'smooth', block: 'start' })
+    }, 80)
+    return () => clearTimeout(timer)
+  }, [pathname, hash])
   useEffect(() => {
     if (loading || !user) return
     const dest = takeDest()
