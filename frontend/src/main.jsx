@@ -19,6 +19,15 @@ import './styles/navdd.css'
 import './styles/jobs.css'
 import './styles/crack.css'
 
+const umamiId = import.meta.env.VITE_UMAMI_WEBSITE_ID
+if (umamiId && typeof document !== 'undefined') {
+  const s = document.createElement('script')
+  s.defer = true
+  s.src = 'https://cloud.umami.is/script.js'
+  s.dataset.websiteId = umamiId
+  document.head.appendChild(s)
+}
+
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <BrowserRouter>
