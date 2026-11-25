@@ -2,18 +2,23 @@ import { useEffect, useState } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import Icon from './Icon.jsx'
 
-const ROUNDS = ['Aptitude', 'Reasoning', 'Technical', 'HR', '1-to-1 Review']
+const ROUNDS = [
+  { n: '01', name: 'Aptitude' },
+  { n: '02', name: 'Reasoning' },
+  { n: '03', name: 'Technical' },
+  { n: '04', name: 'HR Round' },
+  { n: '05', name: '1-to-1 Review' },
+]
 const KEY = 'cwc_sim_nudge'
 const wasSeen = () => { try { return sessionStorage.getItem(KEY) === '1' } catch { return false } }
 const markSeen = () => { try { sessionStorage.setItem(KEY, '1') } catch { /* ignore */ } }
 const QUIET = ['/interview-simulator', '/interviews', '/login']
 
-// Floating pulsing dot on bottom-right that expands into the Interview Mock Simulator card on hover/click.
+// Floating pulsing dot beacon on bottom-right that morphs into a flagship 5-round Interview Mock card.
 export function SimulatorNudge() {
   const { pathname } = useLocation()
   const [expanded, setExpanded] = useState(false)
 
-  // Auto-peek once after 5s if not previously collapsed, then stay as a glowing dot when collapsed
   useEffect(() => {
     if (wasSeen() || QUIET.includes(pathname)) return undefined
     const t = setTimeout(() => {
@@ -44,28 +49,33 @@ export function SimulatorNudge() {
           type="button"
           className="sim-beacon__dot"
           onClick={() => setExpanded(true)}
-          aria-label="Open Interview Mock Simulator preview"
+          aria-label="Open Interview Mock Simulator"
           title="Interview Simulator · 5 Mock Rounds"
         >
           <span className="sim-beacon__pulse" aria-hidden="true" />
-          <Icon name="bot" size={20} />
-          <span className="sim-beacon__label">Mocks</span>
+          <Icon name="bot" size={18} />
+          <span className="sim-beacon__label">Mock Interviews</span>
         </button>
       ) : (
         <div className="sim-beacon__card">
           <button type="button" className="jnudge__x" onClick={collapse} aria-label="Collapse">×</button>
-          <div className="sim-beacon__head">
+          <div className="sim-beacon__top">
             <span className="sim-beacon__ic"><Icon name="bot" size={20} /></span>
-            <div>
-              <strong>Interview Simulator</strong>
-              <small>5 realistic mock rounds</small>
+            <div className="sim-beacon__title">
+              <span className="sim-beacon__live"><i /> 5-Round Simulator</span>
+              <strong>Practise real interviews</strong>
             </div>
           </div>
-          <div className="sim-beacon__chips">
-            {ROUNDS.map((r) => <span key={r}>{r}</span>)}
-          </div>
+          <ol className="sim-beacon__track" aria-label="Mock interview rounds">
+            {ROUNDS.map((r) => (
+              <li key={r.n}>
+                <span>{r.n}</span>
+                <small>{r.name}</small>
+              </li>
+            ))}
+          </ol>
           <Link to="/interview-simulator" className="btn btn--sm sim-beacon__go" onClick={() => markSeen()}>
-            Try mock interview <Icon name="arrow" size={14} />
+            Start Mock Interview <Icon name="arrow" size={14} />
           </Link>
         </div>
       )}
