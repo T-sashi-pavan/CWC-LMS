@@ -1,5 +1,6 @@
 import { useEffect } from 'react'
 import { Navigate, Route, Routes, useLocation, useNavigate } from 'react-router-dom'
+import { Analytics } from '@vercel/analytics/react'
 import { takeDest, trackPath } from './lib/afterLogin.js'
 import AppLayout from './components/AppLayout.jsx'
 import ProtectedRoute from './components/ProtectedRoute.jsx'
@@ -38,7 +39,13 @@ function AfterLogin() {
   const { user, loading } = useAuth()
   const { pathname, search, hash } = useLocation()
   const navigate = useNavigate()
-  useEffect(() => { trackPath(pathname + search) }, [pathname, search])
+  useEffect(() => {
+    trackPath(pathname + search)
+    const gaId = import.meta.env.VITE_GA_MEASUREMENT_ID
+    if (gaId && typeof window !== 'undefined' && typeof window.gtag === 'function') {
+      window.gtag('config', gaId, { page_path: pathname + search })
+    }
+  }, [pathname, search])
   useEffect(() => {
     if (!hash) return
     const id = hash.slice(1)
@@ -84,6 +91,7 @@ export default function App() {
       </Route>
       <Route path="*" element={<Navigate to="/" replace />} />
     </Routes>
+    <Analytics />
     </>
   )
 }

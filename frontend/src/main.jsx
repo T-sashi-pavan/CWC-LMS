@@ -28,6 +28,26 @@ if (umamiId && typeof document !== 'undefined') {
   document.head.appendChild(s)
 }
 
+const gaId = import.meta.env.VITE_GA_MEASUREMENT_ID
+if (gaId && typeof document !== 'undefined') {
+  const isGtm = gaId.startsWith('GTM-')
+  window.dataLayer = window.dataLayer || []
+  if (isGtm) {
+    window.dataLayer.push({ 'gtm.start': new Date().getTime(), event: 'gtm.js' })
+  }
+  const gs = document.createElement('script')
+  gs.async = true
+  gs.src = isGtm
+    ? `https://www.googletagmanager.com/gtm.js?id=${encodeURIComponent(gaId)}`
+    : `https://www.googletagmanager.com/gtag/js?id=${encodeURIComponent(gaId)}`
+  document.head.appendChild(gs)
+  window.gtag = function gtag() { window.dataLayer.push(arguments) }
+  window.gtag('js', new Date())
+  if (!isGtm) {
+    window.gtag('config', gaId)
+  }
+}
+
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <BrowserRouter>
