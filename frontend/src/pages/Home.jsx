@@ -13,6 +13,7 @@ import Logo, { MarkName } from '../components/Logo.jsx'
 import RoadmapShowcase from '../components/RoadmapShowcase.jsx'
 import Journey from '../components/Journey.jsx'
 import JobsTicker from '../components/JobsSpotlight.jsx'
+import PushAlerts from '../components/PushAlerts.jsx'
 import BadgeCelebration from '../components/Confetti.jsx'
 
 export default function Home() {
@@ -26,6 +27,7 @@ export default function Home() {
       <BadgeCelebration badges={s.badges} />
       <div className="dash__main">
         <JobsTicker />
+        <PushAlerts />
         <section className="welcome welcome--sun">
           <div className="welcome__text">
             <span className="eyebrow">Welcome back, {displayName}</span>

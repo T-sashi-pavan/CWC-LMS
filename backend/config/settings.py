@@ -149,6 +149,10 @@ JOBS_SHEET_TTL = int(os.environ.get("JOBS_SHEET_TTL", "5") or 5)  # seconds an e
 OFFLINE_MEETS_SHEET_URL = os.environ.get("OFFLINE_MEETS_SHEET_URL", "").strip()
 OFFLINE_MEETS_SHEET_TTL = int(os.environ.get("OFFLINE_MEETS_SHEET_TTL", "5") or 5)
 
+VAPID_PUBLIC_KEY = os.environ.get("VAPID_PUBLIC_KEY", "").strip()
+VAPID_PRIVATE_KEY = os.environ.get("VAPID_PRIVATE_KEY", "").strip()
+VAPID_CLAIM_EMAIL = os.environ.get("VAPID_CLAIM_EMAIL", "mailto:admin@cwcecosystem.com").strip()
+
 # ---------- CORS / CSRF ----------
 CORS_ALLOWED_ORIGINS = env_list("CORS_ALLOWED_ORIGINS", "http://localhost:5173")
 CSRF_TRUSTED_ORIGINS = env_list("CSRF_TRUSTED_ORIGINS", "http://localhost:5173")

@@ -24,3 +24,16 @@ class Profile(models.Model):
     @property
     def is_pro(self):
         return self.plan == self.Plan.PRO
+
+
+class PushSubscription(models.Model):
+    """Web Push (VAPID) subscription for browser / PWA / TWA notifications."""
+
+    user_id = models.UUIDField(null=True, blank=True, db_index=True)
+    endpoint = models.URLField(max_length=500, unique=True)
+    p256dh = models.CharField(max_length=255)
+    auth = models.CharField(max_length=255)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"PushSub({self.user_id or 'anon'})"

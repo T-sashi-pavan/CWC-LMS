@@ -2,11 +2,11 @@ import logging
 
 from django.db import connection
 from django.http import JsonResponse
-from rest_framework.permissions import IsAuthenticated
+from rest_framework.permissions import AllowAny, IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
-from .models import Profile
+from .models import Profile, PushSubscription
 
 logger = logging.getLogger(__name__)
 
@@ -118,3 +118,56 @@ class MeProgressView(APIView):
         resp = Response(merged)
         resp["Cache-Control"] = "private, no-store"
         return resp
+
+
+class PushSubscribeView(APIView):
+    """POST /api/push/subscribe/: save or update a browser Web Push subscription."""
+
+    permission_classes = [AllowAny]
+
+    def post(self, request):
+        endpoint = (request.data.get("endpoint") or "").strip()
+        keys = request.data.get("keys") or {}
+        p256dh = (keys.get("p256dh") or "").strip()
+        auth = (keys.get("auth") or "").strip()
+        if not endpoint or not p256dh or not auth:
+            return Response({"detail": "Invalid push subscription"}, status=400)
+        uid = request.user.id if getattr(request.user, "is_authenticated", False) else None
+        PushSubscription.objects.update_or_create(
+            endpoint=endpoint,
+            defaults={"p256dh": p256dh, "auth": auth, "user_id": uid},
+        )
+        return Response({"subscribed": True})
+
+
+class PushUnsubscribeView(APIView):
+    """POST /api/push/unsubscribe/: remove a browser Web Push subscription."""
+
+    permission_classes = [AllowAny]
+
+    def post(self, request):
+        endpoint = (request.data.get("endpoint") or "").strip()
+        if endpoint:
+            PushSubscription.objects.filter(endpoint=endpoint).delete()
+        return Response({"subscribed": False})
+
+
+class PushTestView(APIView):
+    """POST /api/push/test/: send a sample notification to the caller's subscription."""
+
+    permission_classes = [AllowAny]
+
+    def post(self, request):
+        from .push import send_push
+
+        endpoint = (request.data.get("endpoint") or "").strip()
+        sub = PushSubscription.objects.filter(endpoint=endpoint).first() if endpoint else None
+        if not sub:
+            return Response({"detail": "Subscription not found"}, status=404)
+        ok = send_push(
+            sub,
+            "CWC Ecosystem Alerts Enabled!",
+            "You will now get instant alerts for fresh jobs & offline meets.",
+            "/jobs",
+        )
+        return Response({"sent": ok})

@@ -7,3 +7,5 @@ PyJWT[crypto]>=2.9
 python-dotenv>=1.0
 whitenoise>=6.7
 gunicorn>=23.0
+
+pywebpush>=2.0
