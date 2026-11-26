@@ -13,6 +13,7 @@
   "background_color": "#0c0f17",
   "theme_color": "#E8650A",
   "categories": ["education", "productivity"],
+  "prefer_related_applications": false,
   "launch_handler": {
     "client_mode": "navigate-existing"
   },
