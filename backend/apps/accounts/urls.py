@@ -5,4 +5,5 @@ from . import views
 urlpatterns = [
     path("health/", views.health),
     path("me/", views.MeView.as_view()),
+    path("me/progress/", views.MeProgressView.as_view()),
 ]

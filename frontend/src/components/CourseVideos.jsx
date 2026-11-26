@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { SectionHead } from './ui.jsx'
 import Icon from './Icon.jsx'
@@ -36,12 +36,94 @@ export default function CourseVideos({ track = false, gated = false }) {
   const more = course.videos.length - visible.length
   const watched = new Set(track ? p.watched[course.id] || [] : [])
 
+  const playerBoxRef = useRef(null)
+  const ytRef = useRef(null)
+  const videoRef = useRef(null)
+  const maxWatchedRef = useRef(0)
+  const completedRef = useRef(false)
+
   const go = (c, i) => (track ? progress.select(c, i) : setLocal({ course: c, idx: i }))
-  const play = (c, i) => { go(c, i); setPlaying(true); if (track) progress.watch(c, i) }
+  const play = (c, i) => { go(c, i); setPlaying(true) }
   const next = () => { if (idx + 1 < visible.length) play(course.id, idx + 1) }
 
+  // Reset per-lesson strict watch tracker whenever the active course/lesson changes
+  useEffect(() => {
+    maxWatchedRef.current = 0
+    completedRef.current = watched.has(idx)
+  }, [course.id, idx]) // eslint-disable-line react-hooks/exhaustive-deps
+
+  const markCompleted = () => {
+    if (completedRef.current || !track) return
+    completedRef.current = true
+    progress.watch(course.id, idx)
+  }
+
+  const pauseActivePlayer = () => {
+    if (videoRef.current && !videoRef.current.paused) {
+      videoRef.current.pause()
+    }
+    if (ytRef.current?.contentWindow) {
+      ytRef.current.contentWindow.postMessage(JSON.stringify({ event: 'command', func: 'pauseVideo', args: '' }), '*')
+    }
+  }
+
+  // Pause automatically when switching browser tabs or scrolling the player out of view
+  useEffect(() => {
+    if (!playing) return undefined
+    const onVisibility = () => { if (document.hidden) pauseActivePlayer() }
+    document.addEventListener('visibilitychange', onVisibility)
+
+    let io
+    if (playerBoxRef.current && 'IntersectionObserver' in window) {
+      io = new IntersectionObserver(([entry]) => {
+        if (!entry.isIntersecting) pauseActivePlayer()
+      }, { threshold: 0.25 })
+      io.observe(playerBoxRef.current)
+    }
+
+    return () => {
+      document.removeEventListener('visibilitychange', onVisibility)
+      io?.disconnect()
+    }
+  }, [playing])
+
+  // YouTube iframe JS API listener: enforce no forward-seeking and mark watched at >= 90% or ended
+  useEffect(() => {
+    if (!playing || course.members) return undefined
+    const onMsg = (e) => {
+      if (!ytRef.current || e.source !== ytRef.current.contentWindow) return
+      let msg
+      try { msg = typeof e.data === 'string' ? JSON.parse(e.data) : e.data } catch { return }
+      if (!msg || msg.event !== 'infoDelivery' || !msg.info) return
+      const { currentTime, duration, playerState } = msg.info
+      if (typeof currentTime === 'number') {
+        if (!completedRef.current && currentTime > maxWatchedRef.current + 2.5) {
+          ytRef.current.contentWindow.postMessage(
+            JSON.stringify({ event: 'command', func: 'seekTo', args: [maxWatchedRef.current, true] }),
+            '*',
+          )
+          return
+        }
+        if (currentTime > maxWatchedRef.current) maxWatchedRef.current = currentTime
+        if (typeof duration === 'number' && duration > 0 && currentTime / duration >= 0.9) {
+          markCompleted()
+        }
+      }
+      if (playerState === 0) markCompleted()
+    }
+    window.addEventListener('message', onMsg)
+    return () => window.removeEventListener('message', onMsg)
+  }, [playing, course.id, course.members, idx, track]) // eslint-disable-line react-hooks/exhaustive-deps
+
+  const subscribeYt = () => {
+    const win = ytRef.current?.contentWindow
+    if (!win) return
+    win.postMessage(JSON.stringify({ event: 'listening', id: `${course.id}-${idx}` }), '*')
+    win.postMessage(JSON.stringify({ event: 'command', func: 'addEventListener', args: ['onStateChange'] }), '*')
+  }
+
   useEffect(() => { // "Resume" on the dashboard banner starts the last lesson
-    if (track && p.wantPlay) { setPlaying(true); progress.watch(course.id, idx); progress.consumePlay() }
+    if (track && p.wantPlay) { setPlaying(true); progress.consumePlay() }
   }, [track, p.wantPlay]) // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
@@ -83,9 +165,9 @@ export default function CourseVideos({ track = false, gated = false }) {
 
       <div className="cv2">
         <div className="cv2__main">
-          <div className="ratio cv__player">
+          <div className="ratio cv__player" ref={playerBoxRef}>
             {!course.members ? (
-              playing ? <Embed yt={cur.id} title={cur.title} /> : (
+              playing ? <Embed ref={ytRef} yt={cur.id} title={cur.title} jsApi onLoad={subscribeYt} /> : (
                 <button className="vc__poster" onClick={() => play(course.id, idx)} aria-label={`Play: ${cur.title}`}>
                   <Thumb yt={cur.id} />
                   <span className="vc__shade" />
@@ -95,7 +177,33 @@ export default function CourseVideos({ track = false, gated = false }) {
             ) : !cur.src ? (
               <div className="vc__poster cv__soon"><span><strong>This lesson is being uploaded</strong><small>It will appear here soon. Please check back later.</small></span></div>
             ) : playing ? (
-              <video className="cv__file" src={cur.src} poster={cur.poster || undefined} controls autoPlay playsInline controlsList="nodownload" onContextMenu={(e) => e.preventDefault()} />
+              <video
+                ref={videoRef}
+                className="cv__file"
+                src={cur.src}
+                poster={cur.poster || undefined}
+                controls
+                autoPlay
+                playsInline
+                controlsList="nodownload"
+                onContextMenu={(e) => e.preventDefault()}
+                onTimeUpdate={(e) => {
+                  const v = e.currentTarget
+                  if (!completedRef.current && v.currentTime > maxWatchedRef.current + 1.5) {
+                    v.currentTime = maxWatchedRef.current
+                    return
+                  }
+                  if (v.currentTime > maxWatchedRef.current) maxWatchedRef.current = v.currentTime
+                  if (v.duration > 0 && v.currentTime / v.duration >= 0.9) markCompleted()
+                }}
+                onSeeking={(e) => {
+                  const v = e.currentTarget
+                  if (!completedRef.current && v.currentTime > maxWatchedRef.current + 1.5) {
+                    v.currentTime = maxWatchedRef.current
+                  }
+                }}
+                onEnded={markCompleted}
+              />
             ) : (
               <button className="vc__poster" onClick={() => play(course.id, idx)} aria-label={`Play: ${cur.title}`}>
                 {cur.poster && <img className="cv__poster-img" src={cur.poster} alt={cur.title || 'Course video'} />}

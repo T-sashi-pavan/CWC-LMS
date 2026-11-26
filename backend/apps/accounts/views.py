@@ -62,3 +62,59 @@ class MeView(APIView):
                 "pro_until": p.pro_until,
             }
         )
+
+
+def _merge_progress(existing: dict, incoming: dict) -> dict:
+    """Merge progress payloads without losing watched lessons, streak logs, or visited flags."""
+    ex = existing if isinstance(existing, dict) else {}
+    inc = incoming if isinstance(incoming, dict) else {}
+
+    watched = {}
+    for src in (ex.get("watched"), inc.get("watched")):
+        if isinstance(src, dict):
+            for k, v in src.items():
+                if isinstance(k, str) and isinstance(v, list):
+                    cur = set(watched.get(k, []))
+                    cur.update(int(x) for x in v if isinstance(x, (int, float)))
+                    watched[k] = sorted(cur)
+
+    log = {}
+    for src in (ex.get("log"), inc.get("log")):
+        if isinstance(src, dict):
+            for k, v in src.items():
+                if isinstance(k, str) and isinstance(v, (int, float)):
+                    log[k] = max(log.get(k, 0), int(v))
+
+    visited = {}
+    for src in (ex.get("visited"), inc.get("visited")):
+        if isinstance(src, dict):
+            for k, v in src.items():
+                if isinstance(k, str) and v:
+                    visited[k] = True
+
+    last = inc.get("last") if isinstance(inc.get("last"), dict) else ex.get("last")
+    if not isinstance(last, dict):
+        last = {"course": "dsa", "idx": 0}
+
+    return {"watched": watched, "last": last, "log": log, "visited": visited}
+
+
+class MeProgressView(APIView):
+    """GET / PATCH /api/me/progress/: sync learning progress across devices."""
+
+    permission_classes = [IsAuthenticated]
+
+    def get(self, request):
+        p = profile_for(request.user)
+        resp = Response(p.progress or {})
+        resp["Cache-Control"] = "private, no-store"
+        return resp
+
+    def patch(self, request):
+        p = profile_for(request.user)
+        merged = _merge_progress(p.progress, request.data)
+        p.progress = merged
+        p.save(update_fields=["progress"])
+        resp = Response(merged)
+        resp["Cache-Control"] = "private, no-store"
+        return resp

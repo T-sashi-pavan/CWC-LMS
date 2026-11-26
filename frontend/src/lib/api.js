@@ -9,8 +9,10 @@ async function authHeader() {
   return token ? { Authorization: `Bearer ${token}` } : {}
 }
 
-export async function api(path) {
-  const res = await fetch(`${BASE}${path}`, { headers: await authHeader() })
+export async function api(path, options = {}) {
+  const headers = { ...(await authHeader()), ...(options.headers || {}) }
+  if (options.body && !headers['Content-Type']) headers['Content-Type'] = 'application/json'
+  const res = await fetch(`${BASE}${path}`, { ...options, headers })
   if (!res.ok) throw new Error(`Request failed (${res.status})`)
   return res.json()
 }

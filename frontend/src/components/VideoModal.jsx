@@ -1,4 +1,4 @@
-import { useEffect } from 'react'
+import { forwardRef, useEffect } from 'react'
 
 export const thumb = (yt) => `https://i.ytimg.com/vi/${yt}/maxresdefault.jpg`
 
@@ -22,17 +22,21 @@ export function PlayIcon({ size = 56 }) {
   )
 }
 
-export function Embed({ yt, title, autoplay = true }) {
+export const Embed = forwardRef(function Embed({ yt, title, autoplay = true, jsApi = false, onLoad }, ref) {
+  const origin = typeof window !== 'undefined' ? `&origin=${encodeURIComponent(window.location.origin)}` : ''
+  const apiParam = jsApi ? `&enablejsapi=1${origin}` : ''
   return (
     <iframe
+      ref={ref}
       className="embed"
-      src={`https://www.youtube-nocookie.com/embed/${yt}?rel=0${autoplay ? '&autoplay=1' : ''}`}
+      src={`https://www.youtube-nocookie.com/embed/${yt}?rel=0${autoplay ? '&autoplay=1' : ''}${apiParam}`}
       title={title}
       allow="accelerometer; autoplay; clipboard-write; encrypted-media; picture-in-picture"
       allowFullScreen
+      onLoad={onLoad}
     />
   )
-}
+})
 
 export default function VideoModal({ video, onClose }) {
   useEffect(() => {

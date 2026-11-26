@@ -1,6 +1,7 @@
 import { createContext, useContext, useEffect, useState } from 'react'
 import { supabase, supabaseConfigured } from '../lib/supabase.js'
 import { api } from '../lib/api.js'
+import { progress } from '../lib/progress.js'
 
 const AuthCtx = createContext(null)
 export const useAuth = () => useContext(AuthCtx)
@@ -30,10 +31,14 @@ export function AuthProvider({ children }) {
     return () => sub.subscription.unsubscribe()
   }, [])
 
-  // Plan (free / pro) lives in our Django backend.
+  // Plan (free / pro) and cross-device progress live in our Django backend.
   useEffect(() => {
-    if (!user) return setProfile(null)
+    if (!user) {
+      setProfile(null)
+      return
+    }
     api('/me/').then(setProfile).catch(() => setProfile({ plan: 'free', is_pro: false }))
+    progress.syncFromServer()
   }, [user])
 
   const signIn = async (email, password, captchaToken) => {
@@ -75,6 +80,7 @@ export function AuthProvider({ children }) {
   const signOut = async () => {
     if (supabaseConfigured) await supabase.auth.signOut()
     else localStorage.removeItem(DEMO_KEY)
+    progress.reset()
     setUser(null)
   }
 

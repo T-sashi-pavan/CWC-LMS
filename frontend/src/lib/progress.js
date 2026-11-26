@@ -1,7 +1,8 @@
 import { useSyncExternalStore } from 'react'
+import { api } from './api.js'
 
-// Learning progress lives in this browser (localStorage) so the dashboard shows real activity
-// without needing new backend tables. Swap for an API later if progress should follow the user.
+// Learning progress is stored in localStorage for instant UI and synced to /api/me/progress/
+// when logged in so progress stays consistent across laptop and mobile.
 const KEY = 'cwc_progress_v1'
 const EMPTY = { watched: {}, last: { course: 'dsa', idx: 0 }, log: {}, visited: {} }
 
@@ -12,6 +13,8 @@ const load = () => {
 let state = load()
 let wantPlay = false
 let snapshot = { ...state, wantPlay }
+let authed = false
+let pushTimer = null
 const subs = new Set()
 
 const emit = () => {
@@ -21,8 +24,37 @@ const emit = () => {
 const save = () => { try { localStorage.setItem(KEY, JSON.stringify(state)) } catch { /* private mode */ } }
 const today = () => new Date().toISOString().slice(0, 10)
 
+function mergeState(a = {}, b = {}) {
+  const watched = {}
+  for (const src of [a.watched, b.watched]) {
+    if (!src) continue
+    for (const [k, arr] of Object.entries(src)) {
+      const set = new Set([...(watched[k] || []), ...(Array.isArray(arr) ? arr : [])])
+      watched[k] = [...set].sort((x, y) => x - y)
+    }
+  }
+  const log = { ...(a.log || {}) }
+  for (const [k, v] of Object.entries(b.log || {})) {
+    log[k] = Math.max(log[k] || 0, Number(v) || 0)
+  }
+  const visited = { ...(a.visited || {}), ...(b.visited || {}) }
+  const last = (b.last && b.last.course) ? b.last : ((a.last && a.last.course) ? a.last : EMPTY.last)
+  return { watched, last, log, visited }
+}
+
+function schedulePush() {
+  if (!authed) return
+  clearTimeout(pushTimer)
+  pushTimer = setTimeout(() => {
+    api('/me/progress/', { method: 'PATCH', body: JSON.stringify(state) }).catch(() => {})
+  }, 400)
+}
+
 export const progress = {
-  select(course, idx = 0) { state = { ...state, last: { course, idx } }; save(); emit() },
+  select(course, idx = 0) {
+    state = { ...state, last: { course, idx } }
+    save(); emit(); schedulePush()
+  },
   watch(course, idx) {
     const done = new Set(state.watched[course] || [])
     done.add(idx)
@@ -33,12 +65,32 @@ export const progress = {
       last: { course, idx },
       log: { ...state.log, [d]: (state.log[d] || 0) + 1 },
     }
-    save(); emit()
+    save(); emit(); schedulePush()
   },
   visit(key) {
     if (state.visited[key]) return
     state = { ...state, visited: { ...state.visited, [key]: true } }
-    save(); emit()
+    save(); emit(); schedulePush()
+  },
+  async syncFromServer() {
+    authed = true
+    try {
+      const remote = await api('/me/progress/')
+      const merged = mergeState(state, remote)
+      state = merged
+      save(); emit()
+      // Push any local-only progress back to the server so all devices stay in sync
+      if (JSON.stringify(merged) !== JSON.stringify(remote)) {
+        await api('/me/progress/', { method: 'PATCH', body: JSON.stringify(merged) }).catch(() => {})
+      }
+    } catch { /* offline or token expired: keep local */ }
+  },
+  reset() {
+    authed = false
+    clearTimeout(pushTimer)
+    state = { ...EMPTY }
+    try { localStorage.removeItem(KEY) } catch { /* ignore */ }
+    emit()
   },
   resume() { wantPlay = true; emit() },
   consumePlay() { wantPlay = false; emit() },
