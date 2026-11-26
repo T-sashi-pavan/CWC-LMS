@@ -1457,3 +1457,56 @@
     opacity: 0.92;
   }
 }
+
+/* Automatic "Install CWC Ecosystem" PWA banner */
+.install-bar {
+  position: fixed;
+  top: 14px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 65;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: min(440px, calc(100vw - 24px));
+  padding: 10px 12px;
+  border-radius: 16px;
+  background: var(--paper);
+  color: var(--ink);
+  border: 1px solid rgba(232, 101, 10, 0.45);
+  box-shadow: 0 14px 32px rgba(0, 0, 0, 0.35);
+}
+.install-bar__ic {
+  border-radius: 8px;
+  flex-shrink: 0;
+}
+.install-bar__txt {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  flex: 1;
+  line-height: 1.25;
+}
+.install-bar__txt strong {
+  font-size: 13.5px;
+}
+.install-bar__txt small {
+  font-size: 11.5px;
+  color: var(--muted);
+}
+.install-bar__x {
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  border: 1px solid var(--line);
+  background: transparent;
+  color: var(--muted);
+  font-size: 16px;
+  line-height: 1;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+.install-bar__x:hover {
+  color: var(--ink);
+  border-color: var(--orange);
+}

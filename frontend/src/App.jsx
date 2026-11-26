@@ -25,6 +25,7 @@ import Seo from './components/Seo.jsx'
 import GreetingPopup from './components/GreetingPopup.jsx'
 import { JobsNudge } from './components/JobsSpotlight.jsx'
 import { SimulatorNudge } from './components/SimulatorSpotlight.jsx'
+import InstallPrompt from './components/InstallPrompt.jsx'
 import { useAuth } from './context/AuthContext.jsx'
 
 // "/" is the public storefront for visitors and the full dashboard once logged in.
@@ -71,6 +72,7 @@ export default function App() {
     <GreetingPopup />
     <JobsNudge />
     <SimulatorNudge />
+    <InstallPrompt />
     <Routes>
       <Route path="/login" element={<Login />} />
       <Route path="/" element={<HomeGate />} />
