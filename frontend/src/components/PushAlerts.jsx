@@ -33,22 +33,35 @@ export default function PushAlerts() {
 
     let showTimer
     let hideTimer
-    navigator.serviceWorker.ready
-      .then((reg) => reg.pushManager.getSubscription())
+    let pollTimer
+    const triggerPeek = () => {
+      if (wasPeeked()) return
+      // Wait until the initial Fresher/Experienced greeting modal is closed
+      if (document.querySelector('.greet')) {
+        pollTimer = setTimeout(triggerPeek, 800)
+        return
+      }
+      showTimer = setTimeout(() => {
+        if (document.querySelector('.greet')) {
+          pollTimer = setTimeout(triggerPeek, 800)
+          return
+        }
+        setOpen(true)
+        markPeeked()
+        hideTimer = setTimeout(() => setOpen(false), 5000)
+      }, 1000)
+    }
+
+    navigator.serviceWorker.getRegistration()
+      .then((reg) => (reg ? reg.pushManager.getSubscription() : null))
       .then((s) => {
         setSub(s || null)
-        // Only auto-peek if notifications are OFF and haven't peeked this session
-        if (!s && !wasPeeked()) {
-          showTimer = setTimeout(() => {
-            setOpen(true)
-            markPeeked()
-            hideTimer = setTimeout(() => setOpen(false), 4500)
-          }, 1500)
-        }
+        if (!s) triggerPeek()
       })
-      .catch(() => {})
+      .catch(() => triggerPeek())
 
     return () => {
+      clearTimeout(pollTimer)
       clearTimeout(showTimer)
       clearTimeout(hideTimer)
     }
