@@ -21,10 +21,22 @@ export function SimulatorNudge() {
 
   useEffect(() => {
     if (wasSeen() || QUIET.includes(pathname)) return undefined
-    const t = setTimeout(() => {
-      if (!document.querySelector('.greet')) setExpanded(true)
-    }, 5000)
-    return () => clearTimeout(t)
+    let collapseTimer
+    const showTimer = setTimeout(() => {
+      if (document.querySelector('.greet')) return
+      setExpanded(true)
+      // On mobile, auto-peek for 3 seconds then collapse back to the compact symbol
+      if (window.innerWidth <= 768) {
+        collapseTimer = setTimeout(() => {
+          setExpanded(false)
+          markSeen()
+        }, 3000)
+      }
+    }, 3500)
+    return () => {
+      clearTimeout(showTimer)
+      clearTimeout(collapseTimer)
+    }
   }, [pathname])
 
   if (QUIET.includes(pathname)) return null

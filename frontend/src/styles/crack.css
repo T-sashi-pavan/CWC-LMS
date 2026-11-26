@@ -936,29 +936,47 @@
 
 /* ---- Responsive polish: Mobile / iPad / Laptop + non-overlapping nudges ---- */
 
-/* Compact 1-symbol Mock Interview beacon & Top-Right Jobs alert on mobile/tablet */
+/* Compact 1-symbol Mock Interview beacon & Toast-sized Top-Right Jobs alert on mobile/tablet */
 @media (max-width: 768px) {
   .jnudge {
-    top: 74px;
+    top: 66px;
     right: 12px;
-    left: 12px;
+    left: auto;
     bottom: auto;
-    max-width: 380px;
-    margin-left: auto;
-    padding: 10px 12px;
-    border-radius: 16px;
-    gap: 10px;
+    width: auto;
+    max-width: min(290px, calc(100vw - 24px));
+    padding: 8px 10px;
+    border-radius: 14px;
+    gap: 8px;
   }
   .jnudge__icon {
-    width: 36px;
-    height: 36px;
-    border-radius: 10px;
+    width: 30px;
+    height: 30px;
+    border-radius: 9px;
+  }
+  .jnudge__icon svg {
+    width: 16px;
+    height: 16px;
   }
   .jnudge__txt strong {
-    font-size: 13.5px;
+    font-size: 12.5px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
   .jnudge__txt span {
-    font-size: 12px;
+    font-size: 11px;
+  }
+  .jnudge .btn {
+    padding: 5px 9px;
+    font-size: 11.5px;
+  }
+  .jnudge__x {
+    width: 22px;
+    height: 22px;
+    top: -7px;
+    right: -7px;
+    font-size: 14px;
   }
 
   /* 1-symbol circular dot for Mock Interviews on mobile */
@@ -1029,5 +1047,41 @@
   }
   .section {
     margin-top: 26px;
+  }
+}
+
+/* LinkedIn arrows contrast fix (dark mode --ink was white on #fff) + clean 1-row mobile rail */
+.lw__nav {
+  color: #1B1815;
+}
+.lw__nav:hover {
+  color: #fff;
+}
+@media (max-width: 768px) {
+  .lw__rail {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+    border-radius: 16px;
+    padding: 8px;
+    gap: 8px;
+  }
+  .lw__rail::-webkit-scrollbar {
+    display: none;
+  }
+  .lw__who {
+    padding: 5px 12px 5px 6px;
+  }
+  .lw__bar {
+    gap: 10px;
+    padding: 12px 14px;
+  }
+  .lw__open {
+    padding: 7px 12px;
+    font-size: 12.5px;
+  }
+  .lw__dots {
+    bottom: 16px;
   }
 }
