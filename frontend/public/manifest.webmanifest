@@ -1,13 +1,21 @@
 {
+  "id": "/",
   "name": "CWC Ecosystem | Career with Chaitanya",
   "short_name": "CWC Ecosystem",
   "description": "Roadmaps, video courses, mock interviews, open mic meets and job openings by Career with Chaitanya.",
+  "lang": "en",
+  "dir": "ltr",
   "start_url": "/",
   "scope": "/",
   "display": "standalone",
+  "display_override": ["window-controls-overlay", "standalone"],
   "orientation": "portrait-primary",
   "background_color": "#0c0f17",
   "theme_color": "#E8650A",
+  "categories": ["education", "productivity"],
+  "launch_handler": {
+    "client_mode": "navigate-existing"
+  },
   "icons": [
     {
       "src": "/favicon-192.png",
@@ -21,6 +29,47 @@
       "type": "image/png",
       "purpose": "any maskable"
     }
+  ],
+  "screenshots": [
+    {
+      "src": "/screenshots/mobile.png",
+      "sizes": "540x960",
+      "type": "image/png",
+      "form_factor": "narrow",
+      "label": "CWC Ecosystem Mobile Home"
+    },
+    {
+      "src": "/screenshots/desktop.png",
+      "sizes": "1280x720",
+      "type": "image/png",
+      "form_factor": "wide",
+      "label": "CWC Ecosystem Desktop View"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Career Roadmaps",
+      "short_name": "Roadmaps",
+      "url": "/roadmaps",
+      "icons": [{ "src": "/favicon-192.png", "sizes": "192x192", "type": "image/png" }]
+    },
+    {
+      "name": "Job Openings",
+      "short_name": "Jobs",
+      "url": "/jobs",
+      "icons": [{ "src": "/favicon-192.png", "sizes": "192x192", "type": "image/png" }]
+    },
+    {
+      "name": "Interview Simulator",
+      "short_name": "Mocks",
+      "url": "/interview-simulator",
+      "icons": [{ "src": "/favicon-192.png", "sizes": "192x192", "type": "image/png" }]
+    },
+    {
+      "name": "CWC Open Mic",
+      "short_name": "Open Mic",
+      "url": "/open-mic",
+      "icons": [{ "src": "/favicon-192.png", "sizes": "192x192", "type": "image/png" }]
+    }
   ]
 }
-
