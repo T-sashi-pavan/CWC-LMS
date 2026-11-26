@@ -1,6 +1,7 @@
 import { Link, NavLink } from 'react-router-dom'
 import Logo, { Wordmark } from './Logo.jsx'
 import ThemeToggle from './ThemeToggle.jsx'
+import PushAlerts from './PushAlerts.jsx'
 import Footer from './Footer.jsx'
 import NavDropdown, { COURSES_HUB } from './NavDropdown.jsx'
 import useReveal from './useReveal.js'
@@ -39,6 +40,7 @@ export function PublicLayout({ children }) {
             )))}
           </nav>
           <div className="user">
+            <PushAlerts />
             <ThemeToggle />
             <Link to="/login" className="btn btn--ghost btn--sm">Log in</Link>
             <Link to="/login?mode=signup" className="btn btn--sm land__signup">Sign up free</Link>

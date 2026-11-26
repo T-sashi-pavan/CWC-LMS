@@ -2,6 +2,7 @@ import { NavLink, Outlet } from 'react-router-dom'
 import Logo, { Wordmark } from './Logo.jsx'
 import Icon from './Icon.jsx'
 import ThemeToggle from './ThemeToggle.jsx'
+import PushAlerts from './PushAlerts.jsx'
 import ProfileMenu from './ProfileMenu.jsx'
 import Footer from './Footer.jsx'
 import NavDropdown, { COURSES_HUB } from './NavDropdown.jsx'
@@ -53,6 +54,7 @@ export default function AppLayout({ children }) {
           </nav>
 
           <div className="user">
+            <PushAlerts />
             <ThemeToggle />
             <ProfileMenu />
           </div>
