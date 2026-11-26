@@ -75,10 +75,12 @@ function OfflineMeets({ formUrl }) {
         <div className={`tickets ${meets.length === 1 ? 'tickets--single' : ''}`}>
           {meets.map((m, k) => (
             <article key={k} className="ticket">
-              <div className="ticket__date">
+              <div className="ticket__date ticket__date--offline">
                 <Icon name="mic" size={22} />
-                <strong>{m.date || 'Upcoming'}</strong>
-                <span>{[m.day, m.timing].filter(Boolean).join(' · ')}</span>
+                <div className="ticket__meta">
+                  <strong>{[m.date || 'Upcoming', m.day].filter(Boolean).join(' · ')}</strong>
+                  {m.timing && <span>{m.timing}</span>}
+                </div>
               </div>
               <div className="ticket__body">
                 <h3>{m.city || 'Offline Meet'}</h3>

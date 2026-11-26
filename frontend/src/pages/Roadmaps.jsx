@@ -39,7 +39,7 @@ export default function Roadmaps() {
                   <div className="cnav__list rnav__tabs" role="tablist">
                     {blocks.map((b) => (
                       <button key={b.id} role="tab" aria-selected={level === b.id} className={`cnav__tab ${level === b.id ? 'is-on' : ''}`}
-                        onClick={() => { setLevel(b.id); document.getElementById(`level-${b.id}`)?.scrollIntoView({ behavior: 'smooth', block: 'start' }) }}>
+                        onClick={() => setLevel(b.id)}>
                         <span className="rnav__ic"><Icon name={b.id === 'fresher' ? 'sparkle' : 'route'} size={20} /></span>
                         <span className="cnav__txt"><strong>{b.title}</strong><small>{b.badge}</small></span>
                       </button>
@@ -52,7 +52,7 @@ export default function Roadmaps() {
               {none ? (
                 <div className="card empty"><p>No roadmap matches “{q}”.</p></div>
               ) : (
-                blocks.filter((b) => b.items.length > 0).map((b) => (
+                blocks.filter((b) => b.items.length > 0 && (term || b.id === level)).map((b) => (
                   <section key={b.id} id={`level-${b.id}`} className={`level level--${b.id}`}>
                     <header className="level__head">
                       <span className="level__icon"><Icon name={b.id === 'fresher' ? 'sparkle' : 'route'} size={26} /></span>
