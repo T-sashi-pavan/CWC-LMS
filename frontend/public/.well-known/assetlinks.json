@@ -1,0 +1,8 @@
+[{
+      "relation": ["delegate_permission/common.handle_all_urls"],
+      "target": {
+        "namespace": "android_app",
+        "package_name": "com.cwcecosystem.twa",
+        "sha256_cert_fingerprints": ["76:33:CD:0A:84:A1:98:12:0B:6E:6B:91:63:23:94:A9:85:4C:FF:FB:5B:24:7B:DD:4F:67:82:BF:30:98:A8:8F"]
+      }
+    }]

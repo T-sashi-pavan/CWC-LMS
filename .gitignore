@@ -84,3 +84,8 @@ client_secrets*.json
 
 # ---------- Large local course videos (hosted on Cloudinary) ----------
 langgraph/
+
+# ---------- Android signing secrets (NEVER commit) ----------
+android-signing/
+*.keystore
+*.jks
