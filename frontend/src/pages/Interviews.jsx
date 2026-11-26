@@ -1,4 +1,3 @@
-import { PageHead } from '../components/ui.jsx'
 import Icon from '../components/Icon.jsx'
 import { SIMULATOR_FORM } from '../data/plans.js'
 
@@ -30,17 +29,12 @@ export default function Interviews() {
   const form = { href: SIMULATOR_FORM, target: '_blank', rel: 'noopener noreferrer' }
   return (
     <>
-      <PageHead eyebrow="CWC ecosystem" title="1-on-1 mock interview program">
-        Get interview-ready. Get evaluated. Get referred.
-      </PageHead>
-
       <section className="mockhero">
         <div>
-          <span className="eyebrow">Personal mock interview</span>
-          <h2>1-on-1 evaluation</h2>
+          <span className="eyebrow">CWC ecosystem · 1-on-1 mock interview</span>
+          <h1>1-on-1 mock interview program</h1>
           <p>
-            Prepare for your next opportunity with a personalized, one-on-one mock interview designed around your target role and domain.
-            Get a realistic interview experience, a structured evaluation and actionable feedback to close your skill gaps.
+            Get interview-ready, evaluated, and referred. Experience a realistic role-specific interview, structured evaluation, and actionable feedback to close your skill gaps.
           </p>
         </div>
         <a className="btn btn--lg" {...form}>Book your mock interview <Icon name="arrow" size={18} /></a>

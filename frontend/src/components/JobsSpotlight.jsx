@@ -45,7 +45,7 @@ export function JobsNudge() {
     if (read() || QUIET.includes(pathname)) return undefined
     const t = setTimeout(() => {
       if (!document.querySelector('.greet')) setOpen(true) // never on top of the greeting poster
-    }, 9000)
+    }, 2500)
     return () => clearTimeout(t)
   }, [pathname])
 
