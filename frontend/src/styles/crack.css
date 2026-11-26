@@ -936,15 +936,15 @@
 
 /* ---- Responsive polish: Mobile / iPad / Laptop + non-overlapping nudges ---- */
 
-/* Compact 1-symbol Mock Interview beacon & non-overlapping bottom-left Jobs alert on mobile */
+/* Compact 1-symbol Mock Interview beacon & Toast-sized Top-Right Jobs alert on mobile */
 @media (max-width: 768px) {
   .jnudge {
-    top: auto;
-    bottom: 14px;
-    left: 12px;
-    right: 68px;
+    top: 66px;
+    right: 12px;
+    left: auto;
+    bottom: auto;
     width: auto;
-    max-width: calc(100vw - 80px);
+    max-width: min(290px, calc(100vw - 24px));
     padding: 8px 10px;
     border-radius: 14px;
     gap: 8px;
