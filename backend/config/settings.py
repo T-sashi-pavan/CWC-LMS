@@ -144,10 +144,10 @@ if not DEBUG:
 # ---------- Jobs from a published Google Sheet ----------
 # "Publish to web" CSV link of the sheet. Empty = only jobs added in the admin. See apps/content/jobs_sheet.py.
 JOBS_SHEET_URL = os.environ.get("JOBS_SHEET_URL", "").strip()
-JOBS_SHEET_TTL = int(os.environ.get("JOBS_SHEET_TTL", "300") or 300)  # seconds an edit may take to show up
+JOBS_SHEET_TTL = int(os.environ.get("JOBS_SHEET_TTL", "5") or 5)  # seconds an edit may take to show up
 
 OFFLINE_MEETS_SHEET_URL = os.environ.get("OFFLINE_MEETS_SHEET_URL", "").strip()
-OFFLINE_MEETS_SHEET_TTL = int(os.environ.get("OFFLINE_MEETS_SHEET_TTL", "300") or 300)
+OFFLINE_MEETS_SHEET_TTL = int(os.environ.get("OFFLINE_MEETS_SHEET_TTL", "5") or 5)
 
 # ---------- CORS / CSRF ----------
 CORS_ALLOWED_ORIGINS = env_list("CORS_ALLOWED_ORIGINS", "http://localhost:5173")

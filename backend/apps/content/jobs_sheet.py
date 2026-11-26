@@ -207,7 +207,9 @@ def parse_jobs(csv_text: str, default_date: str | None = None) -> list[dict]:
 
 
 def _download(url: str, limit: int = 2_000_000) -> str:
-    req = Request(url, headers={"User-Agent": "cwc-jobs-sync/1.0", "Accept": "text/csv,text/html,*/*"})
+    sep = "&" if "?" in url else "?"
+    busted = f"{url}{sep}_t={int(time.time())}" if "docs.google.com" in url else url
+    req = Request(busted, headers={"User-Agent": "cwc-jobs-sync/1.0", "Accept": "text/csv,text/html,*/*", "Cache-Control": "no-cache"})
     with urlopen(req, timeout=8) as res:  # noqa: S310 - the URL comes from our own setting, not from a visitor
         return res.read(limit).decode("utf-8", errors="replace")
 

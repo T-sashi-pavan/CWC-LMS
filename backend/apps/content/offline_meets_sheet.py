@@ -114,7 +114,12 @@ def get_offline_meets() -> list[dict]:
             return list(_cache["meets"])
 
     try:
-        req = Request(csv_url(url), headers={"User-Agent": "CWC-LMS/1.0"})
+        target = csv_url(url)
+        sep = "&" if "?" in target else "?"
+        req = Request(
+            f"{target}{sep}_t={int(time.time())}",
+            headers={"User-Agent": "CWC-LMS/1.0", "Cache-Control": "no-cache"},
+        )
         with urlopen(req, timeout=8) as resp:
             text = resp.read().decode("utf-8", errors="replace")
         meets = _parse_csv(text)

@@ -933,3 +933,101 @@
     animation: none;
   }
 }
+
+/* ---- Responsive polish: Mobile / iPad / Laptop + non-overlapping nudges ---- */
+
+/* Compact 1-symbol Mock Interview beacon & Top-Right Jobs alert on mobile/tablet */
+@media (max-width: 768px) {
+  .jnudge {
+    top: 74px;
+    right: 12px;
+    left: 12px;
+    bottom: auto;
+    max-width: 380px;
+    margin-left: auto;
+    padding: 10px 12px;
+    border-radius: 16px;
+    gap: 10px;
+  }
+  .jnudge__icon {
+    width: 36px;
+    height: 36px;
+    border-radius: 10px;
+  }
+  .jnudge__txt strong {
+    font-size: 13.5px;
+  }
+  .jnudge__txt span {
+    font-size: 12px;
+  }
+
+  /* 1-symbol circular dot for Mock Interviews on mobile */
+  .sim-beacon {
+    right: 14px;
+    bottom: 14px;
+  }
+  .sim-beacon__dot {
+    width: 46px;
+    height: 46px;
+    padding: 0;
+    justify-content: center;
+    gap: 0;
+  }
+  .sim-beacon__label {
+    display: none;
+  }
+  .sim-beacon__pulse {
+    position: absolute;
+    top: 6px;
+    right: 6px;
+    width: 8px;
+    height: 8px;
+  }
+}
+
+/* Sleeker, higher-positioned JobsTicker & compact hero/sections on mobile & iPad */
+@media (max-width: 1024px) {
+  .land .jtick {
+    margin: 8px 14px 0;
+  }
+  .section {
+    margin-top: 32px;
+  }
+  .hero3 {
+    gap: 12px;
+    padding-top: 8px;
+  }
+}
+
+@media (max-width: 640px) {
+  .land .jtick {
+    margin: 6px 12px 0;
+    padding: 4px 8px 4px 4px;
+    gap: 8px;
+  }
+  .jtick__tag {
+    padding: 4px 10px;
+    font-size: 11.5px;
+    gap: 5px;
+  }
+  .jtick__dot {
+    width: 6px;
+    height: 6px;
+  }
+  .jtick__item {
+    font-size: 12.5px;
+  }
+  .hero3__title {
+    font-size: clamp(2.1rem, 10.5vw, 2.9rem);
+    line-height: 0.92;
+  }
+  .hero3__bulb .logo {
+    height: min(76%, 175px);
+  }
+  .hero3__copy p {
+    font-size: 0.92rem;
+  }
+  .section {
+    margin-top: 26px;
+  }
+}

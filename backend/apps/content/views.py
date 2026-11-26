@@ -136,6 +136,7 @@ class JobList(TieredListView):
         response = super().list(request, *args, **kwargs)
         if isinstance(response.data, list):
             response.data = gate_apply_links(sheet_jobs() + list(response.data), bool(getattr(request.user, "is_authenticated", False)))
+        response["Cache-Control"] = "no-store"
         return response  # sheet jobs first: they are the freshest
 
 
@@ -209,4 +210,6 @@ class OfflineMeetList(APIView):
         from .offline_meets_sheet import get_offline_meets
 
         meets = get_offline_meets()
-        return Response({"meets": meets, "active_count": len(meets)})
+        resp = Response({"meets": meets, "active_count": len(meets)})
+        resp["Cache-Control"] = "no-store"
+        return resp
