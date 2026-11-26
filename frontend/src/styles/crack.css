@@ -1610,3 +1610,36 @@
   justify-content: center;
   margin-top: 2px;
 }
+
+/* Mobile header: keep brand + bell + theme + user on 1 clean top row, nav tabs below */
+@media (max-width: 640px) {
+  .topbar__in {
+    padding: 8px 12px;
+    gap: 6px 8px;
+  }
+  .topbar .brand {
+    gap: 8px;
+    min-width: 0;
+    flex: 1 1 auto;
+  }
+  .topbar .brand .logo {
+    width: 34px;
+    height: 34px;
+  }
+  .topbar .brand .wordmark strong {
+    font-size: 14.5px;
+  }
+  .topbar .brand .wordmark small {
+    font-size: 8.5px;
+  }
+  .topbar .user {
+    flex: none;
+    gap: 6px;
+    margin-left: auto;
+  }
+  .push-bell {
+    width: 34px;
+    height: 34px;
+    border-radius: 10px;
+  }
+}
